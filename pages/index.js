@@ -11,8 +11,6 @@ export default class Home extends Component {
           <title>カフェペディア</title>
         </Head>
         <div className="container">
-          <h1>hoge</h1>
-          Read <Link href="/cafes"><a>to Cafes Page!</a></Link>
           <About />
         </div>
       </Layout>
