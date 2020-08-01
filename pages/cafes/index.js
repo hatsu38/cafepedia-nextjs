@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import Layout from '../components/layout'
-export default class Home extends Component {
+import Layout from '../../components/layout'
+
+export default class Index extends Component {
   render() {
     return (
       <Layout>
         <Head>
-          <title>カフェペディア</title>
+          <title>カフェペディア | カフェ一覧</title>
         </Head>
         <div className="container">
-          <h1>hoge</h1>
-          Read <Link href="/cafes"><a>to Cafes Page!</a></Link>
+          <Link href="/">Top</Link>
+          <h1>Cafes</h1>
         </div>
       </Layout>
     )
