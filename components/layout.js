@@ -1,10 +1,9 @@
 import '../stylesheets/layout.module.scss'
 
+import { Container } from "react-bootstrap"
 export default function Layout({ children }) {
   return (
-    <div className="container">
-      {children}
-    </div>
+    <Container fluid>{children}</Container>
   )
 }
 

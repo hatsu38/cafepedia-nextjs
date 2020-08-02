@@ -14,10 +14,8 @@ function Index({prefectures}) {
       <Head>
         <title>カフェペディア</title>
       </Head>
-      <div className="container">
-        <About />
-        <Prefectures prefectures={prefectures} />
-      </div>
+      <About />
+      <Prefectures prefectures={prefectures} />
     </Layout>
   )
 }
