@@ -3,7 +3,6 @@ import { InputGroup, FormControl, Button, Jumbotron } from "react-bootstrap"
 export default class Index extends Component {
   render() {
     return(
-      <>
       <InputGroup className="mb-3">
         <FormControl
           placeholder="エリア・駅"
@@ -14,7 +13,6 @@ export default class Index extends Component {
           <Button variant="outline-secondary">検索</Button>
         </InputGroup.Append>
       </InputGroup>
-      </>
     )
   }
 }
