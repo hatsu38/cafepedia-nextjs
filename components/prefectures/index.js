@@ -1,6 +1,9 @@
 import React, { Component, useState, useEffect } from 'react'
 import { Accordion, Button, Row, Col, Card } from "react-bootstrap"
+
 import "./index.module.scss"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default class Index extends Component {
   constructor(props) {
@@ -40,15 +43,17 @@ export default class Index extends Component {
   render() {
     const areas = ["北海道・東北", "関東", "関西", "中部", "中国", "四国", "九州・沖縄"]
     return(
-      <div className="area-select mt-5">
-        <h2>都道府県から探す</h2>
+      <div className="area-select mt-5 base-gray-900">
+        <h2 className="f4 px-2 pt-3 pb-0 mb-md-0">
+          <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 accent-text" style={{letterSpacing: "1px"}} />都道府県から探す
+        </h2>
         <Accordion>
           <Row noGutters className="p-sm-2">
             {areas.map((area) =>
               <Col xs={12} md={6} xl={4} key={area}>
                   <div className="area-select__region">
                     <div className="d-none d-sm-block mt-3">
-                      <h3 className="f6 font-wight--700 mb-1">{area}</h3>
+                      <h3 className="f6 font-wight--600 mb-1" style={{letterSpacing: "1px"}}>{area}</h3>
                       {this.withOutAccordionPrefectures(area)}
                     </div>
                     <div className="d-block d-sm-none border-bottom">

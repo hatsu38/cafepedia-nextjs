@@ -1,23 +1,27 @@
 $link: #007bff;
-$ref: #062847;
+$ref: #907bf0;
+$original-gray: #cccccc;
 
 $original-white: #fff;
 
-$base-gray-900: #102a43;
-$base-gray-800: #243b53;
-$base-gray-700: #334e68;
-$base-gray-600: #486581;
-$base-gray-500: #627d98;
-$base-gray-400: #829ab1;
-$base-gray-300: #9fb3c8;
-$base-gray-200: #bcccdc;
-$base-gray-100: #d9e2ec;
-$base-gray-000: #f0f4f8;
+$base-gray-900: darken($ref, 90%);
+$base-gray-800: darken($ref, 80%);
+$base-gray-700: darken($ref, 70%);
+$base-gray-600: darken($ref, 60%);
+$base-gray-500: darken($ref, 50%);
+$base-gray-400: darken($ref, 40%);
+$base-gray-300: darken($ref, 30%);
+$base-gray-200: darken($ref, 20%);
+$base-gray-100: darken($ref, 10%);
+$base-gray-000: darken($ref, 5%);
 
-$accent:#d1410c;
+$accent:#ff3e70;
 
+.original-gray-text{
+	color: $original-gray;
+}
 .accent-text {
-	color: $accent;
+	color: $accent !important;
 }
 
 .bg--accent {
@@ -38,7 +42,7 @@ $accent:#d1410c;
 .base_color {
 	color: $ref !important;
 }
-.base_bg_color{
+.bg-base_color{
 	background-color: $ref !important;
 }
 

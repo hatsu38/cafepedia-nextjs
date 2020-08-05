@@ -5,8 +5,8 @@ import './header.module.scss'
 
 export default function Header() {
   return (
-    <Navbar bg="red">
-      <Navbar.Brand href="/" className="f6 font-wight--600">カフェペディア</Navbar.Brand>
+    <Navbar bg="transparent" className="position-absolute" style={{zIndex: "1"}}>
+      <Navbar.Brand href="/" className="f4 font-wight--700 white-text">カフェペディア</Navbar.Brand>
     </Navbar>
   )
 }

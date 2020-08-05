@@ -21,6 +21,7 @@ function Index({prefectures}) {
       </Head>
       <div className="position-relative">
         <div className="bg-image__item" style={{backgroundImage: "url(/images/bg-header.jpg)"}}>
+          <div className="bg-image__item-overlay"></div>
           <Container>
             <About />
             <Prefectures prefectures={prefectures} />

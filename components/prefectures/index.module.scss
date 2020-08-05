@@ -8,6 +8,7 @@
   .area-select__region{
     .area-select__region-name{
       color: $base-gray-800;
+      letter-spacing: 1px;
     }
     .area-select__area{
       @include media_query_mobile{

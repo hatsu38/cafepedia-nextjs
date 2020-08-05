@@ -10,7 +10,7 @@ export default class Index extends Component {
           aria-describedby="basic-addon2"
         />
         <InputGroup.Append>
-          <Button className="bg-gray--900 border-0">検索</Button>
+          <Button className="bg--accent border-0">検索</Button>
         </InputGroup.Append>
       </InputGroup>
     )

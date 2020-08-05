@@ -9,6 +9,15 @@
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
-  padding-top: 100px;
+  padding-top: 120px;
   padding-bottom: 225px;
+  z-index: -2;
+  .bg-image__item-overlay{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+  }
 }
