@@ -1,0 +1,28 @@
+@import "../../stylesheets/colors";
+@import "../../stylesheets/font-size";
+@import "../../stylesheets/mixin";
+
+.area-select{
+  background-color: $original-white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.24);
+  .area-select__region{
+    .area-select__region-name{
+      color: $base-gray-800;
+      letter-spacing: 1px;
+    }
+    .area-select__area{
+      @include media_query_mobile{
+        border-bottom: 1px solid #d7d7d7;
+        padding: 5px;
+      }
+      .area-select__area-name{
+        border-bottom: 1px dotted #2d88d9;
+        @include media_query_mobile{
+          color: #666;
+          background-color: #fafafa;
+          border: none;
+        }
+      }
+    }
+  }
+}
