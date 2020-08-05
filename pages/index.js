@@ -2,13 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
-import { Container, Image } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 
 // Component
 import Layout from '../components/layout'
 import About from '../components/about'
 import Prefectures from '../components/prefectures'
-import ChainShops from '../components/chainShops'
 
 // Style
 import '../stylesheets/index.module.scss'
@@ -27,9 +26,6 @@ function Index({prefectures, chainShops}) {
           <Prefectures prefectures={prefectures} />
         </Container>
       </div>
-      <Container>
-        <ChainShops chainShops={chainShops} />
-      </Container>
     </Layout>
   )
 }
