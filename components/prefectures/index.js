@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from 'react'
-import { Accordion, Button, Row, Col, Card } from "react-bootstrap"
+import React, { Component } from 'react'
+import { Accordion, Button, Row, Col } from "react-bootstrap"
 
 import "./index.module.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +8,6 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 export default class Index extends Component {
   constructor(props) {
     super(props)
-
   }
 
   prefecturesFilteredInArea(area) {
