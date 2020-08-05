@@ -3,7 +3,7 @@ import { InputGroup, FormControl, Button, Jumbotron } from "react-bootstrap"
 export default class Index extends Component {
   render() {
     return(
-      <InputGroup className="mb-3">
+      <InputGroup className="mb-3 pt-5">
         <FormControl
           placeholder="エリア・駅"
           aria-label="エリア・駅"
