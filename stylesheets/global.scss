@@ -1,7 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
+@import "./mixin";
 @import "./font-size";
 @import "./colors";
-@import "./mixin";
+@import "./letter-space";
+
 
 html,
 body {
