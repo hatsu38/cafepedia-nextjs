@@ -1,12 +1,12 @@
 // Media Query
 // --------
 @mixin media_query_mobile{
-  @media (max-width:768px){
+  @media (max-width:480px){
     @content;
   }
 }
 @mixin media_query_tablet{
-  @media (min-width: 769px){
+  @media (min-width: 481px){
     @content;
   }
 }
