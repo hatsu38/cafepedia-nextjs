@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { Row, Col, Card } from "react-bootstrap"
+
+const propTypes = {
+  chainShops: PropTypes.array.isRequired,
+}
+
 export default class Index extends Component {
   constructor(props) {
     super(props)
@@ -26,3 +32,5 @@ export default class Index extends Component {
     )
   }
 }
+
+Index.propTypes = propTypes

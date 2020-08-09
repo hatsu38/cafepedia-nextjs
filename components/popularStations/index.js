@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { Badge } from "react-bootstrap"
 
 import "./index.module.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+
+const propTypes = {
+  stations: PropTypes.array.isRequired,
+}
 
 export default class Index extends Component {
   constructor(props) {
@@ -26,3 +31,5 @@ export default class Index extends Component {
     )
   }
 }
+
+Index.propTypes = propTypes
