@@ -7,13 +7,14 @@ import { Container } from "react-bootstrap"
 import Layout from '../components/layout'
 import About from '../components/about'
 import Prefectures from '../components/prefectures'
+import ChainShops from '../components/chainShops'
 import PopularStations from '../components/popularStations'
 
 // Style
 import '../stylesheets/index.module.scss'
 
 
-function Index({prefectures, popularStations}) {
+function Index({prefectures, popularChainShops, popularStations}) {
   return (
     <Layout>
       <Head>
@@ -26,6 +27,7 @@ function Index({prefectures, popularStations}) {
           <Prefectures prefectures={prefectures} />
         </Container>
         <Container>
+          <ChainShops chainShops={popularChainShops} />
           <PopularStations stations={popularStations} />
         </Container>
       </div>
@@ -38,11 +40,14 @@ export default Index
 export async function getStaticProps({ params }) {
   const prefRes = await fetch(`https://cafepedia-api.herokuapp.com/api/prefectures`)
   const prefJson = await prefRes.json()
+  const popularChainShopsRes = await fetch(`https://cafepedia-api.herokuapp.com/api/popular_main_shops`)
+  const popularChainShopsJson = await popularChainShopsRes.json()
   const popularStationsRes = await fetch(`https://cafepedia-api.herokuapp.com/api/popular_stations`)
   const popularStationsJson = await popularStationsRes.json()
 
   const prefectures = prefJson.prefectures
+  const popularChainShops = popularChainShopsJson.main_shops
   const popularStations = popularStationsJson.stations
 
-  return { props: { prefectures, popularStations } }
+  return { props: { prefectures, popularChainShops, popularStations } }
 }
