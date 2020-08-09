@@ -17,6 +17,27 @@ $base-gray-000: darken($ref, 5%);
 
 $accent:#ff3e70;
 
+$starbacks: #0a7143;
+$doutor: #EBA826;
+$tullys: #231816;
+$execelsior: #1870A9;
+
+$brands: (
+  'starbacks': $starbacks,
+  'doutor': $doutor,
+  'tullys': $tullys,
+  'execelsior': $execelsior
+);
+
+@each $brand, $color in $brands {
+  .bg-#{$brand} {
+    background-color: $color;
+	}
+	.#{$brand} {
+		color: $color
+	}
+}
+
 .original-gray-text{
 	color: $original-gray;
 }
