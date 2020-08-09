@@ -2,7 +2,7 @@
 $spaceamounts: (1, 2, 3, 4, 5);
 
 @each $space in $spaceamounts {
-  .lettar-space-#{$space} {
+  .letter-space-#{$space} {
     letter-spacing: #{$space}px;
   }
 }

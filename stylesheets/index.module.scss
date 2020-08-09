@@ -1,10 +1,12 @@
+$top-position: -80px;
+
 .bg-image__item{
   position: absolute;
-  top: -61px;
+  top: $top-position;
   right: 0;
   bottom: 0;
   left: 0;
-  height: 375px;
+  height: 320px - $top-position;
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
@@ -17,5 +19,14 @@
     right: 0;
     bottom: 0;
     left: 0;
+  }
+}
+
+h2{
+  &.section--title{
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(0,0,0,0.87);
+    margin-left: 6px;
   }
 }
