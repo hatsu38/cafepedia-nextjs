@@ -38,11 +38,11 @@ function Index({prefectures, popularChainShops, popularStations}) {
 export default Index
 
 export async function getStaticProps({ params }) {
-  const prefRes = await fetch(`https://cafepedia-api.herokuapp.com/api/prefectures`)
+  const prefRes = await fetch(`${process.env.apiHost}prefectures`)
   const prefJson = await prefRes.json()
-  const popularChainShopsRes = await fetch(`https://cafepedia-api.herokuapp.com/api/popular_main_shops`)
+  const popularChainShopsRes = await fetch(`${process.env.apiHost}popular_main_shops`)
   const popularChainShopsJson = await popularChainShopsRes.json()
-  const popularStationsRes = await fetch(`https://cafepedia-api.herokuapp.com/api/popular_stations`)
+  const popularStationsRes = await fetch(`${process.env.apiHost}popular_stations`)
   const popularStationsJson = await popularStationsRes.json()
 
   const prefectures = prefJson.prefectures

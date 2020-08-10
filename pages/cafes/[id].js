@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import Head from 'next/head'
-import Layout from '../../components/layout'
-import fetch from 'isomorphic-unfetch'
 import { useRouter } from 'next/router'
+
+import fetch from 'isomorphic-unfetch'
+
+import Layout from '../../components/layout'
 
 function Shop({ cafe }) {
   const [page, setPage] = useState(0)
@@ -16,6 +18,7 @@ function Shop({ cafe }) {
   if (router.isFallback) {
     return <div>Loading...</div>
   }
+  
 
   return (
     <Layout>
@@ -27,6 +30,10 @@ function Shop({ cafe }) {
         <h1>Cafes{page}</h1>
       </div>
       <li>{cafe.name}</li>
+      <div>
+        
+      </div>
+
       <button onClick={() => setPage(page + 1)}>
         Click me
       </button>
@@ -39,7 +46,7 @@ export default Shop
 // This function gets called at build time
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch('https://cafepedia-api.herokuapp.com/api/shops/')
+  const res = await fetch(`${process.env.apiHost}shops/`)
   const json = await res.json()
   const shops = json.shops
 
@@ -57,11 +64,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
-  const res = await fetch(`https://cafepedia-api.herokuapp.com/api/shops/${params.id}`)
-  console.log("RES", res)
+  const res = await fetch(`${process.env.apiHost}shops/${params.id}`)
   const json = await res.json()
   const cafe = json.shop
-  console.log("shop", cafe)
   // Pass post data to the page via props
   return { props: { cafe } }
 }

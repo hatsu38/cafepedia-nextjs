@@ -17,7 +17,7 @@ export default class Index extends Component {
 
   render() {
     const { stations } = this.props
-
+    console.log("stations", stations)
     return (
       <section className="mt-5">
         <h2 className="section--title">人気エリアから探す</h2>
