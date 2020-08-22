@@ -24,7 +24,7 @@ export default class Index extends Component {
               <Link href="/chain_shops/[id]" as={`/chain_shops/${chainShop.id}`}>
                 <a>
                   <Card className="h-100 mx-2 mx-lg-1">
-                    <Card.Img variant="top" className={`bg-${chainShop.eng_name}`} src={"https://cafepedia-images.s3-ap-northeast-1.amazonaws.com" + chainShop.image} />
+                    <Card.Img variant="top" className={`bg-${chainShop.eng_name}`} src={process.env.s3Host + chainShop.image} />
                     <Card.Body className="py-1 px-1 border-top">
                       <Card.Title className="f7 mb-0 text-center">{chainShop.name}</Card.Title>
                     </Card.Body>

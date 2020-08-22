@@ -32,9 +32,10 @@ function ChainShop({ mainShop, shops, popularChainShops }) {
       </Head>
       <Container className="d-flex">
         <div className="sidebars-right">
-          <ChainShops chainShops={popularChainShops} />
+          <ChainShops chainShops={popularChainShops} currentChainShop={mainShop} />
         </div>
         <div className="main-columns ml-3">
+          <h1 className="main-columns--title">{mainShop.name}の電源のあるカフェ{shops.length}選</h1>
           <ShopLists shops={shops} />
         </div>
       </Container>
