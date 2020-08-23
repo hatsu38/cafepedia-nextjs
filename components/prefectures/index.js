@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import Link from 'next/link'
 
 import { Accordion, Button, Row, Col } from "react-bootstrap"
 
@@ -26,7 +27,9 @@ export default class Index extends Component {
         {this.prefecturesFilteredInArea(area).map((prefecture) =>
           <Col sm md={2} key={prefecture.id} className="area-select__area">
             <span className="pl-3 pl-md-0">
-              <a href={"/" + prefecture.id} className="f7 area-select__area-name">{prefecture.ellipsis_name}</a>
+              <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
+                <a className="f7 area-select__area-name">{prefecture.ellipsis_name}</a>
+              </Link>
             </span>
           </Col>
         )}
