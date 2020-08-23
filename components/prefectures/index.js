@@ -30,9 +30,9 @@ export default class Index extends Component {
           <Col sm md={2} key={prefecture.id} className="area-select__area">
             <span className="pl-3 pl-md-0">
               <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
-                <span className="f7 area-select__area-name as-link-text">
+                <a className="f7 area-select__area-name as-link-text">
                   {prefecture.ellipsis_name}
-                </span>
+                </a>
               </Link>
             </span>
           </Col>

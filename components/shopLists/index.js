@@ -21,7 +21,7 @@ export default class Index extends Component {
       <div className="shop__lists">
         {shops.map((shop) => (
           <Link href="/shops/[id]" as={`/shops/${shop.id}`} key={shop.id}>
-            <span>
+            <a>
               <ListGroup className="border-bottom" variant="flush">
                 <ListGroup.Item className="d-flex px-0">
                   <Image
@@ -40,7 +40,7 @@ export default class Index extends Component {
                   </div>
                 </ListGroup.Item>
               </ListGroup>
-            </span>
+            </a>
           </Link>
         ))}
       </div>

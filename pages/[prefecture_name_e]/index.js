@@ -6,11 +6,11 @@ import { useRouter } from "next/router"
 import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
-import Layout from "./../components/layout"
-import Cities from "./../components/sidebars/cities"
-import ShopLists from "./../components/shopLists"
+import Layout from "../../components/layout"
+import Cities from "../../components/sidebars/cities"
+import ShopLists from "../../components/shopLists"
 
-import "./../stylesheets/prefecture_name_e.module.scss"
+import "../../stylesheets/prefecture_name_e.module.scss"
 
 const propTypes = {
   prefecture: PropTypes.object.isRequired,
@@ -18,7 +18,7 @@ const propTypes = {
   cities: PropTypes.array.isRequired,
 }
 
-export default function Prefecture({ prefecture, shops, cities }) {
+export default function Index({ prefecture, shops, cities }) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -44,7 +44,7 @@ export default function Prefecture({ prefecture, shops, cities }) {
   )
 }
 
-Prefecture.propTypes = propTypes
+Index.propTypes = propTypes
 
 export async function getStaticPaths() {
   const res = await fetch(`${process.env.apiHost}prefectures/`)
@@ -58,22 +58,15 @@ export async function getStaticPaths() {
   return { paths, fallback: true }
 }
 
-// This also gets called at build time
 export async function getStaticProps({ params }) {
-  // TODO: このリクエストでその都道府県の市区町村一覧も取得する
   const prefectureRes = await fetch(
     `${process.env.apiHost}prefectures/${params.prefecture_name_e}`
   )
   const prefectureJson = await prefectureRes.json()
 
-  const citiesRes = await fetch(
-    `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities`
-  )
-  const citiesJson = await citiesRes.json()
-
   const prefecture = prefectureJson.prefecture
   const shops = prefecture.shops
-  const cities = citiesJson.cities
+  const cities = prefectureJson.cities
 
   return { props: { prefecture, shops, cities } }
 }

@@ -28,9 +28,7 @@ export default class Index extends Component {
         <ul className="related__links">
           <li>
             <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
-              <span className="related__link as-link-text f8">
-                {prefecture.name}
-              </span>
+              <a className="related__link as-link-text f8">{prefecture.name}</a>
             </Link>
           </li>
         </ul>
@@ -39,10 +37,13 @@ export default class Index extends Component {
           {cities.map((city) => (
             <li key={city.id} className="d-inline-block mt-1 ml-1">
               {/* TODO: 市区町村のPathに変更する必要がある */}
-              <Link href="/prefectures/[id]" as={`/prefectures/${city.id}`}>
-                <span className={"chain-shop--item as-link-text f8"}>
+              <Link
+                href="/[prefecture_name_e]/[city_code]"
+                as={`/${prefecture.name_e}/${city.code}`}
+              >
+                <a className={"chain-shop--item as-link-text f8"}>
                   {city.name}
-                </span>
+                </a>
               </Link>
             </li>
           ))}
