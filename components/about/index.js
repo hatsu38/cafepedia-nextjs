@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { InputGroup, FormControl, Button, Jumbotron } from "react-bootstrap"
+import React, { Component } from "react"
+import { InputGroup, FormControl, Button } from "react-bootstrap"
 export default class Index extends Component {
   render() {
-    return(
+    return (
       <InputGroup className="mb-3 pt-5">
         <FormControl
           placeholder="エリア・駅"
