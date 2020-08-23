@@ -1,27 +1,40 @@
-import React from 'react'
-import Head from 'next/head'
-import fetch from 'isomorphic-unfetch'
+import React from "react"
+import PropTypes from "prop-types"
+import Head from "next/head"
+import fetch from "isomorphic-unfetch"
 import { Container } from "react-bootstrap"
 
 // Component
-import Layout from '../components/layout'
-import About from '../components/about'
-import Prefectures from '../components/prefectures'
-import ChainShops from '../components/chainShops'
-import PopularStations from '../components/popularStations'
+import Layout from "../components/layout"
+import About from "../components/about"
+import Prefectures from "../components/prefectures"
+import ChainShops from "../components/chainShops"
+import PopularStations from "../components/popularStations"
 
 // Style
-import '../stylesheets/index.module.scss'
+import "../stylesheets/index.module.scss"
 
+const propTypes = {
+  prefectures: PropTypes.array.isRequired,
+  popularChainShops: PropTypes.array.isRequired,
+  popularStations: PropTypes.array.isRequired,
+}
 
-function Index({prefectures, popularChainShops, popularStations}) {
+export default function Index({
+  prefectures,
+  popularChainShops,
+  popularStations,
+}) {
   return (
     <Layout>
       <Head>
         <title>カフェペディア</title>
       </Head>
       <div className="position-relative">
-        <div className="bg-image__item" style={{backgroundImage: "url(/images/bg-header.jpg)"}}></div>
+        <div
+          className="bg-image__item"
+          style={{ backgroundImage: "url(/images/bg-header.jpg)" }}
+        ></div>
         <Container className="mt-4">
           <About />
           <Prefectures prefectures={prefectures} />
@@ -35,14 +48,18 @@ function Index({prefectures, popularChainShops, popularStations}) {
   )
 }
 
-export default Index
+Index.propTypes = propTypes
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const prefRes = await fetch(`${process.env.apiHost}prefectures`)
   const prefJson = await prefRes.json()
-  const popularChainShopsRes = await fetch(`${process.env.apiHost}popular/main_shops`)
+  const popularChainShopsRes = await fetch(
+    `${process.env.apiHost}popular/main_shops`
+  )
   const popularChainShopsJson = await popularChainShopsRes.json()
-  const popularStationsRes = await fetch(`${process.env.apiHost}popular/stations`)
+  const popularStationsRes = await fetch(
+    `${process.env.apiHost}popular/stations`
+  )
   const popularStationsJson = await popularStationsRes.json()
 
   const prefectures = prefJson.prefectures

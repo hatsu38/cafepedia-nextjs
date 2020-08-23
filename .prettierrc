@@ -1,0 +1,14 @@
+{
+  "indent": [2, 2],
+  "quotes": [2, "double"],
+  "linebreak-style": [0],
+  "semi": false,
+  "no-console": [1],
+  "no-var": [1],
+  "no-unused-vars": [1],
+  "react/jsx-uses-react": "error",
+  "jsx-a11y/anchor-is-valid": [ "error", {
+    "components": [ "Link" ],
+    "specialLink": [ "hrefLeft", "hrefRight" ]
+  }]
+}
