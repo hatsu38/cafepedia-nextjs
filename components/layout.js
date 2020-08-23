@@ -9,10 +9,10 @@ const propTypes = {
 
 export default function Layout({ children }) {
   return (
-    <React.Fragment>
+    <>
       <Header />
       {children}
-    </React.Fragment>
+    </>
   )
 }
 
