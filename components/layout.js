@@ -4,7 +4,7 @@ import "../stylesheets/layout.module.scss"
 import Header from "../header/index"
 
 const propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.array.isRequired,
 }
 
 export default function Layout({ children }) {

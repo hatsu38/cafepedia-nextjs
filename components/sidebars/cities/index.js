@@ -28,7 +28,9 @@ export default class Index extends Component {
         <ul className="related__links">
           <li>
             <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
-              <a className="related__link f8">{prefecture.name}</a>
+              <span className="related__link as-link-text f8">
+                {prefecture.name}
+              </span>
             </Link>
           </li>
         </ul>
@@ -38,7 +40,9 @@ export default class Index extends Component {
             <li key={city.id} className="d-inline-block mt-1 ml-1">
               {/* TODO: 市区町村のPathに変更する必要がある */}
               <Link href="/prefectures/[id]" as={`/prefectures/${city.id}`}>
-                <a className={"chain-shop--item f8"}>{city.name}</a>
+                <span className={"chain-shop--item as-link-text f8"}>
+                  {city.name}
+                </span>
               </Link>
             </li>
           ))}
