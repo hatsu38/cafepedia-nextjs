@@ -6,7 +6,7 @@ import "./header.module.scss"
 export default function Header() {
   return (
     <Container>
-      <Navbar bg="transparent" style={{ zIinndex: "1" }} className="p-0">
+      <Navbar bg="transparent" style={{ zIndex: "1" }} className="p-0">
         <Navbar.Brand href="/" className="f4 font-wight--700 accent-text">
           カフェペディア
         </Navbar.Brand>
