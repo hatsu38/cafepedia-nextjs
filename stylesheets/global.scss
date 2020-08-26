@@ -19,13 +19,13 @@ body {
   box-sizing: border-box;
 }
 
-a, .as-link-text {
+a {
   color: #0070f3;
   text-decoration: none;
   cursor: pointer;
 }
 
-a:hover, .as-link-text:hober {
+a:hover {
   text-decoration: underline;
 }
 

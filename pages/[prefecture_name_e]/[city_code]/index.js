@@ -7,7 +7,6 @@ import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
 import Layout from "../../../components/layout"
-import Cities from "../../../components/sidebars/cities"
 import ShopLists from "../../../components/shopLists"
 
 import "../../../stylesheets/prefecture_name_e.module.scss"
@@ -32,7 +31,8 @@ export default function Index({ prefecture, shops, city }) {
       <Container className="d-flex">
         <div className="main-columns ml-3">
           <h1 className="main-columns--title">
-            {prefecture.name}{city.name}の電源のあるカフェ{shops.length}選
+            {prefecture.name}
+            {city.name}の電源のあるカフェ{shops.length}選
           </h1>
           <ShopLists shops={shops} />
         </div>

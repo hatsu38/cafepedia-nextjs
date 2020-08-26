@@ -28,7 +28,9 @@ export default class Index extends Component {
         <ul className="related__links">
           <li>
             <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
-              <a className="related__link as-link-text f8">{prefecture.name}</a>
+              <a href={`/${prefecture.name_e}`} className="related__link f8">
+                {prefecture.name}
+              </a>
             </Link>
           </li>
         </ul>
@@ -40,7 +42,10 @@ export default class Index extends Component {
                 href="/[prefecture_name_e]/[city_code]"
                 as={`/${prefecture.name_e}/${city.code}`}
               >
-                <a className={"chain-shop--item as-link-text f8"}>
+                <a
+                  href={`/${prefecture.name_e}/${city.code}`}
+                  className={"chain-shop--item f8"}
+                >
                   {city.name}
                 </a>
               </Link>
