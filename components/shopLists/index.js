@@ -20,28 +20,28 @@ export default class Index extends Component {
     return (
       <div className="shop__lists">
         {shops.map((shop) => (
-          <Link href="/shops/[id]" as={`/shops/${shop.id}`} key={shop.id}>
-            <span>
-              <ListGroup className="border-bottom" variant="flush">
-                <ListGroup.Item className="d-flex px-0">
-                  <Image
-                    src={process.env.s3Host + shop.main_shop.image}
-                    thumbnail
-                    width={120}
-                    height={120}
-                  />
-                  <div className="shop__detail mw-100 ml-2 text-truncate">
+          <ListGroup className="border-bottom" variant="flush" key={shop.id}>
+            <ListGroup.Item className="d-flex px-0">
+              <Image
+                src={process.env.s3Host + shop.main_shop.image}
+                thumbnail
+                width={120}
+                height={120}
+              />
+              <div className="shop__detail mw-100 ml-2 text-truncate">
+                <Link href="/shops/[id]" as={`/shops/${shop.id}`}>
+                  <a href={`/shops/${shop.id}`}>
                     <h3 className="shop__name original-black-text">
                       {shop.name}
                     </h3>
-                    <div className="shop__access original-gray-text f7 text-truncate">
-                      {shop.access}
-                    </div>
-                  </div>
-                </ListGroup.Item>
-              </ListGroup>
-            </span>
-          </Link>
+                  </a>
+                </Link>
+                <div className="shop__access original-gray-text f7 text-truncate">
+                  {shop.access}
+                </div>
+              </div>
+            </ListGroup.Item>
+          </ListGroup>
         ))}
       </div>
     )
