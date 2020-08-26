@@ -32,7 +32,7 @@ export default function Index({ prefecture, shops, city }) {
       <Container className="d-flex">
         <div className="main-columns ml-3">
           <h1 className="main-columns--title">
-            {city.name}の電源のあるカフェ{shops.length}選
+            {prefecture.name}{city.name}の電源のあるカフェ{shops.length}選
           </h1>
           <ShopLists shops={shops} />
         </div>
