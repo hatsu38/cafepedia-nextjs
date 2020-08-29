@@ -10,6 +10,7 @@ import Layout from "components/layout"
 import ShopLists from "components/shopLists"
 import Cities from "components/sidebars/cities"
 import Stations from "components/sidebars/stations"
+import ChainShops from "components/sidebars/chainShops"
 
 import "stylesheets/prefecture_name_e.module.scss"
 
@@ -19,9 +20,17 @@ const propTypes = {
   stations: PropTypes.array,
   cities: PropTypes.array.isRequired,
   shops: PropTypes.array.isRequired,
+  chainShops: PropTypes.array.isRequired,
 }
 
-export default function Index({ prefecture, city, stations, cities, shops }) {
+export default function Index({
+  prefecture,
+  city,
+  stations,
+  cities,
+  shops,
+  chainShops,
+}) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -41,6 +50,13 @@ export default function Index({ prefecture, city, stations, cities, shops }) {
             <Stations stations={stations} />
           ) : (
             <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
+          )}
+          {chainShops.length && (
+            <ChainShops
+              chainShops={chainShops}
+              prefecture={prefecture}
+              city={city}
+            />
           )}
         </div>
         <div className="main-columns ml-3">
@@ -85,6 +101,7 @@ export async function getStaticProps({ params }) {
   const stations = json.stations
   const cities = json.cities
   const shops = json.shops
+  const chainShops = json.main_shops
 
-  return { props: { prefecture, city, stations, cities, shops } }
+  return { props: { prefecture, city, stations, cities, shops, chainShops } }
 }

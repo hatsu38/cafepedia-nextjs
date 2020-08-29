@@ -37,7 +37,7 @@ export default class Index extends Component {
         <hr className="mt-2 mb-0" />
         <ul className="pl-0 mb-0">
           {cities.map((city) => (
-            <li key={city.id} className="d-inline-block mt-1 ml-1">
+            <li key={city.code} className="d-inline-block mt-1 ml-1">
               <Link
                 href="/[prefecture_name_e]/[city_code]"
                 as={`/${prefecture.name_e}/${city.code}`}

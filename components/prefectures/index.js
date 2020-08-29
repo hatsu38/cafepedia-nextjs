@@ -27,7 +27,7 @@ export default class Index extends Component {
     return (
       <Row noGutters className="">
         {this.prefecturesFilteredInArea(area).map((prefecture) => (
-          <Col sm md={2} key={prefecture.id} className="area-select__area">
+          <Col sm md={2} key={prefecture.name_e} className="area-select__area">
             <span className="pl-3 pl-md-0">
               <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
                 <a
