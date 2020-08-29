@@ -29,11 +29,11 @@ export default class Index extends Component {
           <ul className="related__links">
             <li>
               <Link
-                href="/[prefecture_name_e]/[city_code]/[station_id]"
-                as={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
+                href="/[prefecture_name_e]/[city_code]/stations/[station_id]"
+                as={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
               >
                 <a
-                  href={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
+                  href={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
                   className="related__link f8"
                 >
                   {station.kanji_name}
@@ -47,11 +47,11 @@ export default class Index extends Component {
           {stations.map((station) => (
             <li key={station.id} className="d-inline-block mt-1 ml-1">
               <Link
-                href="/[prefecture_name_e]/[city_code]/[station_id]"
-                as={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
+                href="/[prefecture_name_e]/[city_code]/stations/[station_id]"
+                as={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
               >
                 <a
-                  href={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
+                  href={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
                   className={"chain-shop--item f8"}
                 >
                   {station.kanji_name}
