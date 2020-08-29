@@ -27,10 +27,12 @@ export default function Index({ prefecture, shops, cities }) {
   return (
     <Layout>
       <Head>
-        <title>カフェペディア | {prefecture.name}の電源のあるカフェ{shops.length}選</title>
+        <title>
+          カフェペディア | {prefecture.name}の電源のあるカフェ{shops.length}選
+        </title>
       </Head>
       <Container className="d-flex">
-        <div className="sidebars-right">
+        <div className="sidebars-left">
           <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
         </div>
         <div className="main-columns ml-3">
