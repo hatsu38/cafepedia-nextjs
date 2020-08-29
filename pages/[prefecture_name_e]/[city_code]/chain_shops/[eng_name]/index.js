@@ -10,7 +10,6 @@ import Layout from "components/layout"
 import ShopLists from "components/shopLists"
 import Cities from "components/sidebars/cities"
 import Stations from "components/sidebars/stations"
-import ChainShops from "components/sidebars/chainShops"
 
 import "stylesheets/prefecture_name_e.module.scss"
 
