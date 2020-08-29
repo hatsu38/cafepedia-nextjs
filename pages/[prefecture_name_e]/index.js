@@ -7,18 +7,20 @@ import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
 import Layout from "components/layout"
-import Cities from "components/sidebars/cities"
 import ShopLists from "components/shopLists"
+import Cities from "components/sidebars/cities"
+import ChainShops from "components/sidebars/chainShops"
 
 import "stylesheets/prefecture_name_e.module.scss"
 
 const propTypes = {
   prefecture: PropTypes.object.isRequired,
-  shops: PropTypes.array.isRequired,
   cities: PropTypes.array.isRequired,
+  shops: PropTypes.array.isRequired,
+  chainShops: PropTypes.array.isRequired,
 }
 
-export default function Index({ prefecture, shops, cities }) {
+export default function Index({ prefecture, cities, shops, chainShops }) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -34,6 +36,9 @@ export default function Index({ prefecture, shops, cities }) {
       <Container className="d-flex">
         <div className="sidebars-left">
           <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
+          {chainShops.length && (
+            <ChainShops chainShops={chainShops} prefecture={prefecture} />
+          )}
         </div>
         <div className="main-columns ml-3">
           <h1 className="main-columns--title">
@@ -67,8 +72,9 @@ export async function getStaticProps({ params }) {
   const json = await response.json()
 
   const prefecture = json.prefecture
-  const shops = json.shops
   const cities = json.cities
+  const shops = json.shops
+  const chainShops = json.main_shops
 
-  return { props: { prefecture, shops, cities } }
+  return { props: { prefecture, cities, shops, chainShops } }
 }
