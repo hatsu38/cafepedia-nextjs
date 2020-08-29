@@ -61,14 +61,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const prefectureRes = await fetch(
+  const response = await fetch(
     `${process.env.apiHost}prefectures/${params.prefecture_name_e}`
   )
-  const prefectureJson = await prefectureRes.json()
+  const json = await response.json()
 
-  const prefecture = prefectureJson.prefecture
-  const shops = prefectureJson.shops
-  const cities = prefectureJson.cities
+  const prefecture = json.prefecture
+  const shops = json.shops
+  const cities = json.cities
 
   return { props: { prefecture, shops, cities } }
 }
