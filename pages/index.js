@@ -5,11 +5,11 @@ import fetch from "isomorphic-unfetch"
 import { Container } from "react-bootstrap"
 
 // Component
-import Layout from "../components/layout"
-import About from "../components/about"
-import Prefectures from "../components/prefectures"
-import ChainShops from "../components/chainShops"
-import PopularStations from "../components/popularStations"
+import Layout from "components/layout"
+import About from "components/about"
+import Prefectures from "components/prefectures"
+import ChainShops from "components/chainShops"
+import PopularStations from "components/popularStations"
 
 // Style
 import "../stylesheets/index.module.scss"

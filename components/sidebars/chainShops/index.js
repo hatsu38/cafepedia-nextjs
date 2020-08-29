@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 
-import "components/sidebars/styles/index.module.scss"
+import "../styles/index.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStoreAlt } from "@fortawesome/free-solid-svg-icons"
 

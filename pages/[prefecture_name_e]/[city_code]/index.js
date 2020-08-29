@@ -6,18 +6,21 @@ import { useRouter } from "next/router"
 import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
-import Layout from "../../../components/layout"
-import ShopLists from "../../../components/shopLists"
+import Layout from "components/layout"
+import ShopLists from "components/shopLists"
+import Cities from "components/sidebars/cities"
 
 import "../../../stylesheets/prefecture_name_e.module.scss"
 
 const propTypes = {
   prefecture: PropTypes.object,
-  shops: PropTypes.array,
   city: PropTypes.object,
+  stations: PropTypes.array,
+  cities: PropTypes.array,
+  shops: PropTypes.array,
 }
 
-export default function Index({ prefecture, shops, city }) {
+export default function Index({ prefecture, city, stations, cities, shops }) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -68,7 +71,9 @@ export async function getStaticProps({ params }) {
 
   const prefecture = citiesJson.prefecture
   const city = citiesJson.city
-  const shops = prefecture.shops
+  const stations = citiesJson.stations
+  const cities = citiesJson.cities
+  const shops = citiesJson.shops
 
-  return { props: { prefecture, shops, city } }
+  return { props: { prefecture, city, stations, cities, shops } }
 }
