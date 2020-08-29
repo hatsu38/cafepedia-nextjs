@@ -25,12 +25,12 @@ export default class Index extends Component {
         {stations.map((station, idx) => (
           // HACK: StationのLINKとAタグは長いのでComponent化するといいかも
           <Link
-            href="/[prefecture_name_e]/[city_code]/[station_id]"
-            as={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
+            href="/[prefecture_name_e]/[city_code]/stations/[station_id]"
+            as={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
             key={station.id}
           >
             <a
-              href={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
+              href={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
             >
               <Badge
                 className={`station--tag original-gray mr-sm-2 mr-1 mt-sm-3 mt-2 py-1 px-2 ${

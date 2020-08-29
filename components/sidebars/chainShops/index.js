@@ -21,15 +21,15 @@ export default class Index extends Component {
   render() {
     const { chainShops, chainShop, prefecture, city } = this.props
 
-    let componentPath = "/[chain_shop_eng_name]"
-    let prefixToLink = "/"
+    let componentPath = "/chain_shops/[eng_name]"
+    let prefixToLink = "/chain_shops/"
 
     if (prefecture && city) {
-      componentPath = "/[prefecture_name_e]/[city_code]/[chain_shop_eng_name]"
-      prefixToLink = `/${prefecture.name_e}/${city.code}/`
+      componentPath = "/[prefecture_name_e]/[city_code]/chain_shops/[eng_name]"
+      prefixToLink = `/${prefecture.name_e}/${city.code}/chain_shops/`
     } else if (prefecture) {
-      componentPath = "/[prefecture_name_e]/[chain_shop_eng_name]"
-      prefixToLink = `/${prefecture.eng_name}/`
+      componentPath = "/[prefecture_name_e]/chain_shops/[eng_name]"
+      prefixToLink = `/${prefecture.name_e}/chain_shops/`
     }
 
     return (

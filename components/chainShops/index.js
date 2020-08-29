@@ -22,10 +22,10 @@ export default class Index extends Component {
             <Col xs={6} sm={3} lg key={chainShop.eng_name} className="mt-3">
               <Card className="h-100 mx-2 mx-lg-1">
                 <Link
-                  href="/[chain_shop_eng_name]"
-                  as={`/${chainShop.eng_name}`}
+                  href="/chain_shops/[eng_name]"
+                  as={`/chain_shops/${chainShop.eng_name}`}
                 >
-                  <a href={`/${chainShop.eng_name}`}>
+                  <a href={`/chain_shops/${chainShop.eng_name}`}>
                     <Card.Img
                       variant="top"
                       className={`bg-${chainShop.eng_name}`}
