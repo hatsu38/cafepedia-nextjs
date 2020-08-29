@@ -6,4 +6,8 @@ module.exports = withSass({
     apiHost: "https://cafepedia-api-staging.herokuapp.com/api/v1/",
     s3Host: "https://cafepedia-images.s3-ap-northeast-1.amazonaws.com",
   },
+  webpack(config) {
+    config.resolve.modules.push(__dirname)
+    return config
+  },
 })

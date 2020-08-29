@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStoreAlt } from "@fortawesome/free-solid-svg-icons"
 
 const propTypes = {
-  cities: PropTypes.array.isRequired,
-  prefecture: PropTypes.object.isRequired,
+  stations: PropTypes.array.isRequired,
+  station: PropTypes.object,
 }
 
 export default class Index extends Component {
@@ -17,36 +17,39 @@ export default class Index extends Component {
   }
 
   render() {
-    const { cities, prefecture } = this.props
+    const { stations, station } = this.props
 
     return (
       <section className="list-sidebar">
         <h2 className="list-sidebar--title m-0">
           <FontAwesomeIcon icon={faStoreAlt} className="mr-2 accent-text" />
-          市区町村から探す
+          最寄りの駅から探す
         </h2>
-        <ul className="related__links">
-          <li>
-            <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
-              <a href={`/${prefecture.name_e}`} className="related__link f8">
-                {prefecture.name}
-              </a>
-            </Link>
-          </li>
-        </ul>
+        {/* TODO: 駅詳細ページを作る必要あり */}
+        {station && (
+          <ul className="related__links">
+            <li>
+              <Link href="/[prefecture_name_e]" as={`/${station.id}`}>
+                <a href={`/${station.id}`} className="related__link f8">
+                  {station.kanji_name}
+                </a>
+              </Link>
+            </li>
+          </ul>
+        )}
         <hr className="mt-2 mb-0" />
         <ul className="pl-0 mb-0">
-          {cities.map((city) => (
-            <li key={city.id} className="d-inline-block mt-1 ml-1">
+          {stations.map((station) => (
+            <li key={station.id} className="d-inline-block mt-1 ml-1">
               <Link
-                href="/[prefecture_name_e]/[city_code]"
-                as={`/${prefecture.name_e}/${city.code}`}
+                href="/[/[station_code]"
+                as={`/${station.id}/${station.id}`}
               >
                 <a
-                  href={`/${prefecture.name_e}/${city.code}`}
+                  href={`/${station.id}/${station.id}`}
                   className={"chain-shop--item f8"}
                 >
-                  {city.name}
+                  {station.kanji_name}
                 </a>
               </Link>
             </li>

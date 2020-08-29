@@ -6,11 +6,11 @@ import { useRouter } from "next/router"
 import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
-import Layout from "../../components/layout"
-import Cities from "../../components/sidebars/cities"
-import ShopLists from "../../components/shopLists"
+import Layout from "components/layout"
+import Cities from "components/sidebars/cities"
+import ShopLists from "components/shopLists"
 
-import "../../stylesheets/prefecture_name_e.module.scss"
+import "stylesheets/prefecture_name_e.module.scss"
 
 const propTypes = {
   prefecture: PropTypes.object.isRequired,
@@ -27,11 +27,13 @@ export default function Index({ prefecture, shops, cities }) {
   return (
     <Layout>
       <Head>
-        <title>カフェペディア | カフェ一覧</title>
+        <title>
+          カフェペディア | {prefecture.name}の電源のあるカフェ{shops.length}選
+        </title>
       </Head>
       <Container className="d-flex">
-        <div className="sidebars-right">
-          <Cities cities={cities} prefecture={prefecture} />
+        <div className="sidebars-left">
+          <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
         </div>
         <div className="main-columns ml-3">
           <h1 className="main-columns--title">
@@ -65,7 +67,7 @@ export async function getStaticProps({ params }) {
   const prefectureJson = await prefectureRes.json()
 
   const prefecture = prefectureJson.prefecture
-  const shops = prefecture.shops
+  const shops = prefectureJson.shops
   const cities = prefectureJson.cities
 
   return { props: { prefecture, shops, cities } }
