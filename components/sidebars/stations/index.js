@@ -25,12 +25,17 @@ export default class Index extends Component {
           <FontAwesomeIcon icon={faStoreAlt} className="mr-2 accent-text" />
           最寄りの駅から探す
         </h2>
-        {/* TODO: 駅詳細ページを作る必要あり */}
         {station && (
           <ul className="related__links">
             <li>
-              <Link href="/[prefecture_name_e]" as={`/${station.id}`}>
-                <a href={`/${station.id}`} className="related__link f8">
+              <Link
+                href="/[prefecture_name_e]/[city_code]/[station_id]"
+                as={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
+              >
+                <a
+                  href={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
+                  className="related__link f8"
+                >
                   {station.kanji_name}
                 </a>
               </Link>
@@ -42,11 +47,11 @@ export default class Index extends Component {
           {stations.map((station) => (
             <li key={station.id} className="d-inline-block mt-1 ml-1">
               <Link
-                href="/[/[station_code]"
-                as={`/${station.id}/${station.id}`}
+                href="/[prefecture_name_e]/[city_code]/[station_id]"
+                as={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
               >
                 <a
-                  href={`/${station.id}/${station.id}`}
+                  href={`/${station.prefecture_name_e}/${station.city_code}/${station.id}`}
                   className={"chain-shop--item f8"}
                 >
                   {station.kanji_name}
