@@ -25,6 +25,7 @@ export default class Index extends Component {
           <FontAwesomeIcon icon={faStoreAlt} className="mr-2 accent-text" />
           最寄りの駅から探す
         </h2>
+        {/* TODO: 駅詳細ページを作る必要あり */}
         {station && (
           <ul className="related__links">
             <li>
