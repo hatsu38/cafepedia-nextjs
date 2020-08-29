@@ -4,7 +4,7 @@ import Link from "next/link"
 
 import "components/sidebars/styles/index.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faStoreAlt } from "@fortawesome/free-solid-svg-icons"
+import { faSubway } from "@fortawesome/free-solid-svg-icons"
 
 const propTypes = {
   stations: PropTypes.array.isRequired,
@@ -22,7 +22,7 @@ export default class Index extends Component {
     return (
       <section className="list-sidebar">
         <h2 className="list-sidebar--title m-0">
-          <FontAwesomeIcon icon={faStoreAlt} className="mr-2 accent-text" />
+          <FontAwesomeIcon icon={faSubway} className="mr-2 accent-text" />
           最寄りの駅から探す
         </h2>
         {station && (

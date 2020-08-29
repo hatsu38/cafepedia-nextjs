@@ -23,7 +23,7 @@ export default class Index extends Component {
       <section className="list-sidebar">
         <h2 className="list-sidebar--title m-0">
           <FontAwesomeIcon icon={faStoreAlt} className="mr-2 accent-text" />
-          市区町村から探す
+          チェーン店から探す
         </h2>
         <ul className="related__links">
           <li>
