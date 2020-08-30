@@ -1,0 +1,8 @@
+.info-list{
+  font-size: 13.4px;
+  > .info-list__item {
+    > dt {
+      flex-shrink: 0;
+    }
+  }
+}

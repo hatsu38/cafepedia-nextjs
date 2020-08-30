@@ -11,6 +11,8 @@ import {
 
 import TopInfoList from "../topInfoList"
 
+import "./index.module.scss"
+
 const propTypes = {
   shop: PropTypes.object.isRequired,
   station: PropTypes.object,
@@ -25,7 +27,7 @@ export default class Index extends Component {
     const { shop, station } = this.props
 
     return (
-      <div className="info-list f7 original-gray-text">
+      <dl className="info-list original-gray-text">
         {station && (
           <TopInfoList
             icon={faSubway}
@@ -55,7 +57,7 @@ export default class Index extends Component {
             ddText={shop.smoking ? "あり" : "なし"}
           />
         </div>
-      </div>
+      </dl>
     )
   }
 }

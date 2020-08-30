@@ -32,12 +32,10 @@ export default function Index({ shops, shop, station }) {
       <Head>
         <title>カフェペディア | {shop.name}</title>
       </Head>
-      <Container className="d-flex">
-        <div className="main-columns">
-          <h1 className="main-columns--title">{shop.name}</h1>
-          <TopInfoLists shop={shop} station={station} />
-          <ShopLists shops={shops} />
-        </div>
+      <Container>
+        <h1 className="f4 font-bold">{shop.name}</h1>
+        <TopInfoLists shop={shop} station={station} />
+        <ShopLists shops={shops} />
       </Container>
     </Layout>
   )
