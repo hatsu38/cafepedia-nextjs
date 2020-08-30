@@ -1,3 +1,5 @@
+@import "stylesheets/mixin";
+
 .global-header__border{
   border-bottom: 1px solid #e6e4e1;
 }
@@ -6,4 +8,7 @@
 }
 .global-header__sub.except_top{
   color: #2e2e3b;
+  @include media_query_mobile{
+    display: block;
+  }
 }
