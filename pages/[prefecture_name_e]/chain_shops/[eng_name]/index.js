@@ -11,7 +11,7 @@ import ShopLists from "components/shopLists"
 import Cities from "components/sidebars/cities"
 import Stations from "components/sidebars/stations"
 
-import "stylesheets/prefecture_name_e.module.scss"
+import "stylesheets/sidebars/sidebars.module.scss"
 
 const propTypes = {
   prefecture: PropTypes.object,

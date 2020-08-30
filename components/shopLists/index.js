@@ -20,7 +20,7 @@ export default class Index extends Component {
   render() {
     const { shops } = this.props
     const shopComponentPath =
-      "/[prefecture_name_e]/[city_code]/chain_shop/[eng_name]/[shop_id]"
+      "/[prefecture_name_e]/[city_code]/chain_shops/[eng_name]/[shop_id]"
 
     return (
       <div className="shop__lists">
