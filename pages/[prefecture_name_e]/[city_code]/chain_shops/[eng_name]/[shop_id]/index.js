@@ -32,7 +32,10 @@ export default function Index({ shops, shop, station }) {
       <Head>
         <title>カフェペディア | {shop.name}</title>
       </Head>
-      <Container>
+      <Container className="mt-n2">
+        <span className="chain-shop-name original-gray-text f8">
+          {shop.main_shop.name}
+        </span>
         <h1 className="f4 font-bold">{shop.name}</h1>
         <TopInfoLists shop={shop} station={station} />
         <ShopLists shops={shops} />
