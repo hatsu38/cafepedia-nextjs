@@ -8,8 +8,6 @@ import fetch from "isomorphic-unfetch"
 import { Container } from "react-bootstrap"
 import Layout from "components/layout"
 import ShopLists from "components/shopLists"
-import Cities from "components/sidebars/cities"
-import Stations from "components/sidebars/stations"
 
 import "stylesheets/sidebars/sidebars.module.scss"
 
@@ -23,14 +21,7 @@ const propTypes = {
   shop: PropTypes.object.isRequired,
 }
 
-export default function Index({
-  prefecture,
-  stations,
-  station,
-  cities,
-  shops,
-  shop,
-}) {
+export default function Index({ shops, shop }) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -41,12 +32,6 @@ export default function Index({
         <title>カフェペディア | {shop.name}</title>
       </Head>
       <Container className="d-flex">
-        <div className="sidebars-left">
-          {stations.length && (
-            <Stations stations={stations} station={station} />
-          )}
-          <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
-        </div>
         <div className="main-columns ml-3">
           <h1 className="main-columns--title">{shop.name}</h1>
           <ShopLists shops={shops} />
@@ -86,21 +71,8 @@ export async function getStaticProps({ params }) {
   )
   const json = await response.json()
 
-  const prefecture = json.prefecture
-  const stations = json.stations
-  const station = json.station
-  const cities = json.cities
   const shops = json.shops
   const shop = json.shop
 
-  return {
-    props: {
-      prefecture,
-      stations,
-      station,
-      cities,
-      shops,
-      shop,
-    },
-  }
+  return { props: { shops, shop } }
 }
