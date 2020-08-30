@@ -18,7 +18,6 @@ const propTypes = {
   city: PropTypes.object.isRequired,
   stations: PropTypes.array,
   station: PropTypes.object,
-  chainShop: PropTypes.object.isRequired,
   cities: PropTypes.array.isRequired,
   shops: PropTypes.array.isRequired,
   shop: PropTypes.object.isRequired,
