@@ -14,8 +14,13 @@ export default class Index extends Component {
     super(props)
   }
 
+  shopUrlPath(shop) {
+    return `/${shop.prefecture_name_e}/${shop.city_code}/chain_shops/${shop.main_shop.eng_name}/${shop.id}`
+  }
   render() {
     const { shops } = this.props
+    const shopComponentPath =
+      "/[prefecture_name_e]/[city_code]/chain_shop/[eng_name]/[shop_id]"
 
     return (
       <div className="shop__lists">
@@ -29,8 +34,8 @@ export default class Index extends Component {
                 height={120}
               />
               <div className="shop__detail mw-100 ml-2 text-truncate">
-                <Link href="/shops/[id]" as={`/shops/${shop.id}`}>
-                  <a href={`/shops/${shop.id}`}>
+                <Link href={shopComponentPath} as={this.shopUrlPath(shop)}>
+                  <a href={this.shopUrlPath(shop)}>
                     <h3 className="shop__name original-black-text">
                       {shop.name}
                     </h3>

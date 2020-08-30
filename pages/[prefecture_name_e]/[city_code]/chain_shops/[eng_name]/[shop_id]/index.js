@@ -10,7 +10,6 @@ import Layout from "components/layout"
 import ShopLists from "components/shopLists"
 import Cities from "components/sidebars/cities"
 import Stations from "components/sidebars/stations"
-import ChainShops from "components/sidebars/chainShops"
 
 import "stylesheets/prefecture_name_e.module.scss"
 
@@ -18,46 +17,39 @@ const propTypes = {
   prefecture: PropTypes.object.isRequired,
   city: PropTypes.object.isRequired,
   stations: PropTypes.array,
+  station: PropTypes.object,
+  chainShop: PropTypes.object.isRequired,
   cities: PropTypes.array.isRequired,
   shops: PropTypes.array.isRequired,
-  chainShops: PropTypes.array.isRequired,
+  shop: PropTypes.object.isRequired,
 }
 
 export default function Index({
   prefecture,
-  city,
   stations,
+  station,
   cities,
   shops,
-  chainShops,
+  shop,
 }) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
   }
-  const title = `${prefecture.name}${city.name}の電源のあるカフェ${shops.length}選`
   return (
     <Layout>
       <Head>
-        <title>カフェペディア | {title}</title>
+        <title>カフェペディア | {shop.name}</title>
       </Head>
       <Container className="d-flex">
         <div className="sidebars-left">
-          {stations.length ? (
-            <Stations stations={stations} />
-          ) : (
-            <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
+          {stations.length && (
+            <Stations stations={stations} station={station} />
           )}
-          {chainShops.length && (
-            <ChainShops
-              chainShops={chainShops}
-              prefecture={prefecture}
-              city={city}
-            />
-          )}
+          <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
         </div>
         <div className="main-columns ml-3">
-          <h1 className="main-columns--title">{title}</h1>
+          <h1 className="main-columns--title">{shop.name}</h1>
           <ShopLists shops={shops} />
         </div>
       </Container>
@@ -68,16 +60,21 @@ export default function Index({
 Index.propTypes = propTypes
 
 export async function getStaticPaths() {
-  // TODO: 動的に都道府県の市区町村ページの取得ができなかったのでtokyoを指定している
-  const res = await fetch(`${process.env.apiHost}prefectures/tokyo/cities`)
+  const res = await fetch(
+    `${process.env.apiHost}prefectures/tokyo/cities/13101/main_shops/starbacks`
+  )
   const json = await res.json()
-  const cities = json.cities
   const prefecture = json.prefecture
+  const city = json.city
+  const chainShop = json.main_shop
+  const shops = json.shops
 
-  const paths = cities.map((city) => ({
+  const paths = shops.map((shop) => ({
     params: {
       prefecture_name_e: prefecture.name_e,
       city_code: city.code,
+      eng_name: chainShop.eng_name,
+      shop_id: shop.id.toString(),
     },
   }))
 
@@ -86,16 +83,25 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const response = await fetch(
-    `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}`
+    `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/main_shops/${params.eng_name}/shops/${params.shop_id}`
   )
   const json = await response.json()
 
   const prefecture = json.prefecture
-  const city = json.city
   const stations = json.stations
+  const station = json.station
   const cities = json.cities
   const shops = json.shops
-  const chainShops = json.main_shops
+  const shop = json.shop
 
-  return { props: { prefecture, city, stations, cities, shops, chainShops } }
+  return {
+    props: {
+      prefecture,
+      stations,
+      station,
+      cities,
+      shops,
+      shop,
+    },
+  }
 }
