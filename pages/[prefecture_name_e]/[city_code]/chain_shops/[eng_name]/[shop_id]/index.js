@@ -9,6 +9,7 @@ import { Container } from "react-bootstrap"
 import Layout from "components/layout"
 import ShopLists from "components/shopLists"
 import TopInfoLists from "./components/topInfoLists"
+import ShopDetailInfo from "./components/shopDetailInfo"
 
 import "stylesheets/sidebars/sidebars.module.scss"
 
@@ -38,6 +39,7 @@ export default function Index({ shops, shop, station }) {
         </span>
         <h1 className="f4 font-bold">{shop.name}</h1>
         <TopInfoLists shop={shop} station={station} />
+        <ShopDetailInfo shop={shop} />
         <ShopLists shops={shops} />
       </Container>
     </Layout>
