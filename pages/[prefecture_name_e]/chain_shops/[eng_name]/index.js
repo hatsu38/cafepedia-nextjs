@@ -33,13 +33,11 @@ export default function Index({
     return <div>Loading...</div>
   }
 
+  const title = `${prefecture.name}${chainShop.name}の電源のあるカフェ${shops.length}選`
   return (
     <Layout>
       <Head>
-        <title>
-          カフェペディア | {prefecture.name}
-          {chainShop.name}の電源のあるカフェ{shops.length}選
-        </title>
+        <title>カフェペディア | {title}</title>
       </Head>
       <Container className="d-flex">
         <div className="sidebars-left">
@@ -47,10 +45,7 @@ export default function Index({
           <Stations stations={stations} />
         </div>
         <div className="main-columns ml-3">
-          <h1 className="main-columns--title">
-            {prefecture.name}
-            {chainShop.name}の電源のあるカフェ{shops.length}選
-          </h1>
+          <h1 className="main-columns--title">{title}</h1>
           <ShopLists shops={shops} />
         </div>
       </Container>
