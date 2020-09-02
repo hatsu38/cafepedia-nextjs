@@ -1,4 +1,8 @@
+@import "stylesheets/mixin";
 .sidebars-left{
+  @include media_query_mobile{
+    display: none;
+  }
   .list-sidebar{
     padding: 12px;
     border: 1px solid #d5d5d8;
