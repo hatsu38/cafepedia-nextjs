@@ -26,6 +26,7 @@ export default class Index extends Component {
             <Tr thText="電話番号" tdText={shop.tel} />
             <Tr thText="ホームページ" tdText={shop.hp} link={shop.hp} />
             <Tr thText="住所" tdText={shop.full_address} />
+            <Tr thText="営業時間" tdText={shop.business_hour} />
           </tbody>
         </Table>
       </div>
