@@ -29,7 +29,10 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
     <>
       <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
       {chainShops.length && (
-        <ChainShops chainShops={chainShops} prefecture={prefecture} />
+        <ChainShops
+          chainShops={chainShops.slice(0, 8)}
+          prefecture={prefecture}
+        />
       )}
     </>
   )
