@@ -51,7 +51,7 @@ export default class Index extends Component {
                   </span>
                   <Link href={shopComponentPath} as={this.shopUrlPath(shop)}>
                     <a href={this.shopUrlPath(shop)} className="align-top">
-                      <h3 className="shop__name mt-n2 original-black-text">
+                      <h3 className="shop__name mt-n2 original-black-text text-truncate">
                         {shop.name}
                       </h3>
                     </a>
