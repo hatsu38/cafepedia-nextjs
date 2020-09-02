@@ -9,7 +9,7 @@ import {
   faSmoking,
 } from "@fortawesome/free-solid-svg-icons"
 
-import TopInfoList from "../topInfoList"
+import TopInfoList from "components/topInfoList"
 
 import "./index.module.scss"
 
@@ -28,7 +28,7 @@ export default class Index extends Component {
 
     return (
       <dl className="info-list original-gray-text">
-        {station.length ? (
+        {station && station.length ? (
           <TopInfoList
             icon={faSubway}
             dtText="最寄駅："
