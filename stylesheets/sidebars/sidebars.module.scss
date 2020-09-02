@@ -1,4 +1,8 @@
+@import "stylesheets/mixin";
 .sidebars-left{
+  @include media_query_mobile{
+    display: none;
+  }
   .list-sidebar{
     padding: 12px;
     border: 1px solid #d5d5d8;
@@ -30,8 +34,11 @@
 .main-columns--title{
   word-break: break-word !important;
   overflow-wrap: break-word !important;
-  color: #2b273c;
+  color: #333;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 30px;
+  @include media_query_mobile{
+    font-size: 18px;
+  }
 }

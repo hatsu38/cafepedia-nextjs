@@ -1,3 +1,4 @@
+@import "stylesheets/mixin";
 .shop__lists{
   a:hover {
     text-decoration: none;
@@ -8,8 +9,15 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
+  @include media_query_mobile{
+    font-size: 16px;
+  }
 }
 .shop__access{
   text-indent: 0;
   border-bottom: 1px solid #efefef;
+}
+.bg-with--icon{
+  padding: 2px;
+  border-radius: 2px;
 }

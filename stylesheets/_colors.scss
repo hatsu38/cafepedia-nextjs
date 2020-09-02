@@ -2,7 +2,7 @@ $link: #007bff;
 $ref: #907bf0;
 $original-gray: #595960;
 
-$original-white: #fff;
+$original-white: #eff0f3;
 
 $base-gray-900: darken($ref, 90%);
 $base-gray-800: darken($ref, 80%);
@@ -15,8 +15,8 @@ $base-gray-200: darken($ref, 20%);
 $base-gray-100: darken($ref, 10%);
 $base-gray-000: darken($ref, 5%);
 
-$accent:#ff3e70;
-
+$accent:#ff8e3c;
+$reverse-accent: #d9376e;
 $starbacks: #0a7143;
 $doutor: #EBA826;
 $tullys: #231816;
@@ -48,6 +48,15 @@ $brands: (
 .bg--accent {
 	background-color: $accent;
 }
+
+.reverse-accent-text {
+	color: $reverse-accent !important;
+}
+
+.bg--reverse-accent {
+	background-color: $reverse-accent;
+}
+
 
 .white-text {
 	color: #ffffff !important;

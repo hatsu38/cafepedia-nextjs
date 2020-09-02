@@ -15,7 +15,7 @@ const propTypes = {
 export default function Index({ sidebar, shops, title }) {
   return (
     <Row>
-      <Col xs={12} sm={3} className="sidebars-left">
+      <Col xs={12} sm={3} className="pr-0 sidebars-left">
         {sidebar}
       </Col>
       <Col xs={12} sm={9}>

@@ -43,7 +43,7 @@ export default function Index({
       )}
       {chainShops.length && (
         <ChainShops
-          chainShops={chainShops}
+          chainShops={chainShops.slice(0, 8)}
           prefecture={prefecture}
           city={city}
         />
