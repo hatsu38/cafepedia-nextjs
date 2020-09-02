@@ -5,22 +5,20 @@ import { useRouter } from "next/router"
 
 import fetch from "isomorphic-unfetch"
 
-import { Container } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap"
+
 import Layout from "components/layout"
 import ShopLists from "components/shopLists"
-import TopInfoLists from "./components/topInfoLists"
-import ShopDetailInfo from "./components/shopDetailInfo"
+import TopInfoLists from "components/topInfoLists"
+import ShopDetailInfo from "components/shopDetailInfo"
+import GoogleMap from "components/googleMap"
 
 import "stylesheets/sidebars/sidebars.module.scss"
 
 const propTypes = {
-  prefecture: PropTypes.object.isRequired,
-  city: PropTypes.object.isRequired,
-  stations: PropTypes.array,
-  station: PropTypes.object,
-  cities: PropTypes.array.isRequired,
   shops: PropTypes.array.isRequired,
   shop: PropTypes.object.isRequired,
+  station: PropTypes.object,
 }
 
 export default function Index({ shops, shop, station }) {
@@ -38,9 +36,21 @@ export default function Index({ shops, shop, station }) {
           {shop.main_shop.name}
         </span>
         <h1 className="f4 font-bold">{shop.name}</h1>
-        <TopInfoLists shop={shop} station={station} />
-        <ShopDetailInfo shop={shop} />
-        <ShopLists shops={shops} />
+        <Row>
+          <Col sm={12} md={8} className="my-1">
+            <TopInfoLists shop={shop} station={station} />
+            <ShopDetailInfo shop={shop} />
+          </Col>
+          <Col sm={12} md={4} className="my-1">
+            <GoogleMap shop={shop} />
+          </Col>
+        </Row>
+        <div className="mt-5">
+          <h2 className="f5 font-bold">
+            近くの電源のあるカフェ{shops.length}選
+          </h2>
+          <ShopLists shops={shops} />
+        </div>
       </Container>
     </Layout>
   )
