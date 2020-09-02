@@ -5,7 +5,8 @@ import { useRouter } from "next/router"
 
 import fetch from "isomorphic-unfetch"
 
-import { Container } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap"
+
 import Layout from "components/layout"
 import ShopLists from "components/shopLists"
 import TopInfoLists from "./components/topInfoLists"
@@ -39,9 +40,15 @@ export default function Index({ shops, shop, station }) {
           {shop.main_shop.name}
         </span>
         <h1 className="f4 font-bold">{shop.name}</h1>
-        <TopInfoLists shop={shop} station={station} />
-        <GoogleMap shop={shop} />
-        <ShopDetailInfo shop={shop} />
+        <Row>
+          <Col sm={12} md={8} className="my-1">
+            <TopInfoLists shop={shop} station={station} />
+            <ShopDetailInfo shop={shop} />
+          </Col>
+          <Col sm={12} md={4} className="my-1">
+            <GoogleMap shop={shop} />
+          </Col>
+        </Row>
         <ShopLists shops={shops} />
       </Container>
     </Layout>

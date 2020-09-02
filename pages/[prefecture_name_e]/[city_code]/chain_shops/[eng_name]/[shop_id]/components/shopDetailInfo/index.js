@@ -20,7 +20,7 @@ export default class Index extends Component {
     return (
       <div className="shop-detail">
         <h3 className="f5 font-bold letter-space-1">店舗基本情報</h3>
-        <Table responsive bordered hover className="f7 shop-detail__table">
+        <Table responsive bordered hover className="f7 shop-detail__table m-0">
           <tbody>
             <Tr thText="店名" tdText={shop.name} />
             <Tr thText="電話番号" tdText={shop.tel} />

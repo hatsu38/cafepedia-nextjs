@@ -26,10 +26,11 @@ export default class Index extends Component {
       lat: this.round(shop.lat, digit),
       lng: this.round(shop.lng, digit),
     }
+    const style = { height: "100%", width: "100%", minHeight: "200px" }
 
     const AnyReactComponent = ({ icon }) => <div>{icon}</div>
     return (
-      <div style={{ height: "100vh", width: "100%" }}>
+      <div style={style}>
         <GoogleMapReact
           bootstrapURLKeys={{
             key: process.env.GOOGLE_MAP_API_KEY,
