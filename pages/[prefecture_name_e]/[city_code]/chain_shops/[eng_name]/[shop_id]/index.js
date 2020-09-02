@@ -9,20 +9,16 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import Layout from "components/layout"
 import ShopLists from "components/shopLists"
-import TopInfoLists from "./components/topInfoLists"
-import ShopDetailInfo from "./components/shopDetailInfo"
-import GoogleMap from "./components/googleMap"
+import TopInfoLists from "components/topInfoLists"
+import ShopDetailInfo from "components/shopDetailInfo"
+import GoogleMap from "components/googleMap"
 
 import "stylesheets/sidebars/sidebars.module.scss"
 
 const propTypes = {
-  prefecture: PropTypes.object.isRequired,
-  city: PropTypes.object.isRequired,
-  stations: PropTypes.array,
-  station: PropTypes.object,
-  cities: PropTypes.array.isRequired,
   shops: PropTypes.array.isRequired,
   shop: PropTypes.object.isRequired,
+  station: PropTypes.object,
 }
 
 export default function Index({ shops, shop, station }) {
@@ -50,6 +46,9 @@ export default function Index({ shops, shop, station }) {
           </Col>
         </Row>
         <div className="mt-5">
+          <h2 className="f5 font-bold">
+            近くの電源のあるカフェ{shops.length}選
+          </h2>
           <ShopLists shops={shops} />
         </div>
       </Container>
