@@ -7,11 +7,9 @@ import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
 import Layout from "components/layout"
-import ShopLists from "components/shopLists"
 import Prefectures from "components/sidebars/prefectures"
 import Stations from "components/sidebars/stations"
-
-import "stylesheets/sidebars/sidebars.module.scss"
+import SidebarWithShopLists from "components/sidebarWithShopLists"
 
 const propTypes = {
   prefectures: PropTypes.object,
@@ -25,25 +23,21 @@ export default function Index({ prefectures, stations, chainShop, shops }) {
   if (router.isFallback) {
     return <div>Loading...</div>
   }
+  const title = `${chainShop.name}の電源のあるカフェ${shops.length}選`
+  const sidebar = (
+    <>
+      <Stations stations={stations} />
+      <Prefectures prefectures={prefectures} chainShop={chainShop} />
+    </>
+  )
 
   return (
     <Layout>
       <Head>
-        <title>
-          カフェペディア |{chainShop.name}の電源のあるカフェ{shops.length}選
-        </title>
+        <title>カフェペディア | {title}</title>
       </Head>
-      <Container className="d-flex">
-        <div className="sidebars-left">
-          <Stations stations={stations} />
-          <Prefectures prefectures={prefectures} chainShop={chainShop} />
-        </div>
-        <div className="main-columns ml-3">
-          <h1 className="main-columns--title">
-            {chainShop.name}の電源のあるカフェ{shops.length}選
-          </h1>
-          <ShopLists shops={shops} />
-        </div>
+      <Container>
+        <SidebarWithShopLists sidebar={sidebar} shops={shops} title={title} />
       </Container>
     </Layout>
   )
