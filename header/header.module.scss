@@ -8,6 +8,8 @@
 }
 .global-header__sub.except_top{
   color: #2e2e3b;
+}
+.global-header__sub{
   @include media_query_mobile{
     display: block;
   }
