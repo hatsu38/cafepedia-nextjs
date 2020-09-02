@@ -18,8 +18,8 @@ export default class Index extends Component {
     const { shop } = this.props
 
     return (
-      <div className="shop-detail">
-        <h3 className="f5 font-bold letter-space-1">店舗基本情報</h3>
+      <div className="shop-detail mt-5">
+        <h3 className="f5 font-bold letter-space-1">基本情報</h3>
         <Table responsive bordered hover className="f7 shop-detail__table m-0">
           <tbody>
             <Tr thText="店名" tdText={shop.name} />

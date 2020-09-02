@@ -49,7 +49,9 @@ export default function Index({ shops, shop, station }) {
             <GoogleMap shop={shop} />
           </Col>
         </Row>
-        <ShopLists shops={shops} />
+        <div className="mt-5">
+          <ShopLists shops={shops} />
+        </div>
       </Container>
     </Layout>
   )

@@ -5,6 +5,10 @@
       border-bottom: 1px solid #d6ceb4;
       border-left: 1px solid #d6ceb4;
       background-color: #faf8f5;
+      white-space: nowrap;
+    }
+    th, td{
+      vertical-align: middle;
     }
   }
 }
