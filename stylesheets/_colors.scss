@@ -38,6 +38,44 @@ $brands: (
 	}
 }
 
+$colors: (
+  "link": #007bff,
+	"ref": #907bf0,
+	"original-gray": #595960,
+	"original-white": #eff0f3,
+	"accent": #ff8e3c,
+	"reverse-accent": #d9376e
+);
+
+@for $i from 0 through 20 {
+	@each $colorName, $color in $colors {
+		.bg-darken-#{$i * 5}-#{$colorName} {
+			background-color: darken($color, $i * 5);
+		}
+		.darken-#{$i * 5}-#{$colorName} {
+			color: darken($color, $i * 5);
+		}
+		.border-lighten-#{$i * 5}-#{$colorName} {
+			border: 1px solid darken($color, $i * 5);
+		}
+	}
+}
+
+@for $i from 0 through 20 {
+	@each $colorName, $color in $colors {
+		.bg-lighten-#{$i * 5}-#{$colorName} {
+			background-color: lighten($color, $i * 5);
+		}
+		.lighten-#{$i * 5}-#{$colorName} {
+			color: lighten($color, $i * 5);
+		}
+		.border-lighten-#{$i * 5}-#{$colorName} {
+			border: 1px solid lighten($color, $i * 5);
+		}
+	}
+}
+
+
 .original-gray-text{
 	color: $original-gray;
 }

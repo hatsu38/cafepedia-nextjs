@@ -56,7 +56,7 @@ export default class Index extends Component {
                       </h3>
                     </a>
                   </Link>
-                  <dl className="my-1 info-list original-gray-text">
+                  <dl className="my-1 info-list original-gray-text f7">
                     <div className="d-flex">
                       <TopInfoList
                         icon={faPlug}
