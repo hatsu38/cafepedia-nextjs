@@ -32,225 +32,225 @@ $brands: (
 @each $brand, $color in $brands {
   .bg-#{$brand} {
     background-color: $color;
-	}
-	.#{$brand} {
-		color: $color
-	}
+  }
+  .#{$brand} {
+    color: $color
+  }
 }
 
 $colors: (
   "link": #007bff,
-	"ref": #907bf0,
-	"original-gray": #595960,
-	"original-white": #eff0f3,
-	"accent": #ff8e3c,
-	"reverse-accent": #d9376e
+  "ref": #907bf0,
+  "original-gray": #595960,
+  "original-white": #eff0f3,
+  "accent": #ff8e3c,
+  "reverse-accent": #d9376e
 );
 
 @for $i from 0 through 20 {
-	@each $colorName, $color in $colors {
-		.bg-darken-#{$i * 5}-#{$colorName} {
-			background-color: darken($color, $i * 5);
-		}
-		.darken-#{$i * 5}-#{$colorName} {
-			color: darken($color, $i * 5);
-		}
-		.border-lighten-#{$i * 5}-#{$colorName} {
-			border: 1px solid darken($color, $i * 5);
-		}
-	}
+  @each $colorName, $color in $colors {
+    .bg-darken-#{$i * 5}-#{$colorName} {
+      background-color: darken($color, $i * 5);
+    }
+    .darken-#{$i * 5}-#{$colorName} {
+      color: darken($color, $i * 5);
+    }
+    .border-lighten-#{$i * 5}-#{$colorName} {
+      border: 1px solid darken($color, $i * 5);
+    }
+  }
 }
 
 @for $i from 0 through 20 {
-	@each $colorName, $color in $colors {
-		.bg-lighten-#{$i * 5}-#{$colorName} {
-			background-color: lighten($color, $i * 5);
-		}
-		.lighten-#{$i * 5}-#{$colorName} {
-			color: lighten($color, $i * 5);
-		}
-		.border-lighten-#{$i * 5}-#{$colorName} {
-			border: 1px solid lighten($color, $i * 5);
-		}
-	}
+  @each $colorName, $color in $colors {
+    .bg-lighten-#{$i * 5}-#{$colorName} {
+      background-color: lighten($color, $i * 5);
+    }
+    .lighten-#{$i * 5}-#{$colorName} {
+      color: lighten($color, $i * 5);
+    }
+    .border-lighten-#{$i * 5}-#{$colorName} {
+      border: 1px solid lighten($color, $i * 5);
+    }
+  }
 }
 
 
 .original-gray-text{
-	color: $original-gray;
+  color: $original-gray;
 }
 .accent-text {
-	color: $accent !important;
+  color: $accent !important;
 }
 
 .bg--accent {
-	background-color: $accent;
+  background-color: $accent;
 }
 
 .reverse-accent-text {
-	color: $reverse-accent !important;
+  color: $reverse-accent !important;
 }
 
 .bg--reverse-accent {
-	background-color: $reverse-accent;
+  background-color: $reverse-accent;
 }
 
 
 .white-text {
-	color: #ffffff !important;
+  color: #ffffff !important;
 }
 .bg--white {
-	background-color: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 .link--text{
-	color: $link;
+  color: $link;
 }
 
 .base_color {
-	color: $ref !important;
+  color: $ref !important;
 }
 .bg-base_color{
-	background-color: $ref !important;
+  background-color: $ref !important;
 }
 
 
 .gray--000 {
-	color: $base-gray-000;
+  color: $base-gray-000;
 }
 .bg-gray--000 {
-	background-color: $base-gray-000;
+  background-color: $base-gray-000;
 }
 .gray--100 {
-	color: $base-gray-100;
+  color: $base-gray-100;
 }
 .bg-gray--000 {
-	background-color: $base-gray-100;
+  background-color: $base-gray-100;
 }
 .gray--100 {
-	color: $base-gray-100;
+  color: $base-gray-100;
 }
 .bg-gray--200 {
-	background-color: $base-gray-200;
+  background-color: $base-gray-200;
 }
 .gray--200 {
-	color: $base-gray-200;
+  color: $base-gray-200;
 }
 .bg-gray--300 {
-	background-color: $base-gray-300;
+  background-color: $base-gray-300;
 }
 .gray--300 {
-	color: $base-gray-300;
+  color: $base-gray-300;
 }
 .bg-gray--400 {
-	background-color: $base-gray-400;
+  background-color: $base-gray-400;
 }
 .gray--400 {
-	color: $base-gray-400;
+  color: $base-gray-400;
 }
 .bg-gray--500 {
-	background-color: $base-gray-500;
+  background-color: $base-gray-500;
 }
 .gray--500 {
-	color: $base-gray-500;
+  color: $base-gray-500;
 }
 .bg-gray--600 {
-	background-color: $base-gray-600;
+  background-color: $base-gray-600;
 }
 .gray--600 {
-	color: $base-gray-600;
+  color: $base-gray-600;
 }
 .bg-gray--700 {
-	background-color: $base-gray-700;
+  background-color: $base-gray-700;
 }
 .gray--700 {
-	color: $base-gray-700;
+  color: $base-gray-700;
 }
 .bg-gray--800 {
-	background-color: $base-gray-800;
+  background-color: $base-gray-800;
 }
 .gray--800 {
-	color: $base-gray-800;
+  color: $base-gray-800;
 }
 .bg-gray--900 {
-	background-color: $base-gray-900;
+  background-color: $base-gray-900;
 }
 .gray--900 {
-	color: $base-gray-900;
+  color: $base-gray-900;
 }
 
 // Lighten
 
 .lighten_1 {
-	color: lighten($ref, 20);
+  color: lighten($ref, 20);
 }
 
 .lighten_2 {
-	color: lighten($ref, 50);
+  color: lighten($ref, 50);
 }
 
 .lighten_3 {
-	color: lighten($ref, 100);
+  color: lighten($ref, 100);
 }
 
 .lighten_4 {
-	color: lighten($ref, 0);
+  color: lighten($ref, 0);
 }
 
 .lighten_red_1 {
-	color: lighten(#ff0000, 20);
+  color: lighten(#ff0000, 20);
 }
 
 // Darken
 
 .darken_1 {
-	color: darken($ref, 20);
+  color: darken($ref, 20);
 }
 
 .darken_2 {
-	color: darken($ref, 30);
+  color: darken($ref, 30);
 }
 
 // darken_3 : 200% is out of bounds for SASS;
 
 .darken_4 {
-	color: darken($ref, 0);
+  color: darken($ref, 0);
 }
 
 // Adjust Hues
 
 .adjust_hue_1 {
-	color: adjust_hue($ref, 10);
+  color: adjust_hue($ref, 10);
 }
 
 .adjust_hue_2 {
-	color: adjust_hue($ref, 140);
+  color: adjust_hue($ref, 140);
 }
 
 .adjust_hue_3 {
-	color: adjust_hue($ref, -220);
+  color: adjust_hue($ref, -220);
 }
 
 .adjust_hue_4 {
-	color: adjust_hue($ref, 360);
+  color: adjust_hue($ref, 360);
 }
 
 .adjust_hue_5 {
-	color: adjust_hue($ref, 540);
+  color: adjust_hue($ref, 540);
 }
 
 // Complete color stack
 
 .func_stack_a {
-	color: adjust_hue(desaturate(lighten(#003399, 38), 31), 117);
+  color: adjust_hue(desaturate(lighten(#003399, 38), 31), 117);
 }
 
 .func_stack_b {
-	color: adjust_hue(desaturate(lighten(#ff6600, 23), 68), 30);
+  color: adjust_hue(desaturate(lighten(#ff6600, 23), 68), 30);
 }
 
 .func_stack_c {
-	color: adjust_hue(desaturate(lighten(#0183b7, 30), 34), 222);
+  color: adjust_hue(desaturate(lighten(#0183b7, 30), 34), 222);
 }
 
 // Color test HN
@@ -258,162 +258,162 @@ $colors: (
 $hn_color : #deadbe;
 
 .hue {
-	color: hue($hn_color);
+  color: hue($hn_color);
 }
 
 .sat {
-	color: saturation($hn_color);
+  color: saturation($hn_color);
 }
 
 .light {
-	color: lightness($hn_color);
+  color: lightness($hn_color);
 }
 
 .hue_blue {
-	color: hue($ref);
+  color: hue($ref);
 }
 
 .sat_blue {
-	color: saturation($ref);
+  color: saturation($ref);
 }
 
 .light_blue {
-	color: lightness($ref);
+  color: lightness($ref);
 }
 
 .red {
-	color: red($hn_color);
+  color: red($hn_color);
 }
 
 .rgb {
-	color: rgb(red($hn_color), green($hn_color), blue($hn_color));
+  color: rgb(red($hn_color), green($hn_color), blue($hn_color));
 }
 
 .darken_10 {
-	color: darken($hn_color, 10);
+  color: darken($hn_color, 10);
 }
 
 .saturate_57 {
-	color: saturate($hn_color, 57);
+  color: saturate($hn_color, 57);
 }
 
 .adjust_hue_302 {
-	color: adjust_hue($hn_color, 302);
+  color: adjust_hue($hn_color, 302);
 }
 
 .bg--lighten_1 {
-	background-color: lighten($ref, 20);
+  background-color: lighten($ref, 20);
 }
 
 .bg--lighten_2 {
-	background-color: lighten($ref, 50);
+  background-color: lighten($ref, 50);
 }
 
 .bg--lighten_3 {
-	background-color: lighten($ref, 100);
+  background-color: lighten($ref, 100);
 }
 
 .bg--lighten_4 {
-	background-color: lighten($ref, 0);
+  background-color: lighten($ref, 0);
 }
 
 .bg--lighten_red_1 {
-	background-color: lighten(#ff0000, 20);
+  background-color: lighten(#ff0000, 20);
 }
 
 // Darken
 
 .bg--darken_1 {
-	background-color: darken($ref, 20);
+  background-color: darken($ref, 20);
 }
 
 .bg--darken_2 {
-	background-color: darken($ref, 30);
+  background-color: darken($ref, 30);
 }
 
 // darken_3 : 200% is out of bounds for SASS;
 
 .bg--darken_4 {
-	background-color: darken($ref, 0);
+  background-color: darken($ref, 0);
 }
 
 // Adjust Hues
 
 .bg--adjust_hue_1 {
-	background-color: adjust_hue($ref, 10);
+  background-color: adjust_hue($ref, 10);
 }
 
 .bg--adjust_hue_2 {
-	background-color: adjust_hue($ref, 140);
+  background-color: adjust_hue($ref, 140);
 }
 
 .bg--adjust_hue_3 {
-	background-color: adjust_hue($ref, -220);
+  background-color: adjust_hue($ref, -220);
 }
 
 .bg--adjust_hue_4 {
-	background-color: adjust_hue($ref, 360);
+  background-color: adjust_hue($ref, 360);
 }
 
 .bg--adjust_hue_5 {
-	background-color: adjust_hue($ref, 540);
+  background-color: adjust_hue($ref, 540);
 }
 
 // Complete color stack
 
 .bg--func_stack_a {
-	background-color: adjust_hue(desaturate(lighten(#003399, 38), 31), 117);
+  background-color: adjust_hue(desaturate(lighten(#003399, 38), 31), 117);
 }
 
 .bg--func_stack_b {
-	background-color: adjust_hue(desaturate(lighten(#ff6600, 23), 68), 30);
+  background-color: adjust_hue(desaturate(lighten(#ff6600, 23), 68), 30);
 }
 
 .bg--func_stack_c {
-	background-color: adjust_hue(desaturate(lighten(#0183b7, 30), 34), 222);
+  background-color: adjust_hue(desaturate(lighten(#0183b7, 30), 34), 222);
 }
 
 .bg--hue {
-	background-color: hue($hn_color);
+  background-color: hue($hn_color);
 }
 
 .bg--sat {
-	background-color: saturation($hn_color);
+  background-color: saturation($hn_color);
 }
 
 .bg--light {
-	background-color: lightness($hn_color);
+  background-color: lightness($hn_color);
 }
 
 .bg--hue_blue {
-	background-color: hue($ref);
+  background-color: hue($ref);
 }
 
 .bg--sat_blue {
-	background-color: saturation($ref);
+  background-color: saturation($ref);
 }
 
 .bg--light_blue {
-	background-color: lightness($ref);
+  background-color: lightness($ref);
 }
 
 .bg--red {
-	background-color: red($hn_color);
+  background-color: red($hn_color);
 }
 
 .bg--rgb {
-	background-color: rgb(red($hn_color), green($hn_color), blue($hn_color));
+  background-color: rgb(red($hn_color), green($hn_color), blue($hn_color));
 }
 
 .bg--darken_10 {
-	background-color: darken($hn_color, 10);
+  background-color: darken($hn_color, 10);
 }
 
 .bg--saturate_57 {
-	background-color: saturate($hn_color, 57);
+  background-color: saturate($hn_color, 57);
 }
 
 .bg--adjust_hue_302 {
-	background-color: adjust_hue($hn_color, 302);
+  background-color: adjust_hue($hn_color, 302);
 }
 
