@@ -5,6 +5,7 @@ import { Row, Col } from "react-bootstrap"
 import "stylesheets/sidebars/sidebars.module.scss"
 
 import ShopLists from "components/shopLists"
+import Search from "components/search"
 
 const propTypes = {
   sidebar: PropTypes.object.isRequired,
@@ -19,6 +20,7 @@ export default function Index({ sidebar, shops, title }) {
         {sidebar}
       </Col>
       <Col xs={12} sm={9}>
+        <Search />
         <h1 className="main-columns--title">{title}</h1>
         <ShopLists shops={shops} />
       </Col>

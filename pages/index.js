@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap"
 
 // Component
 import Layout from "components/layout"
-import About from "components/about"
+import Search from "components/search"
 import Prefectures from "components/prefectures"
 import ChainShops from "components/chainShops"
 import PopularStations from "components/popularStations"
@@ -36,7 +36,9 @@ export default function Index({
           style={{ backgroundImage: "url(/images/bg-header.jpg)" }}
         ></div>
         <Container className="mt-4">
-          <About />
+          <div className="pt-4">
+            <Search />
+          </div>
           <Prefectures prefectures={prefectures} />
         </Container>
         <Container>
@@ -51,8 +53,7 @@ export default function Index({
 Index.propTypes = propTypes
 
 export async function getStaticProps() {
-  const prefRes = await fetch(`${process.env.apiHost}prefectures`)
-  const prefJson = await prefRes.json()
+  const prefs = await import("lib/datas/prefectures.json")
   const popularChainShopsRes = await fetch(
     `${process.env.apiHost}popular/main_shops`
   )
@@ -62,7 +63,7 @@ export async function getStaticProps() {
   )
   const popularStationsJson = await popularStationsRes.json()
 
-  const prefectures = prefJson.prefectures
+  const prefectures = prefs.datas
   const popularChainShops = popularChainShopsJson.main_shops
   const popularStations = popularStationsJson.stations
 

@@ -26,7 +26,7 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
 
   const title = `${prefecture.name}の電源のあるカフェ${shops.length}選`
   const sidebar = (
-    <>
+    <React.Fragment>
       <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
       {chainShops.length && (
         <ChainShops
@@ -34,7 +34,7 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
           prefecture={prefecture}
         />
       )}
-    </>
+    </React.Fragment>
   )
   return (
     <Layout>

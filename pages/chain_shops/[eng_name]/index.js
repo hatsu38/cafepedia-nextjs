@@ -25,10 +25,10 @@ export default function Index({ prefectures, stations, chainShop, shops }) {
   }
   const title = `${chainShop.name}の電源のあるカフェ${shops.length}選`
   const sidebar = (
-    <>
+    <React.Fragment>
       <Stations stations={stations} />
       <Prefectures prefectures={prefectures} chainShop={chainShop} />
-    </>
+    </React.Fragment>
   )
 
   return (

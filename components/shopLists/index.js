@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import Link from "next/link"
+import ShopLink from "components/linkWrapper/shopLink"
 
 import "./index.module.scss"
 import { ListGroup, Image, Row, Col } from "react-bootstrap"
@@ -27,8 +27,6 @@ export default class Index extends Component {
   }
   render() {
     const { shops } = this.props
-    const shopComponentPath =
-      "/[prefecture_name_e]/[city_code]/chain_shops/[eng_name]/[shop_id]"
     const style = {
       image: { maxHeight: "106px" },
     }
@@ -49,14 +47,12 @@ export default class Index extends Component {
                   <span className="align-top original-gray-text f8">
                     {shop.main_shop.name}
                   </span>
-                  <Link href={shopComponentPath} as={this.shopUrlPath(shop)}>
-                    <a href={this.shopUrlPath(shop)} className="align-top">
-                      <h3 className="shop__name mt-n2 original-black-text text-truncate">
-                        {shop.name}
-                      </h3>
-                    </a>
-                  </Link>
-                  <dl className="my-1 info-list original-gray-text">
+                  <ShopLink shop={shop} classes="align-top">
+                    <h3 className="shop__name mt-n2 original-black-text text-truncate">
+                      {shop.name}
+                    </h3>
+                  </ShopLink>
+                  <dl className="my-1 info-list original-gray-text f7">
                     <div className="d-flex">
                       <TopInfoList
                         icon={faPlug}

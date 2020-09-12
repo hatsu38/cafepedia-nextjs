@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import Link from "next/link"
+import PrefectureLink from "components/linkWrapper/prefectureLink"
 
 import { Accordion, Button, Row, Col } from "react-bootstrap"
 
@@ -29,14 +29,12 @@ export default class Index extends Component {
         {this.prefecturesFilteredInArea(area).map((prefecture) => (
           <Col sm md={2} key={prefecture.name_e} className="area-select__area">
             <span className="pl-3 pl-md-0">
-              <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
-                <a
-                  href={`/${prefecture.name_e}`}
-                  className="f7 area-select__area-name"
-                >
-                  {prefecture.ellipsis_name}
-                </a>
-              </Link>
+              <PrefectureLink
+                prefecture={prefecture}
+                classes="f7 area-select__area-name"
+              >
+                {prefecture.ellipsis_name}
+              </PrefectureLink>
             </span>
           </Col>
         ))}
@@ -46,7 +44,7 @@ export default class Index extends Component {
 
   withAccordionPrefectures(area) {
     return (
-      <>
+      <React.Fragment>
         <Accordion.Toggle
           as={Button}
           className="area-select__region-name f6 w-100 text-left"
@@ -58,7 +56,7 @@ export default class Index extends Component {
         <Accordion.Collapse eventKey={area}>
           {this.withOutAccordionPrefectures(area)}
         </Accordion.Collapse>
-      </>
+      </React.Fragment>
     )
   }
 

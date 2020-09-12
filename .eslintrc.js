@@ -19,6 +19,7 @@ module.exports = {
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
   ],
+  parser: "babel-eslint",
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
