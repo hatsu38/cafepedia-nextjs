@@ -69,6 +69,7 @@ export default class Index extends Component {
   }
 
   setKeywordAndHandleClose = (keyword) => {
+    // TODO: 検索フォームは全ページで使用されるため、KeywordをStoreにおいた方がいいかも
     this.setState({
       show: false,
       keyword: keyword,
