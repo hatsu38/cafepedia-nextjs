@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import Link from "next/link"
+import StationLink from "components/linkWrapper/stationLink"
 
 import "components/sidebars/styles/index.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -28,17 +28,9 @@ export default class Index extends Component {
         {station && (
           <ul className="related__links">
             <li>
-              <Link
-                href="/[prefecture_name_e]/[city_code]/stations/[station_id]"
-                as={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
-              >
-                <a
-                  href={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
-                  className="related__link f8"
-                >
-                  {station.kanji_name}
-                </a>
-              </Link>
+              <StationLink station={station} classes="related__link f8">
+                {station.kanji_name}
+              </StationLink>
             </li>
           </ul>
         )}
@@ -46,17 +38,9 @@ export default class Index extends Component {
         <ul className="pl-0 mb-0">
           {stations.map((station) => (
             <li key={station.id} className="d-inline-block mt-1 ml-1">
-              <Link
-                href="/[prefecture_name_e]/[city_code]/stations/[station_id]"
-                as={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
-              >
-                <a
-                  href={`/${station.prefecture_name_e}/${station.city_code}/stations/${station.id}`}
-                  className={"chain-shop--item f8"}
-                >
-                  {station.kanji_name}
-                </a>
-              </Link>
+              <StationLink station={station} classes="chain-shop--item f8">
+                {station.kanji_name}
+              </StationLink>
             </li>
           ))}
         </ul>

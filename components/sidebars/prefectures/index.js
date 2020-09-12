@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
+import PrefectureLink from "components/linkWrapper/prefectureLink"
 import Link from "next/link"
 
 import "components/sidebars/styles/index.module.scss"
@@ -29,11 +30,9 @@ export default class Index extends Component {
         {prefecture && (
           <ul className="related__links">
             <li>
-              <Link href="/[prefecture_name_e]" as={`/${prefecture.name_e}`}>
-                <a href={`/${prefecture.name_e}`} className="related__link f8">
-                  {prefecture.name}
-                </a>
-              </Link>
+              <PrefectureLink prefecture={prefecture}>
+                {prefecture.name}
+              </PrefectureLink>
             </li>
           </ul>
         )}
