@@ -38,7 +38,7 @@ export default function Index({
 
   const title = `${prefecture.name}${city.name}${station.kanji_name}の電源のあるカフェ${shops.length}選`
   const sidebar = (
-    <>
+    <React.Fragment>
       {stations.length ? (
         <Stations stations={stations} />
       ) : (
@@ -51,7 +51,7 @@ export default function Index({
           city={city}
         />
       )}
-    </>
+    </React.Fragment>
   )
   return (
     <Layout>

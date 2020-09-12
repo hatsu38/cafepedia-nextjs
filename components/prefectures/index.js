@@ -46,7 +46,7 @@ export default class Index extends Component {
 
   withAccordionPrefectures(area) {
     return (
-      <>
+      <React.Fragment>
         <Accordion.Toggle
           as={Button}
           className="area-select__region-name f6 w-100 text-left"
@@ -58,7 +58,7 @@ export default class Index extends Component {
         <Accordion.Collapse eventKey={area}>
           {this.withOutAccordionPrefectures(area)}
         </Accordion.Collapse>
-      </>
+      </React.Fragment>
     )
   }
 

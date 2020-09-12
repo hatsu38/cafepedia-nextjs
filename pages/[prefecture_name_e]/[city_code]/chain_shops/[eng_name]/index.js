@@ -34,13 +34,13 @@ export default function Index({
   }
   const title = `${prefecture.name}${city.name}${chainShop.name}の電源のあるカフェ${shops.length}選`
   const sidebar = (
-    <>
+    <React.Fragment>
       {stations.length ? (
         <Stations stations={stations} />
       ) : (
         <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
       )}
-    </>
+    </React.Fragment>
   )
   return (
     <Layout>

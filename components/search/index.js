@@ -1,6 +1,10 @@
 import React, { Component } from "react"
 import { InputGroup, FormControl, Button, Modal, Badge } from "react-bootstrap"
 import fetch from "isomorphic-unfetch"
+import CityLink from "components/linkWrapper/cityLink"
+import PrefectureLink from "components/linkWrapper/prefectureLink"
+import ShopLink from "components/linkWrapper/shopLink"
+import StationLink from "components/linkWrapper/stationLink"
 import "./index.module.scss"
 
 export default class Index extends Component {
@@ -8,6 +12,7 @@ export default class Index extends Component {
     super(props)
     this.state = {
       show: false,
+      keyword: "",
       prefectures: [],
       cities: [],
       stations: [],
@@ -32,21 +37,27 @@ export default class Index extends Component {
     return prefectures.filter((prefecture) => prefecture.area === area)
   }
 
-  budgeRender(value) {
+  badgeRender(value) {
     return (
       <Badge
         key={`value-${value}`}
         className="lighten-15-accent border-lighten-20-accent mr-1"
+        onClick={this.handleClose}
       >
         {value}
       </Badge>
     )
   }
 
-  prefMaps(area) {
-    return this.prefecturesFilteredInArea(area).map((prefecture) =>
-      this.budgeRender(prefecture.ellipsis_name)
-    )
+  prefMaps = (area) => {
+    return this.prefecturesFilteredInArea(area).map((prefecture) => (
+      <PrefectureLink
+        prefecture={prefecture}
+        key={`search-prefecture-${prefecture.name_e}`}
+      >
+        {this.badgeRender(prefecture.ellipsis_name)}
+      </PrefectureLink>
+    ))
   }
 
   handleShow = () => {
@@ -59,7 +70,6 @@ export default class Index extends Component {
 
   areaSearch = async (e) => {
     const keyword = e.target.value
-    console.log("keyword", keyword)
     const response = await fetch(
       `${process.env.apiHost}search?keyword=${keyword}`
     )
@@ -69,6 +79,7 @@ export default class Index extends Component {
       cities: json.cities,
       stations: json.stations,
       shops: json.shops,
+      keyword: keyword,
     })
   }
 
@@ -77,7 +88,7 @@ export default class Index extends Component {
   }
 
   render() {
-    const { show, prefectures, cities, stations, shops } = this.state
+    const { show, prefectures, cities, stations, shops, keyword } = this.state
     const areas = [
       "北海道・東北",
       "関東",
@@ -96,14 +107,14 @@ export default class Index extends Component {
     ))
 
     return (
-      <>
+      <React.Fragment>
         <InputGroup className="mb-3">
           <FormControl
             placeholder="エリア・駅"
             aria-label="エリア・駅"
-            aria-describedby="basic-addon2"
             className="f6"
             onClick={this.handleShow}
+            defaultValue={keyword}
           />
           <InputGroup.Append>
             <Button className="bg--accent border-0 f6">検索</Button>
@@ -117,6 +128,7 @@ export default class Index extends Component {
                 aria-label="エリア・駅"
                 className="f6"
                 onChange={this.areaSearch}
+                defaultValue={keyword}
               />
               <InputGroup.Append>
                 <Button className="bg--accent border-0 f6">検索</Button>
@@ -125,32 +137,45 @@ export default class Index extends Component {
           </Modal.Header>
           <Modal.Body>
             {cities.length > 0 && (
-              <>
+              <React.Fragment>
                 {this.badgeTitle("市区町村")}
-                {cities.map((city) => this.budgeRender(city.name))}
+                {cities.map((city) => (
+                  <CityLink city={city} key={`search-city-${city.code}`}>
+                    {this.badgeRender(city.name)}
+                  </CityLink>
+                ))}
                 <hr />
-              </>
+              </React.Fragment>
             )}
             {stations.length > 0 && (
-              <>
+              <React.Fragment>
                 {this.badgeTitle("最寄り駅")}
-                {stations.map((station) =>
-                  this.budgeRender(station.kanji_name)
-                )}
+                {stations.map((station) => (
+                  <StationLink
+                    station={station}
+                    key={`search-station-${station.id}`}
+                  >
+                    {this.badgeRender(station.kanji_name)}
+                  </StationLink>
+                ))}
                 <hr />
-              </>
+              </React.Fragment>
             )}
             {shops.length > 0 && (
-              <>
+              <React.Fragment>
                 {this.badgeTitle("お店")}
-                {shops.map((shop) => this.budgeRender(shop.name))}
+                {shops.map((shop) => (
+                  <ShopLink shop={shop} key={`search-shop-${shop.id}`}>
+                    {this.badgeRender(shop.name)}
+                  </ShopLink>
+                ))}
                 <hr />
-              </>
+              </React.Fragment>
             )}
             {prefectures && areaRender}
           </Modal.Body>
         </Modal>
-      </>
+      </React.Fragment>
     )
   }
 }
