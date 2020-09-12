@@ -42,7 +42,7 @@ export default class Index extends Component {
       <Badge
         key={`value-${value}`}
         className="lighten-15-accent border-lighten-20-accent mr-1"
-        onClick={this.handleClose}
+        onClick={() => this.setKeywordAndHandleClose(value)}
       >
         {value}
       </Badge>
@@ -66,6 +66,13 @@ export default class Index extends Component {
 
   handleClose = () => {
     this.setState({ show: false })
+  }
+
+  setKeywordAndHandleClose = (keyword) => {
+    this.setState({
+      show: false,
+      keyword: keyword,
+    })
   }
 
   areaSearch = async (e) => {
