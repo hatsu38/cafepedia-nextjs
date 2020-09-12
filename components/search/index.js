@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { InputGroup, FormControl, Button, Modal, Badge } from "react-bootstrap"
-
+import fetch from "isomorphic-unfetch"
 import "./index.module.scss"
 
 export default class Index extends Component {
@@ -8,7 +8,10 @@ export default class Index extends Component {
     super(props)
     this.state = {
       show: false,
-      prefectures: {},
+      prefectures: [],
+      cities: [],
+      stations: [],
+      shops: [],
     }
   }
 
@@ -26,19 +29,24 @@ export default class Index extends Component {
     if (!prefectures.length) {
       return []
     }
-
     return prefectures.filter((prefecture) => prefecture.area === area)
   }
 
-  prefMaps(area) {
-    return this.prefecturesFilteredInArea(area).map((prefecture, idx) => (
+  budgeRender(value) {
+    return (
       <Badge
-        key={`prefecture-${idx}`}
-        className="lighten-15-accent border-lighten-20-accent mx-1"
+        key={`value-${value}`}
+        className="lighten-15-accent border-lighten-20-accent mr-1"
       >
-        {prefecture.ellipsis_name}
+        {value}
       </Badge>
-    ))
+    )
+  }
+
+  prefMaps(area) {
+    return this.prefecturesFilteredInArea(area).map((prefecture) =>
+      this.budgeRender(prefecture.ellipsis_name)
+    )
   }
 
   handleShow = () => {
@@ -49,8 +57,27 @@ export default class Index extends Component {
     this.setState({ show: false })
   }
 
+  areaSearch = async (e) => {
+    const keyword = e.target.value
+    console.log("keyword", keyword)
+    const response = await fetch(
+      `${process.env.apiHost}search?keyword=${keyword}`
+    )
+    const json = await response.json()
+
+    this.setState({
+      cities: json.cities,
+      stations: json.stations,
+      shops: json.shops,
+    })
+  }
+
+  badgeTitle = (name) => {
+    return <h4 className="f7 original-gray-text mb-1">{name}</h4>
+  }
+
   render() {
-    const { show, prefectures } = this.state
+    const { show, prefectures, cities, stations, shops } = this.state
     const areas = [
       "北海道・東北",
       "関東",
@@ -60,10 +87,9 @@ export default class Index extends Component {
       "四国",
       "九州・沖縄",
     ]
-    // console.log("areas", areas)
-    console.log("prefectures", prefectures)
     const areaRender = areas.map((area) => (
       <div key={area}>
+        {this.badgeTitle(area)}
         {this.prefMaps(area)}
         <hr />
       </div>
@@ -83,33 +109,46 @@ export default class Index extends Component {
             <Button className="bg--accent border-0 f6">検索</Button>
           </InputGroup.Append>
         </InputGroup>
-        <Modal
-          show={show}
-          onHide={this.handleClose}
-          dialogClassName="modal-100w"
-        >
+        <Modal show={show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <InputGroup className="mb-3">
+            <InputGroup>
               <FormControl
                 placeholder="エリア・駅"
                 aria-label="エリア・駅"
-                aria-describedby="basic-addon2"
                 className="f6"
+                onChange={this.areaSearch}
               />
               <InputGroup.Append>
                 <Button className="bg--accent border-0 f6">検索</Button>
               </InputGroup.Append>
             </InputGroup>
           </Modal.Header>
-          <Modal.Body>{prefectures && areaRender}</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={this.handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
+          <Modal.Body>
+            {cities.length > 0 && (
+              <>
+                {this.badgeTitle("市区町村")}
+                {cities.map((city) => this.budgeRender(city.name))}
+                <hr />
+              </>
+            )}
+            {stations.length > 0 && (
+              <>
+                {this.badgeTitle("最寄り駅")}
+                {stations.map((station) =>
+                  this.budgeRender(station.kanji_name)
+                )}
+                <hr />
+              </>
+            )}
+            {shops.length > 0 && (
+              <>
+                {this.badgeTitle("お店")}
+                {shops.map((shop) => this.budgeRender(shop.name))}
+                <hr />
+              </>
+            )}
+            {prefectures && areaRender}
+          </Modal.Body>
         </Modal>
       </>
     )
