@@ -3,9 +3,10 @@ import PropTypes from "prop-types"
 import LinkWithATag from "components/linkWrapper/linkWithATag"
 
 const propTypes = {
-  children: PropTypes.object.isRequired,
   station: PropTypes.object.isRequired,
   classes: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
 }
 
 export default function Layout({ station, classes, children }) {

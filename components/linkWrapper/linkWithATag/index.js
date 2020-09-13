@@ -3,10 +3,11 @@ import PropTypes from "prop-types"
 import Link from "next/link"
 
 const propTypes = {
-  children: PropTypes.object.isRequired,
   href: PropTypes.string.isRequired,
   as: PropTypes.string.isRequired,
   classes: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
 }
 
 export default function Layout({ href, as, classes, children }) {
