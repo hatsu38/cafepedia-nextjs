@@ -163,7 +163,7 @@ export default class Index extends Component {
     const searchStations = stations.length > 0 ? stations : propsStations || []
     return (
       <React.Fragment>
-        <InputGroup className="mb-3">
+        <InputGroup className="mb-2">
           <FormControl
             placeholder="エリア・駅"
             aria-label="エリア・駅"

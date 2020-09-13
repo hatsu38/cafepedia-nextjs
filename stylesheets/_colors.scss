@@ -51,6 +51,7 @@ $colors: (
   @each $colorName, $color in $colors {
     .bg-darken-#{$i * 5}-#{$colorName} {
       background-color: darken($color, $i * 5);
+      border-color: darken($color, $i * 5);
     }
     .darken-#{$i * 5}-#{$colorName} {
       color: darken($color, $i * 5);
@@ -65,6 +66,7 @@ $colors: (
   @each $colorName, $color in $colors {
     .bg-lighten-#{$i * 5}-#{$colorName} {
       background-color: lighten($color, $i * 5);
+      border-color: lighten($color, $i * 5);
     }
     .lighten-#{$i * 5}-#{$colorName} {
       color: lighten($color, $i * 5);
@@ -124,7 +126,7 @@ $colors: (
 .gray--100 {
   color: $base-gray-100;
 }
-.bg-gray--000 {
+.bg-gray--100 {
   background-color: $base-gray-100;
 }
 .gray--100 {
