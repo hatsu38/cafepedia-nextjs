@@ -5,7 +5,6 @@ import Cities from "components/sidebars/cities"
 import Stations from "components/sidebars/stations"
 import ChainShops from "components/sidebars/chainShops"
 import Prefectures from "components/sidebars/prefectures"
-import FacilityFilter from "components/facilityFilter"
 import "stylesheets/sidebars/sidebars.module.scss"
 
 import ShopLists from "components/shopLists"

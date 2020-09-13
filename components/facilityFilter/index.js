@@ -35,7 +35,7 @@ export default class Index extends Component {
         <Col xs={6} sm={5} md={3}>
           <Badge
             pill
-            className={`py-1 py-md-2 w-100 f7 white-text${
+            className={`py-1 py-md-2 w-100 f7 white-text ${
               socket ? "bg-lighten-5-accent" : "bg-lighten-45-original-gray"
             }`}
           >
@@ -64,7 +64,7 @@ export default class Index extends Component {
         <Col xs={6} sm={5} md={3}>
           <Badge
             pill
-            className={`py-1 py-md-2 w-100 f7 white-text${
+            className={`py-1 py-md-2 w-100 f7 white-text ${
               wifi ? "bg-lighten-5-accent" : "bg-lighten-45-original-gray"
             }`}
           >
