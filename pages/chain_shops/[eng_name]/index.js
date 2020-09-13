@@ -7,12 +7,10 @@ import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
 import Layout from "components/layout"
-import Prefectures from "components/sidebars/prefectures"
-import Stations from "components/sidebars/stations"
 import SidebarWithShopLists from "components/sidebarWithShopLists"
 
 const propTypes = {
-  prefectures: PropTypes.object,
+  prefectures: PropTypes.array,
   stations: PropTypes.array,
   chainShop: PropTypes.object,
   shops: PropTypes.array,
@@ -24,20 +22,19 @@ export default function Index({ prefectures, stations, chainShop, shops }) {
     return <div>Loading...</div>
   }
   const title = `${chainShop.name}の電源のあるカフェ${shops.length}選`
-  const sidebar = (
-    <React.Fragment>
-      <Stations stations={stations} />
-      <Prefectures prefectures={prefectures} chainShop={chainShop} />
-    </React.Fragment>
-  )
-
   return (
     <Layout>
       <Head>
         <title>カフェペディア | {title}</title>
       </Head>
       <Container>
-        <SidebarWithShopLists sidebar={sidebar} shops={shops} title={title} />
+        <SidebarWithShopLists
+          stations={stations}
+          chainShop={chainShop}
+          prefectures={prefectures}
+          shops={shops}
+          title={title}
+        />
       </Container>
     </Layout>
   )

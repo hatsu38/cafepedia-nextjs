@@ -20,7 +20,6 @@ export default class Index extends Component {
 
   render() {
     const { chainShops, chainShop, prefecture, city } = this.props
-
     let componentPath = "/chain_shops/[eng_name]"
     let prefixToLink = "/chain_shops/"
 
