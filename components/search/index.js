@@ -29,6 +29,22 @@ export default class Index extends Component {
     }
   }
 
+  handleShow = () => {
+    this.setState({ show: true })
+  }
+
+  handleClose = () => {
+    this.setState({ show: false })
+  }
+
+  setKeywordAndHandleClose = (keyword) => {
+    // TODO: 検索フォームは全ページで使用されるため、KeywordをStoreにおいた方がいいかも
+    this.setState({
+      show: false,
+      keyword: keyword,
+    })
+  }
+
   prefecturesFilteredInArea(area) {
     const { prefectures } = this.state
     if (!prefectures.length) {
@@ -60,20 +76,29 @@ export default class Index extends Component {
     ))
   }
 
-  handleShow = () => {
-    this.setState({ show: true })
+  shopsFilterByChainShops = (chainShopName) => {
+    const { shops } = this.state
+    if (!shops.length) {
+      return []
+    }
+    return shops.filter((shop) => shop.main_shop.eng_name === chainShopName)
   }
 
-  handleClose = () => {
-    this.setState({ show: false })
-  }
-
-  setKeywordAndHandleClose = (keyword) => {
-    // TODO: 検索フォームは全ページで使用されるため、KeywordをStoreにおいた方がいいかも
-    this.setState({
-      show: false,
-      keyword: keyword,
-    })
+  filteredShopsRender = (chainShopName) => {
+    const filteredShops = this.shopsFilterByChainShops(chainShopName)
+    if (filteredShops.length) {
+      return (
+        <React.Fragment key={`search-shop-node-${chainShopName}`}>
+          {this.badgeTitle(chainShopName)}
+          {filteredShops.map((shop) => (
+            <ShopLink shop={shop} key={`search-shop-${shop.id}`}>
+              {this.badgeRender(shop.name)}
+            </ShopLink>
+          ))}
+          <hr />
+        </React.Fragment>
+      )
+    }
   }
 
   areaSearch = async (e) => {
@@ -106,6 +131,16 @@ export default class Index extends Component {
       "四国",
       "九州・沖縄",
     ]
+    const majorChainShops = [
+      "starbacks",
+      "doutor",
+      "komeda",
+      "tullys",
+      "pronto",
+      "execelsior",
+      "ueshima",
+      "kissa_renoir",
+    ]
     const areaRender = areas.map((area) => (
       <div key={area}>
         {this.badgeTitle(area)}
@@ -113,7 +148,9 @@ export default class Index extends Component {
         <hr />
       </div>
     ))
-
+    const shopsRender = majorChainShops.map((chainShop) =>
+      this.filteredShopsRender(chainShop)
+    )
     return (
       <React.Fragment>
         <InputGroup className="mb-3">
@@ -169,18 +206,8 @@ export default class Index extends Component {
                 <hr />
               </React.Fragment>
             )}
-            {shops.length > 0 && (
-              <React.Fragment>
-                {this.badgeTitle("お店")}
-                {shops.map((shop) => (
-                  <ShopLink shop={shop} key={`search-shop-${shop.id}`}>
-                    {this.badgeRender(shop.name)}
-                  </ShopLink>
-                ))}
-                <hr />
-              </React.Fragment>
-            )}
-            {prefectures && areaRender}
+            {shops.length > 0 && shopsRender}
+            {prefectures.length > 0 && areaRender}
           </Modal.Body>
         </Modal>
       </React.Fragment>
