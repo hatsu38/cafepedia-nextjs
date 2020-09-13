@@ -62,7 +62,7 @@ export default function Index({
         ) : null}
       </Col>
       <Col xs={12} sm={9}>
-        <Search />
+        <Search propsStations={stations} propsCities={cities} />
         <h1 className="main-columns--title">{title}</h1>
         <ShopLists shops={shops} />
       </Col>
