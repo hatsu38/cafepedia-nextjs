@@ -9,6 +9,7 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons"
 
+// TODO: 電源、Wi-Fiでの検索機能を付ける必要がある
 export default class Index extends Component {
   constructor(props) {
     super(props)
@@ -34,10 +35,8 @@ export default class Index extends Component {
         <Col xs={6} sm={5} md={3}>
           <Badge
             pill
-            className={`py-1 py-md-2 w-100 f7 ${
-              socket
-                ? "bg-lighten-5-accent white-text"
-                : "bg-lighten-45-original-gray white-text"
+            className={`py-1 py-md-2 w-100 f7 white-text${
+              socket ? "bg-lighten-5-accent" : "bg-lighten-45-original-gray"
             }`}
           >
             <FontAwesomeIcon icon={faPlug} className="mr-1" />
@@ -65,10 +64,8 @@ export default class Index extends Component {
         <Col xs={6} sm={5} md={3}>
           <Badge
             pill
-            className={`py-1 py-md-2 w-100 f7 ${
-              wifi
-                ? "bg-lighten-5-accent white-text"
-                : "bg-lighten-45-original-gray white-text"
+            className={`py-1 py-md-2 w-100 f7 white-text${
+              wifi ? "bg-lighten-5-accent" : "bg-lighten-45-original-gray"
             }`}
           >
             <FontAwesomeIcon icon={faWifi} className="mr-1" />

@@ -64,7 +64,6 @@ export default function Index({
       </Col>
       <Col xs={12} sm={9}>
         <Search propsStations={stations} propsCities={cities} />
-        <FacilityFilter />
         <h1 className="main-columns--title">{title}</h1>
         <ShopLists shops={shops} />
       </Col>
