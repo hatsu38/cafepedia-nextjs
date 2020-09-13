@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import PropTypes from "prop-types"
 import { InputGroup, FormControl, Button, Modal, Badge } from "react-bootstrap"
 import fetch from "isomorphic-unfetch"
 import CityLink from "components/linkWrapper/cityLink"
@@ -6,6 +7,11 @@ import PrefectureLink from "components/linkWrapper/prefectureLink"
 import ShopLink from "components/linkWrapper/shopLink"
 import StationLink from "components/linkWrapper/stationLink"
 import "./index.module.scss"
+
+const propTypes = {
+  propsStations: PropTypes.array,
+  propsCities: PropTypes.array,
+}
 
 export default class Index extends Component {
   constructor(props) {
@@ -57,7 +63,7 @@ export default class Index extends Component {
     return (
       <Badge
         key={`value-${value}`}
-        className="lighten-15-accent border-lighten-20-accent mr-1"
+        className="lighten-15-accent border-lighten-20-accent mr-2"
         onClick={() => this.setKeywordAndHandleClose(value)}
       >
         {value}
@@ -121,6 +127,7 @@ export default class Index extends Component {
   }
 
   render() {
+    const { propsCities, propsStations } = this.props
     const { show, prefectures, cities, stations, shops, keyword } = this.state
     const areas = [
       "北海道・東北",
@@ -151,6 +158,9 @@ export default class Index extends Component {
     const shopsRender = majorChainShops.map((chainShop) =>
       this.filteredShopsRender(chainShop)
     )
+
+    const searchCities = cities.length > 0 ? cities : propsCities || []
+    const searchStations = stations.length > 0 ? stations : propsStations || []
     return (
       <React.Fragment>
         <InputGroup className="mb-3">
@@ -181,27 +191,27 @@ export default class Index extends Component {
             </InputGroup>
           </Modal.Header>
           <Modal.Body>
-            {cities.length > 0 && (
-              <React.Fragment>
-                {this.badgeTitle("市区町村")}
-                {cities.map((city) => (
-                  <CityLink city={city} key={`search-city-${city.code}`}>
-                    {this.badgeRender(city.name)}
-                  </CityLink>
-                ))}
-                <hr />
-              </React.Fragment>
-            )}
-            {stations.length > 0 && (
+            {searchStations.length > 0 && (
               <React.Fragment>
                 {this.badgeTitle("最寄り駅")}
-                {stations.map((station) => (
+                {searchStations.map((station) => (
                   <StationLink
                     station={station}
                     key={`search-station-${station.id}`}
                   >
                     {this.badgeRender(station.kanji_name)}
                   </StationLink>
+                ))}
+                <hr />
+              </React.Fragment>
+            )}
+            {searchCities.length > 0 && (
+              <React.Fragment>
+                {this.badgeTitle("市区町村")}
+                {searchCities.map((city) => (
+                  <CityLink city={city} key={`search-city-${city.code}`}>
+                    {this.badgeRender(city.name)}
+                  </CityLink>
                 ))}
                 <hr />
               </React.Fragment>
@@ -214,3 +224,5 @@ export default class Index extends Component {
     )
   }
 }
+
+Index.propTypes = propTypes

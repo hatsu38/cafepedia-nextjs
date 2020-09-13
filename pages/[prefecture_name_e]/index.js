@@ -7,8 +7,6 @@ import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
 import Layout from "components/layout"
-import Cities from "components/sidebars/cities"
-import ChainShops from "components/sidebars/chainShops"
 import SidebarWithShopLists from "components/sidebarWithShopLists"
 
 const propTypes = {
@@ -25,24 +23,19 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
   }
 
   const title = `${prefecture.name}の電源のあるカフェ${shops.length}選`
-  const sidebar = (
-    <React.Fragment>
-      <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
-      {chainShops.length && (
-        <ChainShops
-          chainShops={chainShops.slice(0, 8)}
-          prefecture={prefecture}
-        />
-      )}
-    </React.Fragment>
-  )
   return (
     <Layout>
       <Head>
         <title>カフェペディア | {title}</title>
       </Head>
       <Container>
-        <SidebarWithShopLists sidebar={sidebar} shops={shops} title={title} />
+        <SidebarWithShopLists
+          chainShops={chainShops}
+          cities={cities}
+          prefecture={prefecture}
+          shops={shops}
+          title={title}
+        />
       </Container>
     </Layout>
   )
