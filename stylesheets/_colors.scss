@@ -26,12 +26,19 @@ $brands: (
   'starbacks': $starbacks,
   'doutor': $doutor,
   'tullys': $tullys,
-  'execelsior': $execelsior
+  'execelsior': $execelsior,
+  "link": #007bff,
+  "ref": #907bf0,
+  "original-gray": #595960,
+  "original-white": #eff0f3,
+  "accent": #ff8e3c,
+  "reverse-accent": #d9376e
 );
 
 @each $brand, $color in $brands {
   .bg-#{$brand} {
     background-color: $color;
+    border-color: $color;
   }
   .#{$brand} {
     color: $color
@@ -83,10 +90,6 @@ $colors: (
 }
 .accent-text {
   color: $accent !important;
-}
-
-.bg--accent {
-  background-color: $accent;
 }
 
 .reverse-accent-text {

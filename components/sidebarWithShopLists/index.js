@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
 import { Row, Col } from "react-bootstrap"
 import Cities from "components/sidebars/cities"
@@ -28,46 +28,101 @@ const propTypes = {
   city: PropTypes.object,
   prefecture: PropTypes.object,
   chainShop: PropTypes.object,
-  shops: PropTypes.array.isRequired,
+  shops: PropTypes.array,
   title: PropTypes.string.isRequired,
 }
 
-export default function Index({
-  chainShops,
-  stations,
-  cities,
-  prefectures,
-  city,
-  prefecture,
-  chainShop,
-  shops,
-  title,
-}) {
-  return (
-    <Row>
-      <Col xs={12} sm={3} className="pr-md-0 sidebars-left">
-        {stations.length ? <Stations stations={stations} /> : null}
-        {cities.length ? (
-          <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
-        ) : null}
-        {chainShops.length ? (
-          <ChainShops
-            chainShops={chainShops.slice(0, 8)}
-            prefecture={prefecture}
-            city={city}
-          />
-        ) : null}
-        {prefectures.length && chainShop ? (
-          <Prefectures prefectures={prefectures} chainShop={chainShop} />
-        ) : null}
-      </Col>
-      <Col xs={12} sm={9}>
-        <Search propsStations={stations} propsCities={cities} />
-        <h1 className="main-columns--title">{title}</h1>
-        <ShopLists shops={shops} />
-      </Col>
-    </Row>
-  )
+export default class Index extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      popularStations: [],
+      popularChainShops: [],
+      popularPrefectures: [],
+    }
+  }
+
+  fetchPopularChainShop = async () => {
+    const popularChainShopsRes = await fetch(
+      `${process.env.apiHost}popular/main_shops`
+    )
+    const popularChainShopsJson = await popularChainShopsRes.json()
+    this.setState({ popularChainShops: popularChainShopsJson.main_shops })
+  }
+
+  fetchPopularStations = async () => {
+    const popularStationsRes = await fetch(
+      `${process.env.apiHost}popular/stations`
+    )
+    const popularStationsJson = await popularStationsRes.json()
+    this.setState({ popularStations: popularStationsJson.stations })
+  }
+
+  fetchPopularChainShop = async () => {
+    const popularChainShopsRes = await fetch(
+      `${process.env.apiHost}popular/main_shops`
+    )
+    const popularChainShopsJson = await popularChainShopsRes.json()
+    this.setState({ popularChainShops: popularChainShopsJson.main_shops })
+  }
+  render() {
+    const {
+      chainShops,
+      stations,
+      cities,
+      prefectures,
+      city,
+      prefecture,
+      chainShop,
+      shops,
+      title,
+    } = this.props
+    const { popularChainShops, popularStations } = this.state
+    if (
+      chainShops.length === 0 &&
+      stations.length === 0 &&
+      prefectures.length === 0 &&
+      cities.length === 0
+    ) {
+      this.fetchPopularChainShop()
+      this.fetchPopularStations()
+    }
+    return (
+      <Row>
+        <Col xs={12} sm={3} className="pr-md-0 sidebars-left">
+          {stations.length ? (
+            <Stations stations={stations} />
+          ) : (
+            <Stations stations={popularStations} />
+          )}
+          {cities.length ? (
+            <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
+          ) : null}
+          {chainShops.length ? (
+            <ChainShops
+              chainShops={chainShops.slice(0, 8)}
+              prefecture={prefecture}
+              city={city}
+            />
+          ) : (
+            <ChainShops chainShops={popularChainShops.slice(0, 8)} />
+          )}
+          {prefectures.length ? (
+            <Prefectures prefectures={prefectures} chainShop={chainShop} />
+          ) : null}
+        </Col>
+        <Col xs={12} sm={9}>
+          <Search propsStations={stations} propsCities={cities} />
+          <h1 className="main-columns--title">{title}</h1>
+          {shops.length ? (
+            <ShopLists shops={shops} />
+          ) : (
+            <div>該当するお店は見つかりませんでした。</div>
+          )}
+        </Col>
+      </Row>
+    )
+  }
 }
 
 Index.propTypes = propTypes

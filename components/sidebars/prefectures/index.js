@@ -10,7 +10,7 @@ import { faMap } from "@fortawesome/free-solid-svg-icons"
 const propTypes = {
   prefectures: PropTypes.array.isRequired,
   prefecture: PropTypes.object,
-  chainShop: PropTypes.object.isRequired,
+  chainShop: PropTypes.object,
 }
 
 export default class Index extends Component {
@@ -38,21 +38,43 @@ export default class Index extends Component {
         )}
         <hr className="mt-2 mb-0" />
         <ul className="pl-0 mb-0">
-          {prefectures.map((prefecture) => (
-            <li key={prefecture.name_e} className="d-inline-block mt-1 ml-1">
-              <Link
-                href="/[prefecture_name_e]/chain_shops/[eng_name]"
-                as={`/${prefecture.name_e}/chain_shops/${chainShop.eng_name}`}
-              >
-                <a
-                  href={`/${prefecture.name_e}/chain_shops/${chainShop.eng_name}`}
-                  className={"chain-shop--item f8"}
+          {chainShop
+            ? prefectures.map((prefecture) => (
+                <li
+                  key={prefecture.name_e}
+                  className="d-inline-block mt-1 ml-1"
                 >
-                  {prefecture.name}
-                </a>
-              </Link>
-            </li>
-          ))}
+                  <Link
+                    href="/[prefecture_name_e]/chain_shops/[eng_name]"
+                    as={`/${prefecture.name_e}/chain_shops/${chainShop.eng_name}`}
+                  >
+                    <a
+                      href={`/${prefecture.name_e}/chain_shops/${chainShop.eng_name}`}
+                      className={"chain-shop--item f8"}
+                    >
+                      {prefecture.name}
+                    </a>
+                  </Link>
+                </li>
+              ))
+            : prefectures.map((prefecture) => (
+                <li
+                  key={prefecture.name_e}
+                  className="d-inline-block mt-1 ml-1"
+                >
+                  <Link
+                    href="/[prefecture_name_e]"
+                    as={`/${prefecture.name_e}`}
+                  >
+                    <a
+                      href={`/${prefecture.name_e}`}
+                      className={"chain-shop--item f8"}
+                    >
+                      {prefecture.name}
+                    </a>
+                  </Link>
+                </li>
+              ))}
         </ul>
       </section>
     )
