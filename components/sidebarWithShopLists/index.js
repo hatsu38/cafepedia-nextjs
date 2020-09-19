@@ -65,6 +65,16 @@ export default class Index extends Component {
     const popularChainShopsJson = await popularChainShopsRes.json()
     this.setState({ popularChainShops: popularChainShopsJson.main_shops })
   }
+
+  hasSearchResult = () => {
+    const { chainShops, stations, cities, prefectures } = this.props
+    const bool =
+      chainShops.length !== 0 ||
+      stations.length !== 0 ||
+      prefectures.length !== 0 ||
+      cities.length !== 0
+    return bool
+  }
   render() {
     const {
       chainShops,
@@ -78,21 +88,16 @@ export default class Index extends Component {
       title,
     } = this.props
     const { popularChainShops, popularStations } = this.state
-    if (
-      chainShops.length === 0 &&
-      stations.length === 0 &&
-      prefectures.length === 0 &&
-      cities.length === 0
-    ) {
+    if (this.hasSearchResult()) {
       this.fetchPopularChainShop()
       this.fetchPopularStations()
     }
+
     return (
       <Row>
         <Col xs={12} sm={3} className="pr-md-0 sidebars-left">
-          {stations.length ? (
-            <Stations stations={stations} />
-          ) : (
+          {stations && <Stations stations={stations} />}
+          {!this.hasSearchResult() && popularStations.length && (
             <Stations stations={popularStations} />
           )}
           {cities.length ? (
@@ -104,9 +109,10 @@ export default class Index extends Component {
               prefecture={prefecture}
               city={city}
             />
-          ) : (
+          ) : null}
+          {!this.hasSearchResult() && popularChainShops.length ? (
             <ChainShops chainShops={popularChainShops.slice(0, 8)} />
-          )}
+          ) : null}
           {prefectures.length ? (
             <Prefectures prefectures={prefectures} chainShop={chainShop} />
           ) : null}
