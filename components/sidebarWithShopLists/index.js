@@ -50,7 +50,6 @@ export default class Index extends Component {
   }
 
   fetchPopularStations = async () => {
-    console.log("fetchPopularStations")
     const popularStationsRes = await fetch(
       `${process.env.apiHost}popular/stations`
     )
@@ -59,7 +58,6 @@ export default class Index extends Component {
   }
 
   fetchPopularChainShop = async () => {
-    console.log("fetchPopularChainShop")
     const popularChainShopsRes = await fetch(
       `${process.env.apiHost}popular/main_shops`
     )
@@ -68,7 +66,6 @@ export default class Index extends Component {
   }
 
   hasSearchedSidebar = () => {
-    console.log("hasSearchedSidebar")
     const { chainShops, stations, cities, prefectures } = this.props
     const bool =
       chainShops.length > 0 ||
@@ -105,7 +102,6 @@ export default class Index extends Component {
       this.fetchPopularStations()
     }
 
-    console.log("this.hasPopularSidebar()", this.hasPopularSidebar())
     return (
       <Row>
         <Col xs={12} sm={3} className="pr-md-0 sidebars-left">
