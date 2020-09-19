@@ -22,7 +22,6 @@ export default function Index({ city, cities, stations, shops }) {
     return <div>Loading...</div>
   }
 
-  // const { lat, lng } = router.query
   const title = `現在地からの検索結果`
 
   return (
@@ -31,15 +30,13 @@ export default function Index({ city, cities, stations, shops }) {
         <title>カフェペディア | {title}</title>
       </Head>
       <Container>
-        {shops && (
-          <SidebarWithShopLists
-            city={city}
-            cities={cities}
-            stations={stations}
-            shops={shops}
-            title={title}
-          />
-        )}
+        <SidebarWithShopLists
+          city={city}
+          cities={cities}
+          stations={stations}
+          shops={shops}
+          title={title}
+        />
       </Container>
     </Layout>
   )

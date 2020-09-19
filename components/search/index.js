@@ -132,7 +132,6 @@ export default class Index extends Component {
   }
 
   fetchCurrentPosition = () => {
-    console.log("HOGEHOGE")
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         this.successGetPosition,
@@ -145,6 +144,7 @@ export default class Index extends Component {
 
   successGetPosition = async (position) => {
     if (position.coords) {
+      // TODO: Function ComponentにしたらuseRouterを使ってリダイクレトできるので、それまでの間の暫定対応
       const url = `/nearby?lat=${position.coords.latitude}&lng=${position.coords.longitude}`
       window.location.href = url
     }
