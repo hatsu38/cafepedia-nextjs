@@ -38,7 +38,6 @@ export default class Index extends Component {
     this.state = {
       popularStations: [],
       popularChainShops: [],
-      popularPrefectures: [],
     }
   }
 
@@ -51,6 +50,7 @@ export default class Index extends Component {
   }
 
   fetchPopularStations = async () => {
+    console.log("fetchPopularStations")
     const popularStationsRes = await fetch(
       `${process.env.apiHost}popular/stations`
     )
@@ -59,6 +59,7 @@ export default class Index extends Component {
   }
 
   fetchPopularChainShop = async () => {
+    console.log("fetchPopularChainShop")
     const popularChainShopsRes = await fetch(
       `${process.env.apiHost}popular/main_shops`
     )
@@ -66,15 +67,26 @@ export default class Index extends Component {
     this.setState({ popularChainShops: popularChainShopsJson.main_shops })
   }
 
-  hasSearchResult = () => {
+  hasSearchedSidebar = () => {
+    console.log("hasSearchedSidebar")
     const { chainShops, stations, cities, prefectures } = this.props
     const bool =
-      chainShops.length !== 0 ||
-      stations.length !== 0 ||
-      prefectures.length !== 0 ||
-      cities.length !== 0
+      chainShops.length > 0 ||
+      stations.length > 0 ||
+      prefectures.length > 0 ||
+      cities.length > 0
     return bool
   }
+
+  hasPopularSidebar = () => {
+    const { popularStations, popularChainShops } = this.state
+    return popularStations.length > 0 || popularChainShops.length > 0
+  }
+
+  hasSidebar = () => {
+    return this.hasPopularSidebar() || this.hasSearchedSidebar()
+  }
+
   render() {
     const {
       chainShops,
@@ -88,18 +100,19 @@ export default class Index extends Component {
       title,
     } = this.props
     const { popularChainShops, popularStations } = this.state
-    if (this.hasSearchResult()) {
+    if (!this.hasSidebar()) {
       this.fetchPopularChainShop()
       this.fetchPopularStations()
     }
 
+    console.log("this.hasPopularSidebar()", this.hasPopularSidebar())
     return (
       <Row>
         <Col xs={12} sm={3} className="pr-md-0 sidebars-left">
-          {stations && <Stations stations={stations} />}
-          {!this.hasSearchResult() && popularStations.length && (
+          {stations.length > 0 && <Stations stations={stations} />}
+          {this.hasPopularSidebar() && popularStations.length ? (
             <Stations stations={popularStations} />
-          )}
+          ) : null}
           {cities.length ? (
             <Cities cities={cities.slice(0, 12)} prefecture={prefecture} />
           ) : null}
@@ -110,7 +123,7 @@ export default class Index extends Component {
               city={city}
             />
           ) : null}
-          {!this.hasSearchResult() && popularChainShops.length ? (
+          {this.hasPopularSidebar() && popularChainShops.length ? (
             <ChainShops chainShops={popularChainShops.slice(0, 8)} />
           ) : null}
           {prefectures.length ? (

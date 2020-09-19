@@ -231,13 +231,21 @@ export default class Index extends Component {
               />
               <InputGroup.Append>
                 <Button className="bg-accent f6 text-reset">
-                  <LinkWithATag
-                    href={`/search?keyword=${keyword}`}
-                    as={`/search?keyword=${keyword}`}
-                    classes="white-text text-decoration-none"
-                  >
-                    検索
-                  </LinkWithATag>
+                  {keyword ? (
+                    <span onClick={this.handleClose}>
+                      <LinkWithATag
+                        href={`/search?keyword=${keyword}`}
+                        as={`/search?keyword=${keyword}`}
+                        classes="white-text text-decoration-none"
+                      >
+                        検索
+                      </LinkWithATag>
+                    </span>
+                  ) : (
+                    <span className="white-text text-decoration-none">
+                      検索
+                    </span>
+                  )}
                 </Button>
               </InputGroup.Append>
             </InputGroup>
