@@ -1,12 +1,16 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import { InputGroup, FormControl, Button, Modal, Badge } from "react-bootstrap"
+
 import fetch from "isomorphic-unfetch"
+
+import { InputGroup, FormControl, Button, Modal, Badge } from "react-bootstrap"
+
 import CityLink from "components/linkWrapper/cityLink"
 import PrefectureLink from "components/linkWrapper/prefectureLink"
 import ShopLink from "components/linkWrapper/shopLink"
 import StationLink from "components/linkWrapper/stationLink"
 import LinkWithATag from "components/linkWrapper/linkWithATag"
+
 import "./index.module.scss"
 
 const propTypes = {
@@ -127,7 +131,7 @@ export default class Index extends Component {
     })
   }
 
-  currentPosition = () => {
+  fetchCurrentPosition = () => {
     console.log("HOGEHOGE")
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -140,13 +144,9 @@ export default class Index extends Component {
   }
 
   successGetPosition = async (position) => {
-    console.log("Position", position)
     if (position.coords) {
-      const response = await fetch(
-        `${process.env.apiHost}search/position?lat=${position.coords.latitude}&lng=${position.coords.longitude}`
-      )
-      const json = await response.json()
-      return json
+      const url = `/nearby?lat=${position.coords.latitude}&lng=${position.coords.longitude}`
+      window.location.href = url
     }
   }
 
@@ -243,6 +243,14 @@ export default class Index extends Component {
             </InputGroup>
           </Modal.Header>
           <Modal.Body>
+            {this.badgeTitle("現在地から探す")}
+            <Badge
+              className="lighten-15-accent border-lighten-20-accent mr-2"
+              onClick={this.fetchCurrentPosition}
+            >
+              現在地
+            </Badge>
+            <hr />
             {searchStations.length > 0 && (
               <React.Fragment>
                 {this.badgeTitle("最寄り駅")}
@@ -270,13 +278,6 @@ export default class Index extends Component {
             )}
             {shops.length > 0 && shopsRender}
             {prefectures.length > 0 && areaRender}
-            {this.badgeTitle("現在地から探す")}
-            <Badge
-              className="lighten-15-accent border-lighten-20-accent mr-2"
-              onClick={this.currentPosition}
-            >
-              現在地
-            </Badge>
           </Modal.Body>
         </Modal>
       </React.Fragment>
