@@ -8,7 +8,7 @@ import { faMap } from "@fortawesome/free-solid-svg-icons"
 
 const propTypes = {
   cities: PropTypes.array.isRequired,
-  prefecture: PropTypes.object.isRequired,
+  prefecture: PropTypes.object,
 }
 
 export default class Index extends Component {
@@ -25,14 +25,21 @@ export default class Index extends Component {
           <FontAwesomeIcon icon={faMap} className="mr-2 accent-text" />
           市区町村から探す
         </h2>
-        <ul className="related__links">
-          <li>
-            <PrefectureLink prefecture={prefecture} classes="related__link f8">
-              {prefecture.name}
-            </PrefectureLink>
-          </li>
-        </ul>
-        <hr className="mt-2 mb-0" />
+        {prefecture && (
+          <React.Fragment>
+            <ul className="related__links">
+              <li>
+                <PrefectureLink
+                  prefecture={prefecture}
+                  classes="related__link f8"
+                >
+                  {prefecture.name}
+                </PrefectureLink>
+              </li>
+            </ul>
+            <hr className="mt-2 mb-0" />
+          </React.Fragment>
+        )}
         <ul className="pl-0 mb-0">
           {cities.map((city) => (
             <li key={city.code} className="d-inline-block mt-1 ml-1">

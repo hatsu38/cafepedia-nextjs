@@ -63,16 +63,13 @@ export async function getStaticPaths() {
     `${process.env.apiHost}prefectures/tokyo/cities/13101/main_shops/starbacks`
   )
   const json = await res.json()
-  const prefecture = json.prefecture
-  const city = json.city
-  const chainShop = json.main_shop
   const shops = json.shops
 
   const paths = shops.map((shop) => ({
     params: {
-      prefecture_name_e: prefecture.name_e,
-      city_code: city.code,
-      eng_name: chainShop.eng_name,
+      prefecture_name_e: shop.prefecture_name_e,
+      city_code: shop.city_code,
+      eng_name: shop.main_shop.eng_name,
       shop_id: shop.id.toString(),
     },
   }))

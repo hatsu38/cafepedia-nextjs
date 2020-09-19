@@ -1,11 +1,16 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import { InputGroup, FormControl, Button, Modal, Badge } from "react-bootstrap"
+
 import fetch from "isomorphic-unfetch"
+
+import { InputGroup, FormControl, Button, Modal, Badge } from "react-bootstrap"
+
 import CityLink from "components/linkWrapper/cityLink"
 import PrefectureLink from "components/linkWrapper/prefectureLink"
 import ShopLink from "components/linkWrapper/shopLink"
 import StationLink from "components/linkWrapper/stationLink"
+import LinkWithATag from "components/linkWrapper/linkWithATag"
+
 import "./index.module.scss"
 
 const propTypes = {
@@ -59,6 +64,10 @@ export default class Index extends Component {
     return prefectures.filter((prefecture) => prefecture.area === area)
   }
 
+  badgeTitle = (name) => {
+    return <h4 className="f7 original-gray-text mb-1">{name}</h4>
+  }
+
   badgeRender(value) {
     return (
       <Badge
@@ -110,7 +119,7 @@ export default class Index extends Component {
   areaSearch = async (e) => {
     const keyword = e.target.value
     const response = await fetch(
-      `${process.env.apiHost}search?keyword=${keyword}`
+      `${process.env.apiHost}search/keywords?keyword=${keyword}`
     )
     const json = await response.json()
 
@@ -122,8 +131,38 @@ export default class Index extends Component {
     })
   }
 
-  badgeTitle = (name) => {
-    return <h4 className="f7 original-gray-text mb-1">{name}</h4>
+  fetchCurrentPosition = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        this.successGetPosition,
+        this.failGetPosition
+      )
+    } else {
+      alert("ご使用中のブラウザは現在地検索に対応されておりません。")
+    }
+  }
+
+  successGetPosition = async (position) => {
+    if (position.coords) {
+      // TODO: Function ComponentにしたらuseRouterを使ってリダイクレトできるので、それまでの間の暫定対応
+      const url = `/nearby?lat=${position.coords.latitude}&lng=${position.coords.longitude}`
+      window.location.href = url
+    }
+  }
+
+  failGetPosition = (error) => {
+    console.log("error", error)
+    switch (error.code) {
+      case 1:
+        alert("位置情報の提供を許可してください。")
+        break
+      case 2:
+        alert("位置情報の取得に失敗しました。")
+        break
+      default:
+        alert("位置情報の取得に失敗しました。")
+        break
+    }
   }
 
   render() {
@@ -172,7 +211,12 @@ export default class Index extends Component {
             defaultValue={keyword}
           />
           <InputGroup.Append>
-            <Button className="bg--accent border-0 f6">検索</Button>
+            <Button
+              className="bg-accent border-0 f6 text-decoration-none"
+              onClick={this.handleShow}
+            >
+              検索
+            </Button>
           </InputGroup.Append>
         </InputGroup>
         <Modal show={show} onHide={this.handleClose}>
@@ -186,11 +230,35 @@ export default class Index extends Component {
                 defaultValue={keyword}
               />
               <InputGroup.Append>
-                <Button className="bg--accent border-0 f6">検索</Button>
+                <Button className="bg-accent f6 text-reset">
+                  {keyword ? (
+                    <span onClick={this.handleClose}>
+                      <LinkWithATag
+                        href={`/search?keyword=${keyword}`}
+                        as={`/search?keyword=${keyword}`}
+                        classes="white-text text-decoration-none"
+                      >
+                        検索
+                      </LinkWithATag>
+                    </span>
+                  ) : (
+                    <span className="white-text text-decoration-none">
+                      検索
+                    </span>
+                  )}
+                </Button>
               </InputGroup.Append>
             </InputGroup>
           </Modal.Header>
           <Modal.Body>
+            {this.badgeTitle("現在地から探す")}
+            <Badge
+              className="lighten-15-accent border-lighten-20-accent mr-2"
+              onClick={this.fetchCurrentPosition}
+            >
+              現在地
+            </Badge>
+            <hr />
             {searchStations.length > 0 && (
               <React.Fragment>
                 {this.badgeTitle("最寄り駅")}
