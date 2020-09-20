@@ -198,8 +198,20 @@ export default class Index extends Component {
       this.filteredShopsRender(chainShop)
     )
 
-    const searchCities = cities.length > 0 ? cities : propsCities || []
-    const searchStations = stations.length > 0 ? stations : propsStations || []
+    let searchCities = propsCities
+    if (cities.length > 0) {
+      searchCities = cities
+    } else if (keyword) {
+      searchCities = []
+    }
+
+    let searchStations = propsStations
+    if (stations.length > 0) {
+      searchStations = stations
+    } else if (keyword) {
+      searchStations = []
+    }
+
     return (
       <React.Fragment>
         <InputGroup className="mb-2">
