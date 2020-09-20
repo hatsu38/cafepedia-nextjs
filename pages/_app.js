@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import * as Sentry from "@sentry/node"
+import * as Sentry from "@sentry/react"
 import "../stylesheets/global.scss"
 
 const propTypes = {
