@@ -63,7 +63,7 @@ $colors: (
     .darken-#{$i * 5}-#{$colorName} {
       color: darken($color, $i * 5);
     }
-    .border-lighten-#{$i * 5}-#{$colorName} {
+    .border-darken-#{$i * 5}-#{$colorName} {
       border: 1px solid darken($color, $i * 5);
     }
   }
