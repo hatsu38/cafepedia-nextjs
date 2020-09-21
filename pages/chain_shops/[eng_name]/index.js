@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Head from "next/head"
+import { useRouter } from "next/router"
 
 import fetch from "isomorphic-unfetch"
 
@@ -16,6 +17,25 @@ const propTypes = {
 }
 
 export default function Index({ prefectures, stations, chainShop, shops }) {
+  const router = useRouter()
+  if (router.isFallback) {
+    return (
+      <Layout>
+        <Head>
+          <title>カフェペディア</title>
+        </Head>
+        <Container>
+          <SidebarWithShopLists
+            stations={stations}
+            chainShop={chainShop}
+            prefectures={prefectures}
+            shops={shops}
+            title="カフェペディア"
+          />
+        </Container>
+      </Layout>
+    )
+  }
   const title = `${chainShop.name}の電源のあるカフェ${shops.length}選`
   return (
     <Layout>
