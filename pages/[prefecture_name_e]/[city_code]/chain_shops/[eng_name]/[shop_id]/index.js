@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Head from "next/head"
-import { useRouter } from "next/router"
 
 import fetch from "isomorphic-unfetch"
 
@@ -22,10 +21,6 @@ const propTypes = {
 }
 
 export default function Index({ shops, shop, station }) {
-  const router = useRouter()
-  if (router.isFallback) {
-    return <div>Loading...</div>
-  }
   return (
     <Layout>
       <Head>

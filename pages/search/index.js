@@ -17,9 +17,6 @@ const propTypes = {
 
 export default function Index({ cities, stations, shops }) {
   const router = useRouter()
-  if (router.isFallback) {
-    return <div>Loading...</div>
-  }
 
   const { keyword } = router.query
   const title = `${keyword}の検索結果`
