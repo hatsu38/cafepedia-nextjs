@@ -57,18 +57,22 @@ export default function Index({
 Index.propTypes = propTypes
 
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.apiHost}prefectures/tokyo/cities/13101/`
-  )
-  const json = await res.json()
-  const prefecture = json.prefecture
-  const city = json.city
-  const stations = json.stations
+  let stations = []
+  let totalPages = 1
+  for (let currentPage = 1; currentPage < totalPages; currentPage++) {
+    let res = await fetch(
+      `${process.env.apiHost}all/stations?page=${currentPage}`
+    )
+    let json = await res.json()
+    let stationsList = json.stations
+    totalPages = json.total_pages
+    stations.push(stationsList)
+  }
 
   const paths = stations.map((station) => ({
     params: {
-      prefecture_name_e: prefecture.name_e,
-      city_code: city.code,
+      prefecture_name_e: station.prefecture_name_e,
+      city_code: station.city_code,
       station_id: station.id.toString(),
     },
   }))

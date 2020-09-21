@@ -22,7 +22,7 @@ export default function Index({ cities, stations, shops }) {
   }
 
   const { keyword } = router.query
-  const title = `${keyword}の検索結果`
+  const title = `「${keyword}」の検索結果`
 
   return (
     <Layout>
