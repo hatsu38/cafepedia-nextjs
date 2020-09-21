@@ -25,13 +25,7 @@ export default function Index({ prefectures, stations, chainShop, shops }) {
           <title>カフェペディア</title>
         </Head>
         <Container>
-          <SidebarWithShopLists
-            stations={stations}
-            chainShop={chainShop}
-            prefectures={prefectures}
-            shops={shops}
-            title="カフェペディア"
-          />
+          <SidebarWithShopLists title="カフェペディア" />
         </Container>
       </Layout>
     )

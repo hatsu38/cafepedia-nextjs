@@ -15,6 +15,7 @@ const defaultProps = {
   stations: [],
   cities: [],
   prefectures: [],
+  shops: [],
   chainShop: undefined,
   prefecture: undefined,
   city: undefined,

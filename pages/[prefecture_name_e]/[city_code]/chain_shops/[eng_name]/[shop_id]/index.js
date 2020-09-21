@@ -30,24 +30,10 @@ export default function Index({ shops, shop, station }) {
           <title>カフェペディア</title>
         </Head>
         <Container className="mt-n2">
-          <span className="chain-shop-name original-gray-text f8">
-            {shop.main_shop.name}
-          </span>
-          <h1 className="f4 font-bold">{shop.name}</h1>
-          <Row>
-            <Col sm={12} md={8} className="my-1">
-              <TopInfoLists shop={shop} station={station} />
-              <ShopDetailInfo shop={shop} />
-            </Col>
-            <Col sm={12} md={4} className="my-1">
-              <GoogleMap shop={shop} />
-            </Col>
-          </Row>
+          <span className="chain-shop-name original-gray-text f8"> </span>
+          <h1 className="f4 font-bold"> </h1>
           <div className="mt-5">
-            <h2 className="f5 font-bold">
-              近くの電源のあるカフェ{shops.length}選
-            </h2>
-            <ShopLists shops={shops} />
+            <h2 className="f5 font-bold">近くの電源のあるカフェ選</h2>
           </div>
         </Container>
       </Layout>

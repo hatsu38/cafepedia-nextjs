@@ -17,7 +17,18 @@ const propTypes = {
 
 export default function Index({ cities, stations, shops }) {
   const router = useRouter()
-
+  if (router.isFallback) {
+    return (
+      <Layout>
+        <Head>
+          <title>カフェペディア</title>
+        </Head>
+        <Container>
+          <SidebarWithShopLists title="カフェペディア" />
+        </Container>
+      </Layout>
+    )
+  }
   const { keyword } = router.query
   const title = `${keyword}の検索結果`
 
