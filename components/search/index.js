@@ -13,11 +13,17 @@ import LinkWithATag from "components/linkWrapper/linkWithATag"
 
 import "./index.module.scss"
 
+const defaultProps = {
+  propsStations: [],
+  propsCities: [],
+}
+
 const propTypes = {
   propsStations: PropTypes.array,
   propsCities: PropTypes.array,
 }
 
+// TODO: 肥大化してきたのでよきところで小さなComponentを作っていく
 export default class Index extends Component {
   constructor(props) {
     super(props)
@@ -165,6 +171,14 @@ export default class Index extends Component {
     }
   }
 
+  haveSearchResultContent = () => {
+    const { cities, stations, shops, keyword } = this.state
+    if (!keyword) {
+      return true
+    }
+    return stations.length || cities.length || shops.length ? true : false
+  }
+
   render() {
     const { propsCities, propsStations } = this.props
     const { show, prefectures, cities, stations, shops, keyword } = this.state
@@ -194,6 +208,7 @@ export default class Index extends Component {
         <hr />
       </div>
     ))
+
     const shopsRender = majorChainShops.map((chainShop) =>
       this.filteredShopsRender(chainShop)
     )
@@ -211,6 +226,46 @@ export default class Index extends Component {
     } else if (keyword) {
       searchStations = []
     }
+
+    const noResultContentText = (
+      <React.Fragment>
+        <span className="text-danger">
+          「{keyword}」を含むお店や地域はありません。
+        </span>
+        <hr />
+      </React.Fragment>
+    )
+
+    const currentSearchLink = (
+      <React.Fragment>
+        {this.badgeTitle("現在地から探す")}
+        <Badge
+          className="lighten-15-accent border-lighten-20-accent mr-2"
+          onClick={this.fetchCurrentPosition}
+        >
+          現在地
+        </Badge>
+        <hr />
+      </React.Fragment>
+    )
+
+    const modalSearchButton = (
+      <Button className="bg-accent f6 text-reset">
+        {keyword ? (
+          <span onClick={this.handleClose}>
+            <LinkWithATag
+              href={`/search?keyword=${keyword}`}
+              as={`/search?keyword=${keyword}`}
+              classes="white-text text-decoration-none"
+            >
+              検索
+            </LinkWithATag>
+          </span>
+        ) : (
+          <span className="white-text text-decoration-none">検索</span>
+        )}
+      </Button>
+    )
 
     return (
       <React.Fragment>
@@ -241,37 +296,13 @@ export default class Index extends Component {
                 onChange={this.areaSearch}
                 defaultValue={keyword}
               />
-              <InputGroup.Append>
-                <Button className="bg-accent f6 text-reset">
-                  {keyword ? (
-                    <span onClick={this.handleClose}>
-                      <LinkWithATag
-                        href={`/search?keyword=${keyword}`}
-                        as={`/search?keyword=${keyword}`}
-                        classes="white-text text-decoration-none"
-                      >
-                        検索
-                      </LinkWithATag>
-                    </span>
-                  ) : (
-                    <span className="white-text text-decoration-none">
-                      検索
-                    </span>
-                  )}
-                </Button>
-              </InputGroup.Append>
+              <InputGroup.Append>{modalSearchButton}</InputGroup.Append>
             </InputGroup>
           </Modal.Header>
           <Modal.Body>
-            {this.badgeTitle("現在地から探す")}
-            <Badge
-              className="lighten-15-accent border-lighten-20-accent mr-2"
-              onClick={this.fetchCurrentPosition}
-            >
-              現在地
-            </Badge>
-            <hr />
-            {searchStations.length > 0 && (
+            {this.haveSearchResultContent() ? null : noResultContentText}
+            {currentSearchLink}
+            {searchStations.length > 0 ? (
               <React.Fragment>
                 {this.badgeTitle("最寄り駅")}
                 {searchStations.map((station) => (
@@ -284,8 +315,8 @@ export default class Index extends Component {
                 ))}
                 <hr />
               </React.Fragment>
-            )}
-            {searchCities.length > 0 && (
+            ) : null}
+            {searchCities.length > 0 ? (
               <React.Fragment>
                 {this.badgeTitle("市区町村")}
                 {searchCities.map((city) => (
@@ -295,7 +326,7 @@ export default class Index extends Component {
                 ))}
                 <hr />
               </React.Fragment>
-            )}
+            ) : null}
             {shops.length > 0 && shopsRender}
             {prefectures.length > 0 && areaRender}
           </Modal.Body>
@@ -306,3 +337,4 @@ export default class Index extends Component {
 }
 
 Index.propTypes = propTypes
+Index.defaultProps = defaultProps
