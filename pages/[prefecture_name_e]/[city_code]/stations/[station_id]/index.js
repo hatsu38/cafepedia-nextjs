@@ -64,9 +64,9 @@ export async function getStaticPaths() {
       `${process.env.apiHost}all/stations?page=${currentPage}`
     )
     let json = await res.json()
-    let stationsList = json.stations
+    let resStations = json.stations
     totalPages = json.total_pages
-    stations.push(stationsList)
+    stations.push(resStations)
   }
 
   const paths = stations.map((station) => ({
