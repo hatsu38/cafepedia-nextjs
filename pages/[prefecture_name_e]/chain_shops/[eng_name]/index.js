@@ -40,7 +40,7 @@ export default function Index({
             shops={shops}
             title="カフェペディア"
           />
-      </Container>
+        </Container>
       </Layout>
     )
   }
