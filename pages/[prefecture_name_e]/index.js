@@ -44,9 +44,8 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
 Index.propTypes = propTypes
 
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.apiHost}prefectures/`)
-  const json = await res.json()
-  const prefectures = json.prefectures
+  const prefs = await import("lib/datas/prefectures.json")
+  const prefectures = prefs.datas
 
   const paths = prefectures.map((prefecture) => ({
     params: { prefecture_name_e: prefecture.name_e },

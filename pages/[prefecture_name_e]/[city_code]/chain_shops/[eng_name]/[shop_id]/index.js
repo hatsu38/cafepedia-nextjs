@@ -59,11 +59,15 @@ export default function Index({ shops, shop, station }) {
 Index.propTypes = propTypes
 
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.apiHost}prefectures/tokyo/cities/13101/main_shops/starbacks`
-  )
-  const json = await res.json()
-  const shops = json.shops
+  let shops = []
+  let totalPages = 1
+  for (let currentPage = 1; currentPage < totalPages; currentPage++) {
+    let res = await fetch(`${process.env.apiHost}all/shops?page=${currentPage}`)
+    let json = await res.json()
+    let resShop = json.shops
+    totalPages = json.total_pages
+    shops.push(resShop)
+  }
 
   const paths = shops.map((shop) => ({
     params: {

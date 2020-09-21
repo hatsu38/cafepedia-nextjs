@@ -55,14 +55,13 @@ Index.propTypes = propTypes
 
 export async function getStaticPaths() {
   // TODO: 動的に都道府県の市区町村ページの取得ができなかったのでtokyoを指定している
-  const res = await fetch(`${process.env.apiHost}prefectures/tokyo/cities`)
+  const res = await fetch(`${process.env.apiHost}all/cities`)
   const json = await res.json()
   const cities = json.cities
-  const prefecture = json.prefecture
 
   const paths = cities.map((city) => ({
     params: {
-      prefecture_name_e: prefecture.name_e,
+      prefecture_name_e: city.prefecture_name_e,
       city_code: city.code,
     },
   }))
