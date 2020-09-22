@@ -52,27 +52,7 @@ export default function Index({
 
 Index.propTypes = propTypes
 
-export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.apiHost}prefectures/tokyo/cities/13101/`
-  )
-  const json = await res.json()
-  const prefecture = json.prefecture
-  const city = json.city
-  const chainShops = json.main_shops
-
-  const paths = chainShops.map((chainShop) => ({
-    params: {
-      prefecture_name_e: prefecture.name_e,
-      city_code: city.code,
-      eng_name: chainShop.eng_name,
-    },
-  }))
-
-  return { paths, fallback: true }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const response = await fetch(
     `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/main_shops/${params.eng_name}`
   )
@@ -89,3 +69,41 @@ export async function getStaticProps({ params }) {
     props: { prefecture, city, stations, chainShop, cities, shops },
   }
 }
+
+// export async function getStaticPaths() {
+//   const res = await fetch(
+//     `${process.env.apiHost}prefectures/tokyo/cities/13101/`
+//   )
+//   const json = await res.json()
+//   const prefecture = json.prefecture
+//   const city = json.city
+//   const chainShops = json.main_shops
+
+//   const paths = chainShops.map((chainShop) => ({
+//     params: {
+//       prefecture_name_e: prefecture.name_e,
+//       city_code: city.code,
+//       eng_name: chainShop.eng_name,
+//     },
+//   }))
+
+//   return { paths, fallback: true }
+// }
+
+// export async function getStaticProps({ params }) {
+//   const response = await fetch(
+//     `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/main_shops/${params.eng_name}`
+//   )
+//   const json = await response.json()
+
+//   const prefecture = json.prefecture
+//   const city = json.city
+//   const stations = json.stations
+//   const chainShop = json.main_shop
+//   const cities = json.cities
+//   const shops = json.shops
+
+//   return {
+//     props: { prefecture, city, stations, chainShop, cities, shops },
+//   }
+// }
