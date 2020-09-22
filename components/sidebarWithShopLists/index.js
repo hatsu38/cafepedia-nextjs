@@ -129,7 +129,7 @@ export default class Index extends Component {
         <Col xs={12} sm={9}>
           <Search propsStations={stations} propsCities={cities} />
           <h1 className="main-columns--title">{title}</h1>
-          {shops.length ? (
+          {shops.length > 0 ? (
             <ShopLists shops={shops} />
           ) : (
             <div>該当するお店は見つかりませんでした。</div>
