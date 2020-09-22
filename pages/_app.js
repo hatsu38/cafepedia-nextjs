@@ -29,7 +29,6 @@ export default function App({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleRouteChange)
     }
   }, [router.events])
-  console.log("HOGEHOGE", process.env.GA_TRACKING_ID)
   return <Component {...pageProps} />
 }
 
