@@ -70,7 +70,6 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-
 // export async function getStaticPaths() {
 //   const res = await fetch(
 //     `${process.env.apiHost}prefectures/tokyo/cities/13101/`
