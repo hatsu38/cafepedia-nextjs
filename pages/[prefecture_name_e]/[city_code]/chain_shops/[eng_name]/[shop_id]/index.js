@@ -46,10 +46,14 @@ export default function Index({ shops, shop, station }) {
           </Col>
         </Row>
         <div className="mt-5">
-          <h2 className="f5 font-bold">
-            近くの電源のあるカフェ{shops.length}選
-          </h2>
-          <ShopLists shops={shops} />
+          {shops.length > 0 ? (
+            <React.Fragment>
+              <h2 className="f5 font-bold">
+                近くの電源のあるカフェ{shops.length}選
+              </h2>
+              <ShopLists shops={shops} />
+            </React.Fragment>
+          ) : null}
         </div>
       </Container>
     </Layout>

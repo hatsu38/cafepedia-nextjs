@@ -30,67 +30,66 @@ export default class Index extends Component {
     const style = {
       image: { maxHeight: "106px" },
     }
-    return (
-      <div className="shop__lists">
-        {shops.map((shop) => (
-          <ListGroup className="border-bottom" variant="flush" key={shop.id}>
-            <ListGroup.Item className="px-0">
-              <Row noGutters>
-                <Col xs={3} lg={2} className="pr-2">
-                  <Image
-                    src={process.env.s3Host + shop.main_shop.image}
-                    thumbnail
-                    style={style.image}
+    const shopList = shops.map((shop) => (
+      <ListGroup className="border-bottom" variant="flush" key={shop.id}>
+        <ListGroup.Item className="px-0">
+          <Row noGutters>
+            <Col xs={3} lg={2} className="pr-2">
+              <Image
+                src={process.env.s3Host + shop.main_shop.image}
+                thumbnail
+                style={style.image}
+              />
+            </Col>
+            <Col xs={9} lg={10} className="mw-100 text-truncate">
+              <span className="align-top original-gray-text f8">
+                {shop.main_shop.name}
+              </span>
+              <ShopLink shop={shop} classes="align-top">
+                <h3 className="shop__name mt-n2 original-black-text text-truncate">
+                  {shop.name}
+                </h3>
+              </ShopLink>
+              <dl className="my-1 info-list original-gray-text f7">
+                <div className="d-flex">
+                  <TopInfoList
+                    icon={faPlug}
+                    dtText="電源："
+                    ddText={shop.socket ? "あり" : "なし"}
                   />
-                </Col>
-                <Col xs={9} lg={10} className="mw-100 text-truncate">
-                  <span className="align-top original-gray-text f8">
-                    {shop.main_shop.name}
-                  </span>
-                  <ShopLink shop={shop} classes="align-top">
-                    <h3 className="shop__name mt-n2 original-black-text text-truncate">
-                      {shop.name}
-                    </h3>
-                  </ShopLink>
-                  <dl className="my-1 info-list original-gray-text f7">
-                    <div className="d-flex">
-                      <TopInfoList
-                        icon={faPlug}
-                        dtText="電源："
-                        ddText={shop.socket ? "あり" : "なし"}
-                      />
-                      <TopInfoList
-                        icon={faWifi}
-                        dtText="Wi-Fi："
-                        ddText={shop.wifi ? "あり" : "なし"}
-                      />
-                    </div>
-                    <div className="d-none d-sm-block">
-                      <TopInfoList
-                        icon={faMapMarkerAlt}
-                        dtText="アクセス："
-                        ddText={shop.access}
-                      />
-                    </div>
-                  </dl>
-                </Col>
-              </Row>
-              <Row noGutters className="mt-1 original-gray-text f7 d-sm-none">
-                <Col xs={1}>
-                  <FontAwesomeIcon
+                  <TopInfoList
+                    icon={faWifi}
+                    dtText="Wi-Fi："
+                    ddText={shop.wifi ? "あり" : "なし"}
+                  />
+                </div>
+                <div className="d-none d-sm-block">
+                  <TopInfoList
                     icon={faMapMarkerAlt}
-                    size="2x"
-                    className="mr-1 px-1 align-middle"
+                    dtText="アクセス："
+                    ddText={shop.access}
                   />
-                </Col>
-                <Col xs={11} className="f8">
-                  {shop.access}
-                </Col>
-              </Row>
-            </ListGroup.Item>
-          </ListGroup>
-        ))}
-      </div>
+                </div>
+              </dl>
+            </Col>
+          </Row>
+          <Row noGutters className="mt-1 original-gray-text f7 d-sm-none">
+            <Col xs={1}>
+              <FontAwesomeIcon
+                icon={faMapMarkerAlt}
+                size="2x"
+                className="mr-1 px-1 align-middle"
+              />
+            </Col>
+            <Col xs={11} className="f8">
+              {shop.access}
+            </Col>
+          </Row>
+        </ListGroup.Item>
+      </ListGroup>
+    ))
+    return (
+      <div className="shop__lists">{shops.length > 0 ? shopList : null}</div>
     )
   }
 }
