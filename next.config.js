@@ -7,6 +7,7 @@ module.exports = withSass({
     s3Host: "https://cafepedia-images.s3-ap-northeast-1.amazonaws.com",
     GOOGLE_MAP_API_KEY: process.env.GOOGLE_MAP_API_KEY,
     SENTRY_DSN: process.env.SENTRY_DSN,
+    GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   },
   webpack(config) {
     config.resolve.modules.push(__dirname)

@@ -1,6 +1,9 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
+import { useRouter } from "next/router"
+
 import * as Sentry from "@sentry/react"
+import * as gtag from "lib/gtag"
 import "../stylesheets/global.scss"
 
 const propTypes = {
@@ -16,6 +19,16 @@ if (process.env.SENTRY_DSN) {
 }
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url)
+    }
+    router.events.on("routeChangeComplete", handleRouteChange)
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange)
+    }
+  }, [router.events])
   return <Component {...pageProps} />
 }
 
