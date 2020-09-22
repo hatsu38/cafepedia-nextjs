@@ -58,26 +58,7 @@ export default function Index({ shops, shop, station }) {
 
 Index.propTypes = propTypes
 
-export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.apiHost}prefectures/tokyo/cities/13101/main_shops/starbacks`
-  )
-  const json = await res.json()
-  const shops = json.shops
-
-  const paths = shops.map((shop) => ({
-    params: {
-      prefecture_name_e: shop.prefecture_name_e,
-      city_code: shop.city_code,
-      eng_name: shop.main_shop.eng_name,
-      shop_id: shop.id.toString(),
-    },
-  }))
-
-  return { paths, fallback: true }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const response = await fetch(
     `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/main_shops/${params.eng_name}/shops/${params.shop_id}`
   )
@@ -89,3 +70,35 @@ export async function getStaticProps({ params }) {
 
   return { props: { shops, shop, station } }
 }
+
+// export async function getStaticPaths() {
+//   const res = await fetch(
+//     `${process.env.apiHost}prefectures/tokyo/cities/13101/main_shops/starbacks`
+//   )
+//   const json = await res.json()
+//   const shops = json.shops
+
+//   const paths = shops.map((shop) => ({
+//     params: {
+//       prefecture_name_e: shop.prefecture_name_e,
+//       city_code: shop.city_code,
+//       eng_name: shop.main_shop.eng_name,
+//       shop_id: shop.id.toString(),
+//     },
+//   }))
+
+//   return { paths, fallback: true }
+// }
+
+// export async function getStaticProps({ params }) {
+//   const response = await fetch(
+//     `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/main_shops/${params.eng_name}/shops/${params.shop_id}`
+//   )
+//   const json = await response.json()
+
+//   const shops = json.shops
+//   const shop = json.shop
+//   const station = json.station
+
+//   return { props: { shops, shop, station } }
+// }

@@ -42,21 +42,7 @@ export default function Index({ prefectures, stations, chainShop, shops }) {
 
 Index.propTypes = propTypes
 
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.apiHost}main_shops`)
-  const json = await res.json()
-  const chainShops = json.main_shops
-
-  const paths = chainShops.map((chainShop) => ({
-    params: {
-      eng_name: chainShop.eng_name,
-    },
-  }))
-
-  return { paths, fallback: true }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const response = await fetch(
     `${process.env.apiHost}/main_shops/${params.eng_name}`
   )
@@ -71,3 +57,33 @@ export async function getStaticProps({ params }) {
     props: { prefectures, stations, chainShop, shops },
   }
 }
+
+// export async function getStaticPaths() {
+//   const res = await fetch(`${process.env.apiHost}main_shops`)
+//   const json = await res.json()
+//   const chainShops = json.main_shops
+
+//   const paths = chainShops.map((chainShop) => ({
+//     params: {
+//       eng_name: chainShop.eng_name,
+//     },
+//   }))
+
+//   return { paths, fallback: true }
+// }
+
+// export async function getStaticProps({ params }) {
+//   const response = await fetch(
+//     `${process.env.apiHost}/main_shops/${params.eng_name}`
+//   )
+//   const json = await response.json()
+
+//   const prefectures = json.prefectures
+//   const stations = json.stations
+//   const chainShop = json.main_shop
+//   const shops = json.shops
+
+//   return {
+//     props: { prefectures, stations, chainShop, shops },
+//   }
+// }

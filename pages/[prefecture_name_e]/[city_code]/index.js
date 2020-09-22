@@ -53,24 +53,7 @@ export default function Index({
 
 Index.propTypes = propTypes
 
-export async function getStaticPaths() {
-  // TODO: 動的に都道府県の市区町村ページの取得ができなかったのでtokyoを指定している
-  const res = await fetch(`${process.env.apiHost}prefectures/tokyo/cities`)
-  const json = await res.json()
-  const cities = json.cities
-  const prefecture = json.prefecture
-
-  const paths = cities.map((city) => ({
-    params: {
-      prefecture_name_e: prefecture.name_e,
-      city_code: city.code,
-    },
-  }))
-
-  return { paths, fallback: true }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const response = await fetch(
     `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}`
   )
@@ -85,3 +68,36 @@ export async function getStaticProps({ params }) {
 
   return { props: { prefecture, city, stations, cities, shops, chainShops } }
 }
+
+// export async function getStaticPaths() {
+//   // TODO: 動的に都道府県の市区町村ページの取得ができなかったのでtokyoを指定している
+//   const res = await fetch(`${process.env.apiHost}prefectures/tokyo/cities`)
+//   const json = await res.json()
+//   const cities = json.cities
+//   const prefecture = json.prefecture
+
+//   const paths = cities.map((city) => ({
+//     params: {
+//       prefecture_name_e: prefecture.name_e,
+//       city_code: city.code,
+//     },
+//   }))
+
+//   return { paths, fallback: true }
+// }
+
+// export async function getStaticProps({ params }) {
+//   const response = await fetch(
+//     `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}`
+//   )
+//   const json = await response.json()
+
+//   const prefecture = json.prefecture
+//   const city = json.city
+//   const stations = json.stations
+//   const cities = json.cities
+//   const shops = json.shops
+//   const chainShops = json.main_shops
+
+//   return { props: { prefecture, city, stations, cities, shops, chainShops } }
+// }
