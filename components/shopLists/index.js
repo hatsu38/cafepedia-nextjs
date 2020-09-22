@@ -89,9 +89,7 @@ export default class Index extends Component {
       </ListGroup>
     ))
     return (
-      <div className="shop__lists">
-        {shops.length > 0 ? { shopList } : null}
-      </div>
+      <div className="shop__lists">{shops.length > 0 ? shopList : null}</div>
     )
   }
 }
