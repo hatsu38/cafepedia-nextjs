@@ -31,7 +31,6 @@ export default class extends Document {
         </Head>
         <body>
           <Main />
-          <h1>{process.env.NODE_ENV}</h1>
           <NextScript />
         </body>
       </Html>
