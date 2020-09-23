@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 import ShopLink from "components/linkWrapper/shopLink"
+import { BigNumber } from "bignumber.js"
 
 import "./index.module.scss"
 import { ListGroup, Image, Row, Col } from "react-bootstrap"
@@ -9,6 +10,7 @@ import {
   faPlug,
   faWifi,
   faMapMarkerAlt,
+  faLocationArrow,
 } from "@fortawesome/free-solid-svg-icons"
 
 import TopInfoList from "components/topInfoList"
@@ -24,6 +26,17 @@ export default class Index extends Component {
 
   shopUrlPath(shop) {
     return `/${shop.prefecture_name_e}/${shop.city_code}/chain_shops/${shop.main_shop.eng_name}/${shop.id}`
+  }
+
+  distanceToText(distance) {
+    if (distance === 0) {
+      return null
+    }
+    const bigDistance = new BigNumber(distance)
+    if (bigDistance >= 1) {
+      return bigDistance.dp(2) + "km"
+    }
+    return new BigNumber(bigDistance * 1000).dp(2) + "m"
   }
   render() {
     const { shops } = this.props
@@ -70,6 +83,15 @@ export default class Index extends Component {
                     ddText={shop.access}
                   />
                 </div>
+                {shop.distance !== 0 && (
+                  <div className="d-none d-sm-block">
+                    <TopInfoList
+                      icon={faLocationArrow}
+                      dtText="距離"
+                      ddText={this.distanceToText(shop.distance)}
+                    />
+                  </div>
+                )}
               </dl>
             </Col>
           </Row>

@@ -241,6 +241,7 @@ export default class Index extends Component {
         {this.badgeTitle("現在地から探す")}
         <Badge
           className="lighten-15-accent border-lighten-20-accent mr-2"
+          style={{ cursor: "pointer" }}
           onClick={this.fetchCurrentPosition}
         >
           現在地
