@@ -14,7 +14,7 @@ module.exports = withSass({
     config.resolve.modules.push(__dirname)
     return config
   },
-  async redirects() {
+  redirects() {
     return [
       {
         source: "/sitemap",
