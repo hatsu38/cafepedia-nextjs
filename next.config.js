@@ -8,9 +8,20 @@ module.exports = withSass({
     GOOGLE_MAP_API_KEY: process.env.GOOGLE_MAP_API_KEY,
     SENTRY_DSN: process.env.SENTRY_DSN,
     GA_TRACKING_ID: process.env.GA_TRACKING_ID,
+    SITEMAP_URL: process.env.SITEMAP_URL,
   },
   webpack(config) {
     config.resolve.modules.push(__dirname)
     return config
   },
+  async redirects() {
+    return [
+      {
+        source: '/sitemap',
+        destination: process.env.SITEMAP_URL,
+        permanent: true,
+      },
+    ]
+  },
+
 })
