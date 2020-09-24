@@ -17,11 +17,10 @@ module.exports = withSass({
   async redirects() {
     return [
       {
-        source: '/sitemap',
+        source: "/sitemap",
         destination: process.env.SITEMAP_URL,
         permanent: true,
       },
     ]
   },
-
 })
