@@ -14,13 +14,4 @@ module.exports = withSass({
     config.resolve.modules.push(__dirname)
     return config
   },
-  redirects() {
-    return [
-      {
-        source: "/sitemap",
-        destination: process.env.SITEMAP_URL,
-        permanent: true,
-      },
-    ]
-  },
 })
