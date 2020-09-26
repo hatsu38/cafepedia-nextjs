@@ -30,6 +30,7 @@ export default class Index extends Component {
                       variant="top"
                       className={`bg-${chainShop.eng_name}`}
                       src={process.env.s3Host + chainShop.image}
+                      alt={`${chainShop.name}ロゴ`}
                     />
                     <Card.Body className="py-1 px-1 border-top">
                       <Card.Title className="f7 mb-0 text-center">

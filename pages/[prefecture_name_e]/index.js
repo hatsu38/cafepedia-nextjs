@@ -21,8 +21,10 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
     return <div>Loading...</div>
   }
 
-  const title = `カフェペディア | ${prefecture.name}の電源/コンセントのあるカフェ${shops.length}選`
-  const description = `${prefecture.name}のWi-Fiや電源/コンセントのあるカフェ一覧です。カフェペディアは、全国のカフェの設備情報サイトです。「Wi-Fi」「電源/コンセント」など設備に応じて気になるカフェを探すことが可能です。位置情報をONにすれば、すぐにあなたの近くにあるカフェもわかります。是非カフェ探しにご活用ください!`
+  const titlePrefix = "カフェペディア | "
+  const titleBase = `${prefecture.name}の電源/コンセントのあるカフェ一覧`
+  const title = titlePrefix + titleBase
+  const description = `${titleBase}です。 ${process.env.baseDescription}`
   return (
     <Layout>
       <NextSeo

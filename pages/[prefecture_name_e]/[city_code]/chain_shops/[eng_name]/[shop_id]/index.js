@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Head from "next/head"
+import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 
 import fetch from "isomorphic-unfetch"
@@ -26,11 +26,21 @@ export default function Index({ shops, shop, station }) {
   if (router.isFallback) {
     return <div>Loading...</div>
   }
+  const titlePrefix = "カフェペディア | "
+  const titleBase = `${shop.name}`
+  const title = titlePrefix + titleBase
+  const description = `${titleBase}です。 ${process.env.baseDescription}`
+
   return (
     <Layout>
-      <Head>
-        <title>カフェペディア | {shop.name}</title>
-      </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          title: title,
+          description: description,
+        }}
+      />
       <Container className="mt-n2">
         <span className="chain-shop-name original-gray-text f8">
           {shop.main_shop.name}
@@ -49,7 +59,7 @@ export default function Index({ shops, shop, station }) {
           {shops.length > 0 ? (
             <React.Fragment>
               <h2 className="f5 font-bold">
-                近くの電源のあるカフェ{shops.length}選
+                近くの電源/コンセントやWi-Fiのあるカフェ{shops.length}選
               </h2>
               <ShopLists shops={shops} />
             </React.Fragment>

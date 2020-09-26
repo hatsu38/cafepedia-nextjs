@@ -1,8 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Head from "next/head"
+import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
-
 import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
@@ -22,13 +21,20 @@ export default function Index({ cities, stations, shops }) {
   }
 
   const { keyword } = router.query
-  const title = `${keyword}の検索結果`
-
+  const titlePrefix = "カフェペディア | "
+  const titleBase = `${keyword}を含む電源/コンセントのあるカフェ検索結果`
+  const title = titlePrefix + titleBase
+  const description = `${titleBase}です。 ${process.env.baseDescription}`
   return (
     <Layout>
-      <Head>
-        <title>カフェペディア | {title}</title>
-      </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          title: title,
+          description: description,
+        }}
+      />
       <Container>
         {shops && (
           <SidebarWithShopLists
