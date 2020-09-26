@@ -1,8 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Head from "next/head"
 import { useRouter } from "next/router"
-
+import { NextSeo } from "next-seo"
 import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
@@ -22,12 +21,18 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
     return <div>Loading...</div>
   }
 
-  const title = `${prefecture.name}の電源のあるカフェ${shops.length}選`
+  const title = `カフェペディア | ${prefecture.name}の電源/コンセントのあるカフェ${shops.length}選`
+  const description = `${prefecture.name}のWi-Fiや電源/コンセントのあるカフェ一覧です。カフェペディアは、全国のカフェの設備情報サイトです。「Wi-Fi」「電源/コンセント」など設備に応じて気になるカフェを探すことが可能です。位置情報をONにすれば、すぐにあなたの近くにあるカフェもわかります。是非カフェ探しにご活用ください!`
   return (
     <Layout>
-      <Head>
-        <title>カフェペディア | {title}</title>
-      </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          title: title,
+          description: description,
+        }}
+      />
       <Container>
         <SidebarWithShopLists
           chainShops={chainShops}
