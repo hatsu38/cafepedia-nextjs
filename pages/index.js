@@ -29,7 +29,7 @@ export default function Index({
       <div className="position-relative">
         <div
           className="bg-image__item"
-          style={{ backgroundImage: "url(/images/bg-header.jpg)" }}
+          style={{ backgroundImage: "url(/images/bg-header.webp)" }}
         />
         <Container className="mt-4">
           <div className="pt-4">

@@ -53,6 +53,7 @@ export default class Index extends Component {
                 thumbnail
                 style={style.image}
                 alt={shop.main_shop.name + "ロゴ"}
+                className="m-0"
               />
             </Col>
             <Col xs={9} lg={10} className="mw-100 text-truncate">
@@ -101,7 +102,9 @@ export default class Index extends Component {
               <FontAwesomeIcon
                 icon={faMapMarkerAlt}
                 size="2x"
-                className="mr-1 px-1 align-middle"
+                className="mr-1 align-middle"
+                width="22"
+                height="18"
               />
             </Col>
             <Col xs={11} className="f8">
