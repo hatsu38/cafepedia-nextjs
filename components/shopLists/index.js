@@ -61,50 +61,64 @@ export default class Index extends Component {
                 {shop.main_shop.name}
               </span>
               <ShopLink shop={shop} classes="align-top">
-                <h3 className="shop__name mt-n2 original-black-text text-truncate">
+                <h2 className="shop__name mt-n2 original-black-text text-truncate">
                   {shop.name}
-                </h3>
+                </h2>
               </ShopLink>
-              <dl className="my-1 info-list original-gray-text f7">
-                <div className="d-flex">
-                  <TopInfoList
-                    icon={faPlug}
-                    dtText="電源："
-                    ddText={shop.socket ? "あり" : "なし"}
-                  />
-                  <TopInfoList
-                    icon={faWifi}
-                    dtText="Wi-Fi："
-                    ddText={shop.wifi ? "あり" : "なし"}
-                  />
-                </div>
-                <div className="d-none d-sm-block">
+              <dl className="my-1 info-list original-gray-text f7 d-flex">
+                <TopInfoList
+                  icon={faPlug}
+                  dtText="電源："
+                  ddText={shop.socket ? "あり" : "なし"}
+                />
+                <TopInfoList
+                  icon={faWifi}
+                  dtText="Wi-Fi："
+                  ddText={shop.wifi ? "あり" : "なし"}
+                />
+              </dl>
+              <div className="d-none d-sm-block">
+                {shop.distance !== 0 && (
+                  <dl className="my-1 info-list original-gray-text f7">
+                    <TopInfoList
+                      icon={faLocationArrow}
+                      dtText="距離："
+                      ddText={this.distanceToText(shop.distance)}
+                    />
+                  </dl>
+                )}
+                <dl className="my-1 info-list original-gray-text f7">
                   <TopInfoList
                     icon={faMapMarkerAlt}
                     dtText="アクセス："
                     ddText={shop.access}
                   />
-                </div>
-                {shop.distance !== 0 && (
-                  <div className="d-none d-sm-block">
-                    <TopInfoList
-                      icon={faLocationArrow}
-                      dtText="距離"
-                      ddText={this.distanceToText(shop.distance)}
-                    />
-                  </div>
-                )}
-              </dl>
+                </dl>
+              </div>
             </Col>
           </Row>
           <Row noGutters className="mt-1 original-gray-text f7 d-sm-none">
+            {shop.distance !== 0 && (
+              <React.Fragment>
+                <Col xs={1} className="text-center">
+                  <FontAwesomeIcon
+                    icon={faLocationArrow}
+                    className="align-middle"
+                    width="14"
+                    height="14"
+                  />
+                </Col>
+                <Col xs={11} className="f8">
+                  {this.distanceToText(shop.distance)}
+                </Col>
+              </React.Fragment>
+            )}
             <Col xs={1} className="text-center">
               <FontAwesomeIcon
                 icon={faMapMarkerAlt}
-                size="2x"
                 className="align-middle"
-                width="18"
-                height="18"
+                width="16"
+                height="16"
               />
             </Col>
             <Col xs={11} className="f8">
