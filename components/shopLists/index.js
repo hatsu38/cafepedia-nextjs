@@ -49,7 +49,7 @@ export default class Index extends Component {
           <Row noGutters>
             <Col xs={3} lg={2} className="pr-2">
               <Figure.Image
-                src={process.env.s3Host + shop.main_shop.image}
+                src={shop.main_shop.logo}
                 thumbnail
                 style={style.image}
                 alt={shop.main_shop.name + "ロゴ"}
