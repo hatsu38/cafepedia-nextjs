@@ -98,12 +98,12 @@ export default class Index extends Component {
             </Col>
           </Row>
           <Row noGutters className="mt-1 original-gray-text f7 d-sm-none">
-            <Col xs={1}>
+            <Col xs={1} className="text-center">
               <FontAwesomeIcon
                 icon={faMapMarkerAlt}
                 size="2x"
-                className="mr-1 align-middle"
-                width="22"
+                className="align-middle"
+                width="18"
                 height="18"
               />
             </Col>
