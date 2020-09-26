@@ -29,7 +29,12 @@ export default class Index extends Component {
                 idx > 14 && "d-none d-sm-inline-block"
               }`}
             >
-              <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-1" />
+              <FontAwesomeIcon
+                icon={faMapMarkerAlt}
+                className="mr-1"
+                width="14"
+                height="15"
+              />
               {station.kanji_name}
             </Badge>
           </StationLink>
