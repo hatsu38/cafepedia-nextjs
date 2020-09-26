@@ -18,7 +18,7 @@ import "stylesheets/sidebars/sidebars.module.scss"
 const propTypes = {
   shops: PropTypes.array.isRequired,
   shop: PropTypes.object.isRequired,
-  station: PropTypes.object,
+  station: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // StationがないときにAPIで空配列を返すためArrayかObjectとしている
 }
 
 export default function Index({ shops, shop, station }) {
@@ -59,7 +59,7 @@ export default function Index({ shops, shop, station }) {
           {shops.length > 0 ? (
             <React.Fragment>
               <h2 className="f5 font-bold">
-                近くの電源/コンセントやWi-Fiのあるカフェ{shops.length}選
+                近くの電源やWi-Fiのあるカフェ{shops.length}選
               </h2>
               <ShopLists shops={shops} />
             </React.Fragment>

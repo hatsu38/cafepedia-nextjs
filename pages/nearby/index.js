@@ -41,7 +41,7 @@ export default function Index({ city, cities, stations, shops }) {
           cities={cities}
           stations={stations}
           shops={shops}
-          title={title}
+          title={titleBase}
         />
       </Container>
     </Layout>

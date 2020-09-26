@@ -11,8 +11,7 @@ const propTypes = {
 }
 
 export default function Layout({ children }) {
-  const title =
-    "カフェペディア | 近くの電源/コンセントやWi-Fiのあるカフェがすぐわかる"
+  const title = "カフェペディア | 近くの電源やWi-Fiのあるカフェがすぐわかる"
   const description =
     "カフェペディアは、全国のカフェの設備情報サイトです。「Wi-Fi」「コンセント/電源」など設備に応じて気になるカフェを探すことが可能です。位置情報をONにすれば、すぐにあなたの近くにあるカフェもわかります。是非カフェ探しにご活用ください!"
   let url = "https://cafepedia.jp"

@@ -1,5 +1,5 @@
 import React from "react"
-import { Navbar, Container } from "react-bootstrap"
+import { Navbar, Container, Figure } from "react-bootstrap"
 import { useRouter } from "next/router"
 import "./header.module.scss"
 
@@ -18,12 +18,12 @@ export default function Header() {
       <Container>
         <Navbar bg="transport" style={{ zIndex: "1" }} className="p-0">
           <Navbar.Brand href="/">
-            <img
-              src="/images/site-icon.png"
+            <Figure.Image
+              src="/images/site-icon.webp"
               alt="cafepedia logo"
               width="25"
               height="25"
-              className="d-inline-block align-top align-middle"
+              className="d-inline-block align-top align-middle m-0"
             />
             <span className="accent-text f4 font-wight--700 align-middle">
               カフェペディア

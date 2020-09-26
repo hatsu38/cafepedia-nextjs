@@ -29,7 +29,7 @@ export default class Index extends Component {
                     <Card.Img
                       variant="top"
                       className={`bg-${chainShop.eng_name}`}
-                      src={process.env.s3Host + chainShop.image}
+                      src={chainShop.logo}
                       alt={`${chainShop.name}ロゴ`}
                     />
                     <Card.Body className="py-1 px-1 border-top">

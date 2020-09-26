@@ -49,10 +49,11 @@ export default class Index extends Component {
           <Row noGutters>
             <Col xs={3} lg={2} className="pr-2">
               <Figure.Image
-                src={process.env.s3Host + shop.main_shop.image}
+                src={shop.main_shop.logo}
                 thumbnail
                 style={style.image}
                 alt={shop.main_shop.name + "ロゴ"}
+                className="m-0"
               />
             </Col>
             <Col xs={9} lg={10} className="mw-100 text-truncate">
@@ -97,11 +98,13 @@ export default class Index extends Component {
             </Col>
           </Row>
           <Row noGutters className="mt-1 original-gray-text f7 d-sm-none">
-            <Col xs={1}>
+            <Col xs={1} className="text-center">
               <FontAwesomeIcon
                 icon={faMapMarkerAlt}
                 size="2x"
-                className="mr-1 px-1 align-middle"
+                className="align-middle"
+                width="18"
+                height="18"
               />
             </Col>
             <Col xs={11} className="f8">
