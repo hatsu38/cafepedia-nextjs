@@ -59,7 +59,7 @@ export default function Index({ shops, shop, station }) {
           {shops.length > 0 ? (
             <React.Fragment>
               <h2 className="f5 font-bold">
-                近くの電源/コンセントやWi-Fiのあるカフェ{shops.length}選
+                近くの電源やWi-Fiのあるカフェ{shops.length}選
               </h2>
               <ShopLists shops={shops} />
             </React.Fragment>

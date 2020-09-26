@@ -32,7 +32,7 @@ export default function Index({
   }
 
   const titlePrefix = "カフェペディア | "
-  const titleBase = `${prefecture.name}${city.name}${chainShop.name}の電源/コンセントやWi-Fiのあるカフェ一覧`
+  const titleBase = `${prefecture.name}${city.name}${chainShop.name}の電源やWi-Fiのあるカフェ一覧`
   const title = titlePrefix + titleBase
   const description = `${titleBase}です。 ${process.env.baseDescription}`
 
@@ -53,7 +53,7 @@ export default function Index({
           city={city}
           prefecture={prefecture}
           shops={shops}
-          title={title}
+          title={titleBase}
         />
       </Container>
     </Layout>

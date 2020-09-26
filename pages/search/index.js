@@ -22,7 +22,7 @@ export default function Index({ cities, stations, shops }) {
 
   const { keyword } = router.query
   const titlePrefix = "カフェペディア | "
-  const titleBase = `${keyword}を含む電源/コンセントのあるカフェ検索結果`
+  const titleBase = `${keyword}を含む電源のあるカフェ検索結果`
   const title = titlePrefix + titleBase
   const description = `${titleBase}です。 ${process.env.baseDescription}`
   return (

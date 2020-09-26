@@ -22,7 +22,7 @@ export default function Index({ prefectures, stations, chainShop, shops }) {
     return <div>Loading...</div>
   }
   const titlePrefix = "カフェペディア | "
-  const titleBase = `${chainShop.name}の電源/コンセントのあるカフェ一覧`
+  const titleBase = `${chainShop.name}の電源のあるカフェ一覧`
   const title = titlePrefix + titleBase
   const description = `${titleBase}です。 ${process.env.baseDescription}`
   return (
@@ -41,7 +41,7 @@ export default function Index({ prefectures, stations, chainShop, shops }) {
           chainShop={chainShop}
           prefectures={prefectures}
           shops={shops}
-          title={title}
+          title={titleBase}
         />
       </Container>
     </Layout>
