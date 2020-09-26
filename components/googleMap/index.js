@@ -21,13 +21,14 @@ export default class Index extends Component {
 
   render() {
     const { shop } = this.props
-    const digit = 0.0000001
+    const lat = parseFloat(shop.lat)
+    const lng = parseFloat(shop.lng)
     const center = {
-      lat: this.round(shop.lat, digit),
-      lng: this.round(shop.lng, digit),
+      lat: lat,
+      lng: lng,
     }
     const style = { height: "100%", width: "100%", minHeight: "200px" }
-
+    console.log("center", center)
     const AnyReactComponent = ({ icon }) => <div>{icon}</div>
     return (
       <div style={style}>
@@ -39,13 +40,15 @@ export default class Index extends Component {
           defaultZoom={15}
         >
           <AnyReactComponent
-            lat={shop.lat}
-            lng={shop.lng}
+            lat={lat}
+            lng={lng}
             icon={
               <FontAwesomeIcon
                 icon={faMapPin}
                 size="2x"
                 className="accent-text"
+                width="16"
+                height="16"
               />
             }
           />
