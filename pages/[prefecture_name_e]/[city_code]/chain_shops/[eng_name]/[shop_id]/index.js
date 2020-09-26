@@ -18,7 +18,7 @@ import "stylesheets/sidebars/sidebars.module.scss"
 const propTypes = {
   shops: PropTypes.array.isRequired,
   shop: PropTypes.object.isRequired,
-  station: PropTypes.object,
+  station: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // StationがないときにAPIで空配列を返すためArrayかObjectとしている
 }
 
 export default function Index({ shops, shop, station }) {
