@@ -73,7 +73,12 @@ export default class Index extends Component {
     return (
       <div className="area-select mt-5 base-gray-900 rounded">
         <h2 className="pt-sm-4 pt-3 px-sm-3 section--title m-sm-0 letter-space-1">
-          <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 accent-text" />
+          <FontAwesomeIcon
+            icon={faMapMarkerAlt}
+            className="mr-2 accent-text"
+            width="14"
+            height="21"
+          />
           都道府県から探す
         </h2>
         <Accordion>

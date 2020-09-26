@@ -1,8 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Head from "next/head"
 import { useRouter } from "next/router"
-
+import { NextSeo } from "next-seo"
 import fetch from "isomorphic-unfetch"
 
 import { Container } from "react-bootstrap"
@@ -22,12 +21,20 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
     return <div>Loading...</div>
   }
 
-  const title = `${prefecture.name}の電源のあるカフェ${shops.length}選`
+  const titlePrefix = "カフェペディア | "
+  const titleBase = `${prefecture.name}の電源/コンセントのあるカフェ一覧`
+  const title = titlePrefix + titleBase
+  const description = `${titleBase}です。 ${process.env.baseDescription}`
   return (
     <Layout>
-      <Head>
-        <title>カフェペディア | {title}</title>
-      </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          title: title,
+          description: description,
+        }}
+      />
       <Container>
         <SidebarWithShopLists
           chainShops={chainShops}

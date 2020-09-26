@@ -24,7 +24,12 @@ export default class Index extends Component {
     return (
       <section className="list-sidebar">
         <h2 className="list-sidebar--title m-0">
-          <FontAwesomeIcon icon={faMap} className="mr-2 accent-text" />
+          <FontAwesomeIcon
+            icon={faMap}
+            className="mr-2 accent-text"
+            width="17"
+            height="17"
+          />
           都道府県から探す
         </h2>
         {prefecture && (

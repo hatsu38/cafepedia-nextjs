@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Head from "next/head"
+import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 
 import fetch from "isomorphic-unfetch"
@@ -33,12 +33,20 @@ export default function Index({
     return <div>Loading...</div>
   }
 
-  const title = `${prefecture.name}${city.name}${station.kanji_name}の電源のあるカフェ${shops.length}選`
+  const titlePrefix = "カフェペディア | "
+  const titleBase = `${prefecture.name}${city.name}${station.kanji_name}の電源/コンセントやWi-Fiのあるカフェ一覧`
+  const title = titlePrefix + titleBase
+  const description = `${titleBase}です。 ${process.env.baseDescription}`
   return (
     <Layout>
-      <Head>
-        <title>カフェペディア | {title}</title>
-      </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          title: title,
+          description: description,
+        }}
+      />
       <Container>
         <SidebarWithShopLists
           chainShops={chainShops}

@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Head from "next/head"
 import fetch from "isomorphic-unfetch"
 import { Container } from "react-bootstrap"
 
@@ -27,9 +26,6 @@ export default function Index({
 }) {
   return (
     <Layout>
-      <Head>
-        <title>カフェペディア</title>
-      </Head>
       <div className="position-relative">
         <div
           className="bg-image__item"

@@ -19,8 +19,13 @@ export default class Index extends Component {
 
     return (
       <div className="info-list__item d-flex mr-2">
-        <dt className="mr-1">
-          <FontAwesomeIcon icon={icon} className="mr-1 info-list__label" />
+        <dt>
+          <FontAwesomeIcon
+            icon={icon}
+            className="mr-1 info-list__label"
+            width="14"
+            height="15"
+          />
           <span>{dtText}</span>
         </dt>
         <dd className="info-list__description trancate">{ddText}</dd>

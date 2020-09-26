@@ -31,29 +31,29 @@ export default class Index extends Component {
         {station && station.length ? (
           <TopInfoList
             icon={faSubway}
-            dtText="最寄駅："
+            dtText="最寄駅:"
             ddText={station.kanji_name}
           />
         ) : null}
         <TopInfoList
           icon={faMapMarkerAlt}
-          dtText="アクセス："
+          dtText="アクセス:"
           ddText={shop.access}
         />
         <div className="d-flex">
           <TopInfoList
             icon={faPlug}
-            dtText="電源："
+            dtText="電源:"
             ddText={shop.socket ? "あり" : "なし"}
           />
           <TopInfoList
             icon={faWifi}
-            dtText="Wi-Fi："
+            dtText="Wi-Fi:"
             ddText={shop.wifi ? "あり" : "なし"}
           />
           <TopInfoList
             icon={faSmoking}
-            dtText="喫煙席："
+            dtText="喫煙席:"
             ddText={shop.smoking ? "あり" : "なし"}
           />
         </div>

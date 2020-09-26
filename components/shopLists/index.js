@@ -4,7 +4,7 @@ import ShopLink from "components/linkWrapper/shopLink"
 import { BigNumber } from "bignumber.js"
 
 import "./index.module.scss"
-import { ListGroup, Image, Row, Col } from "react-bootstrap"
+import { ListGroup, Figure, Row, Col } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faPlug,
@@ -48,10 +48,11 @@ export default class Index extends Component {
         <ListGroup.Item className="px-0">
           <Row noGutters>
             <Col xs={3} lg={2} className="pr-2">
-              <Image
+              <Figure.Image
                 src={process.env.s3Host + shop.main_shop.image}
                 thumbnail
                 style={style.image}
+                alt={shop.main_shop.name + "ロゴ"}
               />
             </Col>
             <Col xs={9} lg={10} className="mw-100 text-truncate">
