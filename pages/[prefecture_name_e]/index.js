@@ -9,13 +9,6 @@ import { Container } from "react-bootstrap"
 import Layout from "components/layout"
 import SidebarWithShopLists from "components/sidebarWithShopLists"
 
-const defaultProps = {
-  prefecture: undefined,
-  cities: [],
-  shops: [],
-  chainShops: [],
-}
-
 const propTypes = {
   prefecture: PropTypes.object.isRequired,
   cities: PropTypes.array.isRequired,

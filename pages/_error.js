@@ -3,20 +3,18 @@ import PropTypes from "prop-types"
 import NotFoundError from "components/NotFoundError"
 import InternalError from "components/InternalError"
 
-import Layout from "components/layout"
-
 const propTypes = {
   statusCode: PropTypes.number.isRequired,
 }
 function Error({ statusCode }) {
   return (
-    <Layout>
+    <React.Fragment>
       {statusCode === 404 && <NotFoundError />}
       {statusCode === 500 && <InternalError statusCode={statusCode} />}
       {statusCode !== 404 && statusCode !== 500 && (
         <InternalError statusCode={statusCode} />
       )}
-    </Layout>
+    </React.Fragment>
   )
 }
 
