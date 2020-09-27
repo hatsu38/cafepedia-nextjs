@@ -17,19 +17,10 @@ const propTypes = {
   chainShops: PropTypes.array.isRequired,
 }
 
-export default function Index({
-  statusCode,
-  prefecture,
-  cities,
-  shops,
-  chainShops,
-}) {
+export default function Index({ prefecture, cities, shops, chainShops }) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
-  }
-  if (statusCode) {
-    return <Error statusCode={statusCode} />
   }
 
   const titlePrefix = "カフェペディア | "
@@ -66,7 +57,6 @@ export async function getServerSideProps({ params }) {
     `${process.env.apiHost}prefectures/${params.prefecture_name_e}`
   )
   const json = await response.json()
-  const statusCode = json.status || false
   const prefecture = json.prefecture || {}
   const cities = json.cities || []
   const shops = json.shops || []
@@ -74,7 +64,6 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      statusCode,
       prefecture: prefecture,
       cities: cities,
       shops: shops,

@@ -8,7 +8,7 @@ import Layout from "components/layout"
 const propTypes = {
   statusCode: PropTypes.number.isRequired,
 }
-export default function Error({ statusCode }) {
+function Error({ statusCode }) {
   return (
     <Layout>
       {statusCode === 404 && <NotFoundError />}
@@ -21,3 +21,10 @@ export default function Error({ statusCode }) {
 }
 
 Error.propTypes = propTypes
+
+Error.getInitialProps = ({ res, err }) => {
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+  return { statusCode }
+}
+
+export default Error
