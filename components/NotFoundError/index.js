@@ -16,9 +16,7 @@ export default function Index() {
           </p>
           <div className="text-center mt-5">
             <LinkWithATag href="/" as="/" classes="text-center">
-              <Button className="bg-lighten-20-original-gray">
-                Topページにもどる
-              </Button>
+              <Button variant="outline-secondary">Topページにもどる</Button>
             </LinkWithATag>
           </div>
         </Container>
