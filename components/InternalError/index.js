@@ -18,7 +18,7 @@ export default function Index({ statusCode }) {
           </h1>
           <div className="text-center mt-5">
             <LinkWithATag href="/" as="/" classes="text-center">
-            <Button variant="outline-secondary">Topページにもどる</Button>
+              <Button variant="outline-secondary">Topページにもどる</Button>
             </LinkWithATag>
           </div>
         </Container>
