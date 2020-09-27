@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import NotFoundError from "components/NotFoundError"
 import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 
@@ -29,6 +30,9 @@ export default function Index({
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
+  }
+  if (!chainShop || !prefecture || !city) {
+    return <NotFoundError />
   }
 
   const titlePrefix = "カフェペディア | "
