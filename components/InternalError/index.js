@@ -11,7 +11,7 @@ export default function Index({ statusCode }) {
   return (
     <Jumbotron fluid className="bg--white">
       <Container>
-        <h1 className="original-gray f3">
+        <h1 className="original-gray f2 text-center">
           {statusCode} - 現在サーバーが込み合っています
         </h1>
         <div className="text-center mt-5">

@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import NotFoundError from "components/NotFoundError"
 import { useRouter } from "next/router"
 import { NextSeo } from "next-seo"
 import fetch from "isomorphic-unfetch"
@@ -8,9 +9,14 @@ import { Container } from "react-bootstrap"
 import Layout from "components/layout"
 import SidebarWithShopLists from "components/sidebarWithShopLists"
 
+const defaultProps = {
+  prefecture: undefined,
+  cities: [],
+  shops: [],
+  chainShops: [],
+}
+
 const propTypes = {
-  statusCode: PropTypes.oneOfType([PropTypes.bool, PropTypes.number])
-    .isRequired,
   prefecture: PropTypes.object.isRequired,
   cities: PropTypes.array.isRequired,
   shops: PropTypes.array.isRequired,
@@ -21,6 +27,9 @@ export default function Index({ prefecture, cities, shops, chainShops }) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
+  }
+  if (!prefecture) {
+    return <NotFoundError />
   }
 
   const titlePrefix = "カフェペディア | "
@@ -57,10 +66,10 @@ export async function getServerSideProps({ params }) {
     `${process.env.apiHost}prefectures/${params.prefecture_name_e}`
   )
   const json = await response.json()
-  const prefecture = json.prefecture || {}
-  const cities = json.cities || []
-  const shops = json.shops || []
-  const chainShops = json.main_shops || []
+  const prefecture = json.prefecture
+  const cities = json.cities
+  const shops = json.shops
+  const chainShops = json.main_shops
 
   return {
     props: {
