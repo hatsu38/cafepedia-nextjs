@@ -63,5 +63,5 @@ export async function getServerSideProps({ query }) {
   const cities = json.cities
   const shops = json.shops
 
-  return { props: { cities, stations, shops } }
+  return { props: { cities: cities, stations: stations, shops: shops } }
 }

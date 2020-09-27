@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import NotFoundError from "components/NotFoundError"
 import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 
@@ -25,6 +26,9 @@ export default function Index({ shops, shop, station }) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
+  }
+  if (!shop) {
+    return <NotFoundError />
   }
   const titlePrefix = "カフェペディア | "
   const titleBase = `${shop.name}`
@@ -82,7 +86,7 @@ export async function getServerSideProps({ params }) {
   const shop = json.shop
   const station = json.station
 
-  return { props: { shops, shop, station } }
+  return { props: { shops: shops, shop: shop, station: station } }
 }
 
 // export async function getStaticPaths() {
