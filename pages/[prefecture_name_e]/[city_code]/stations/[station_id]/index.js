@@ -83,7 +83,15 @@ export async function getServerSideProps({ params }) {
   const chainShops = json.main_shops
 
   return {
-    props: { prefecture, city, stations, station, cities, shops, chainShops },
+    props: {
+      prefecture: prefecture,
+      city: city,
+      stations: stations,
+      station: station,
+      cities: cities,
+      shops: shops,
+      chainShops: chainShops,
+    },
   }
 }
 

@@ -63,5 +63,11 @@ export async function getStaticProps() {
   const popularChainShops = popularChainShopsJson.main_shops
   const popularStations = popularStationsJson.stations
 
-  return { props: { prefectures, popularChainShops, popularStations } }
+  return {
+    props: {
+      prefectures: prefectures,
+      popularChainShops: popularChainShops,
+      popularStations: popularStations,
+    },
+  }
 }

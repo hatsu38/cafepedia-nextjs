@@ -78,7 +78,16 @@ export async function getServerSideProps({ params }) {
   const shops = json.shops
   const chainShops = json.main_shops
 
-  return { props: { prefecture, city, stations, cities, shops, chainShops } }
+  return {
+    props: {
+      prefecture: prefecture,
+      city: city,
+      stations: stations,
+      cities: cities,
+      shops: shops,
+      chainShops: chainShops,
+    },
+  }
 }
 
 // export async function getStaticPaths() {
