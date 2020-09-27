@@ -9,16 +9,27 @@ import Layout from "components/layout"
 import SidebarWithShopLists from "components/sidebarWithShopLists"
 
 const propTypes = {
+  statusCode: PropTypes.oneOfType([PropTypes.bool, PropTypes.number])
+    .isRequired,
   prefecture: PropTypes.object.isRequired,
   cities: PropTypes.array.isRequired,
   shops: PropTypes.array.isRequired,
   chainShops: PropTypes.array.isRequired,
 }
 
-export default function Index({ prefecture, cities, shops, chainShops }) {
+export default function Index({
+  statusCode,
+  prefecture,
+  cities,
+  shops,
+  chainShops,
+}) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
+  }
+  if (statusCode) {
+    return <Error statusCode={statusCode} />
   }
 
   const titlePrefix = "カフェペディア | "
@@ -55,13 +66,21 @@ export async function getServerSideProps({ params }) {
     `${process.env.apiHost}prefectures/${params.prefecture_name_e}`
   )
   const json = await response.json()
+  const statusCode = json.status || false
+  const prefecture = json.prefecture || {}
+  const cities = json.cities || []
+  const shops = json.shops || []
+  const chainShops = json.main_shops || []
 
-  const prefecture = json.prefecture
-  const cities = json.cities
-  const shops = json.shops
-  const chainShops = json.main_shops
-
-  return { props: { prefecture, cities, shops, chainShops } }
+  return {
+    props: {
+      statusCode,
+      prefecture: prefecture,
+      cities: cities,
+      shops: shops,
+      chainShops: chainShops,
+    },
+  }
 }
 
 // export async function getStaticPaths() {
