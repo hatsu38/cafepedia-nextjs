@@ -24,7 +24,13 @@ const propTypes = {
   fetchUrl: PropTypes.string.isRequired,
 }
 
-export default function Index({ shops, shop, station }) {
+export default function Index({
+  shops,
+  shop,
+  station,
+  fetchUrl,
+  shopsTotalCount,
+}) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -67,7 +73,11 @@ export default function Index({ shops, shop, station }) {
               <h2 className="f5 font-bold">
                 近くの電源やWi-Fiのあるカフェ{shops.length}選
               </h2>
-              <ShopLists shops={shops} />
+              <ShopLists
+                shops={shops}
+                shopsTotalCount={shopsTotalCount}
+                fetchUrl={fetchUrl}
+              />
             </React.Fragment>
           ) : null}
         </div>
