@@ -71,7 +71,7 @@ export default class Index extends Component {
     this.setState({
       readShops: addShops,
       page: page + 1,
-      moreReadableShops: shopsTotalCount > addShops.length
+      moreReadableShops: shopsTotalCount > addShops.length,
     })
   }
 
