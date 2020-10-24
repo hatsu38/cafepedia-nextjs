@@ -18,6 +18,8 @@ const propTypes = {
   cities: PropTypes.array.isRequired,
   shops: PropTypes.array.isRequired,
   chainShops: PropTypes.array.isRequired,
+  shopsTotalCount: PropTypes.number.isRequired,
+  fetchUrl: PropTypes.string.isRequired,
 }
 
 export default function Index({
@@ -28,6 +30,8 @@ export default function Index({
   cities,
   shops,
   chainShops,
+  shopsTotalCount,
+  fetchUrl,
 }) {
   const router = useRouter()
   if (router.isFallback) {
@@ -59,6 +63,8 @@ export default function Index({
           city={city}
           prefecture={prefecture}
           shops={shops}
+          fetchUrl={fetchUrl}
+          shopsTotalCount={shopsTotalCount}
           title={titleBase}
         />
       </Container>
@@ -69,9 +75,8 @@ export default function Index({
 Index.propTypes = propTypes
 
 export async function getServerSideProps({ params }) {
-  const response = await fetch(
-    `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/stations/${params.station_id}`
-  )
+  const fetchUrl = `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/stations/${params.station_id}`
+  const response = await fetch(fetchUrl)
   const json = await response.json()
 
   const prefecture = json.prefecture
@@ -81,6 +86,7 @@ export async function getServerSideProps({ params }) {
   const cities = json.cities
   const shops = json.shops
   const chainShops = json.main_shops
+  const shopsTotalCount = json.shops_total_count
 
   return {
     props: {
@@ -91,6 +97,8 @@ export async function getServerSideProps({ params }) {
       cities: cities,
       shops: shops,
       chainShops: chainShops,
+      fetchUrl: fetchUrl,
+      shopsTotalCount: shopsTotalCount,
     },
   }
 }

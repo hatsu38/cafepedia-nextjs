@@ -4,7 +4,7 @@ import ShopLink from "components/linkWrapper/shopLink"
 import { BigNumber } from "bignumber.js"
 
 import "./index.module.scss"
-import { ListGroup, Figure, Row, Col } from "react-bootstrap"
+import { ListGroup, Figure, Row, Col, Button } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faPlug,
@@ -17,11 +17,27 @@ import TopInfoList from "components/topInfoList"
 
 const propTypes = {
   shops: PropTypes.array.isRequired,
+  fetchUrl: PropTypes.string.isRequired,
+  shopsTotalCount: PropTypes.number.isRequired,
 }
 
 export default class Index extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      page: 2,
+      readShops: [],
+      moreReadableShops: false,
+    }
+  }
+
+  componentDidMount() {
+    const { shops, shopsTotalCount } = this.props
+    const moreReadableShops = shopsTotalCount > shops.length
+    this.setState({
+      readShops: this.props.shops,
+      moreReadableShops: moreReadableShops,
+    })
   }
 
   shopUrlPath(shop) {
@@ -38,12 +54,43 @@ export default class Index extends Component {
     }
     return new BigNumber(bigDistance * 1000).dp(2) + "m"
   }
+
+  moreReadShops = async () => {
+    const { readShops, moreReadableShops, page } = this.state
+    const { shopsTotalCount } = this.props
+
+    if (!moreReadableShops) {
+      this.setState({ moreReadableShops: false })
+    }
+    const { fetchUrl } = this.props
+    const pagingUrl = fetchUrl + "?page=" + page
+    const response = await fetch(pagingUrl)
+
+    const json = await response.json()
+    const addShops = readShops.concat(json.shops)
+    this.setState({
+      readShops: addShops,
+      page: page + 1,
+      moreReadableShops: shopsTotalCount > addShops.length,
+    })
+  }
+
   render() {
-    const { shops } = this.props
+    const { readShops, moreReadableShops } = this.state
+
     const style = {
       image: { maxHeight: "106px" },
     }
-    const shopList = shops.map((shop) => (
+
+    const moreReadButton = (
+      <div className="text-center mt-2">
+        <Button variant="outline-dark" size="sm" onClick={this.moreReadShops}>
+          もっと見る
+        </Button>
+      </div>
+    )
+
+    const shopList = readShops.map((shop) => (
       <ListGroup className="border-bottom" variant="flush" key={shop.id}>
         <ListGroup.Item className="px-0">
           <Row noGutters>
@@ -129,7 +176,10 @@ export default class Index extends Component {
       </ListGroup>
     ))
     return (
-      <div className="shop__lists">{shops.length > 0 ? shopList : null}</div>
+      <div className="shop__lists">
+        {readShops.length > 0 ? shopList : null}
+        {moreReadableShops && moreReadButton}
+      </div>
     )
   }
 }

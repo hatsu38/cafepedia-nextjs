@@ -30,6 +30,8 @@ const propTypes = {
   chainShop: PropTypes.object,
   shops: PropTypes.array,
   title: PropTypes.string.isRequired,
+  shopsTotalCount: PropTypes.number.isRequired,
+  fetchUrl: PropTypes.string.isRequired,
 }
 
 export default class Index extends Component {
@@ -94,6 +96,8 @@ export default class Index extends Component {
       prefecture,
       chainShop,
       shops,
+      fetchUrl,
+      shopsTotalCount,
       title,
     } = this.props
     const { popularChainShops, popularStations } = this.state
@@ -130,7 +134,11 @@ export default class Index extends Component {
           <Search propsStations={stations} propsCities={cities} />
           <h1 className="main-columns--title">{title}</h1>
           {shops.length > 0 ? (
-            <ShopLists shops={shops} />
+            <ShopLists
+              shops={shops}
+              shopsTotalCount={shopsTotalCount}
+              fetchUrl={fetchUrl}
+            />
           ) : (
             <div>該当するお店は見つかりませんでした。</div>
           )}

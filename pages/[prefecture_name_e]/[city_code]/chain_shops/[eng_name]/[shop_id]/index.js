@@ -20,9 +20,17 @@ const propTypes = {
   shops: PropTypes.array.isRequired,
   shop: PropTypes.object.isRequired,
   station: PropTypes.oneOfType([PropTypes.object, PropTypes.array]), // StationがないときにAPIで空配列を返すためArrayかObjectとしている
+  shopsTotalCount: PropTypes.number.isRequired,
+  fetchUrl: PropTypes.string.isRequired,
 }
 
-export default function Index({ shops, shop, station }) {
+export default function Index({
+  shops,
+  shop,
+  station,
+  fetchUrl,
+  shopsTotalCount,
+}) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -65,7 +73,11 @@ export default function Index({ shops, shop, station }) {
               <h2 className="f5 font-bold">
                 近くの電源やWi-Fiのあるカフェ{shops.length}選
               </h2>
-              <ShopLists shops={shops} />
+              <ShopLists
+                shops={shops}
+                shopsTotalCount={shopsTotalCount}
+                fetchUrl={fetchUrl}
+              />
             </React.Fragment>
           ) : null}
         </div>
@@ -77,16 +89,24 @@ export default function Index({ shops, shop, station }) {
 Index.propTypes = propTypes
 
 export async function getServerSideProps({ params }) {
-  const response = await fetch(
-    `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/main_shops/${params.eng_name}/shops/${params.shop_id}`
-  )
+  const fetchUrl = `${process.env.apiHost}prefectures/${params.prefecture_name_e}/cities/${params.city_code}/main_shops/${params.eng_name}/shops/${params.shop_id}`
+  const response = await fetch(fetchUrl)
   const json = await response.json()
 
   const shops = json.shops
   const shop = json.shop
   const station = json.station
+  const shopsTotalCount = json.shops_total_count
 
-  return { props: { shops: shops, shop: shop, station: station } }
+  return {
+    props: {
+      shops: shops,
+      shop: shop,
+      station: station,
+      fetchUrl: fetchUrl,
+      shopsTotalCount: shopsTotalCount,
+    },
+  }
 }
 
 // export async function getStaticPaths() {
