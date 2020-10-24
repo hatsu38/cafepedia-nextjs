@@ -57,7 +57,7 @@ export default class Index extends Component {
 
   moreReadShops = async () => {
     const { readShops, moreReadableShops, page } = this.state
-    const { shopsTotalCount } = this.props.shopsTotalCount
+    const { shopsTotalCount } = this.props
 
     if (!moreReadableShops) {
       this.setState({ moreReadableShops: false })
@@ -71,7 +71,7 @@ export default class Index extends Component {
     this.setState({
       readShops: addShops,
       page: page + 1,
-      moreReadableShops: addShops.length < shopsTotalCount,
+      moreReadableShops: shopsTotalCount > addShops.length
     })
   }
 
