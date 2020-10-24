@@ -12,9 +12,17 @@ const propTypes = {
   cities: PropTypes.array,
   stations: PropTypes.array,
   shops: PropTypes.array,
+  shopsTotalCount: PropTypes.number.isRequired,
+  fetchUrl: PropTypes.string.isRequired,
 }
 
-export default function Index({ cities, stations, shops }) {
+export default function Index({
+  cities,
+  stations,
+  shops,
+  shopsTotalCount,
+  fetchUrl,
+}) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -42,6 +50,8 @@ export default function Index({ cities, stations, shops }) {
             stations={stations}
             shops={shops}
             title={title}
+            fetchUrl={fetchUrl}
+            shopsTotalCount={shopsTotalCount}
           />
         )}
       </Container>
@@ -52,16 +62,24 @@ export default function Index({ cities, stations, shops }) {
 Index.propTypes = propTypes
 
 export async function getServerSideProps({ query }) {
-  const response = await fetch(
-    `${process.env.apiHost}search/keywords?keyword=${encodeURIComponent(
-      query.keyword
-    )}`
-  )
+  const fetchUrl = `${
+    process.env.apiHost
+  }search/keywords?keyword=${encodeURIComponent(query.keyword)}`
+  const response = await fetch(fetchUrl)
   const json = await response.json()
 
   const stations = json.stations
   const cities = json.cities
   const shops = json.shops
+  const shopsTotalCount = json.shops_total_count
 
-  return { props: { cities: cities, stations: stations, shops: shops } }
+  return {
+    props: {
+      cities: cities,
+      stations: stations,
+      shops: shops,
+      fetchUrl: fetchUrl,
+      shopsTotalCount: shopsTotalCount,
+    },
+  }
 }
