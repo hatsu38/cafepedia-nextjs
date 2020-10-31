@@ -38,11 +38,16 @@ export default function Index({
   const titleBase = `${prefecture.name}の電源のあるカフェ一覧`
   const title = titlePrefix + titleBase
   const description = `${titleBase}です。 ${process.env.baseDescription}`
+  const isNoIndex = shops.length > 1 ? false : true
+  const isNoFollow = isNoIndex
+
   return (
     <Layout>
       <NextSeo
         title={title}
         description={description}
+        noindex={isNoIndex}
+        nofollow={isNoFollow}
         openGraph={{
           title: title,
           description: description,
