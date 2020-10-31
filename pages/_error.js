@@ -10,7 +10,7 @@ const propTypes = {
 function Error({ statusCode }) {
   return (
     <React.Fragment>
-      <NextSeo noindex={true} nofollow={true} />
+      <NextSeo noindex="true" nofollow="true" />
       {statusCode === 404 && <NotFoundError />}
       {statusCode === 500 && <InternalError statusCode={statusCode} />}
       {statusCode !== 404 && statusCode !== 500 && (
