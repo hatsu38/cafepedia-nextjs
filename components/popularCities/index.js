@@ -5,7 +5,7 @@ import { Badge } from "react-bootstrap"
 
 import "./index.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons"
+import { faMap } from "@fortawesome/free-solid-svg-icons"
 
 const propTypes = {
   cities: PropTypes.array.isRequired,
@@ -30,7 +30,7 @@ export default class Index extends Component {
               }`}
             >
               <FontAwesomeIcon
-                icon={faMapMarkerAlt}
+                icon={faMap}
                 className="mr-1"
                 width="14"
                 height="15"

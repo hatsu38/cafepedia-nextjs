@@ -53,7 +53,7 @@ export default function Index({
 Index.propTypes = propTypes
 
 export async function getStaticProps() {
-  const prefs = await import("lib/datas/prefectures.json")
+  const prefecturesJson = await import("lib/datas/prefectures.json")
   const popularChainShopsRes = await fetch(
     `${process.env.apiHost}popular/main_shops`
   )
@@ -66,7 +66,7 @@ export async function getStaticProps() {
   const popularCitiesRes = await fetch(`${process.env.apiHost}popular/cities`)
   const popularCitiesJson = await popularCitiesRes.json()
 
-  const prefectures = prefs.datas
+  const prefectures = prefecturesJson.datas
   const popularChainShops = popularChainShopsJson.main_shops
   const popularStations = popularStationsJson.stations
   const popularCities = popularCitiesJson.cities
