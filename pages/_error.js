@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import NotFoundError from "components/NotFoundError"
 import InternalError from "components/InternalError"
-import { NextSeo } from "next-seo"
 
 const propTypes = {
   statusCode: PropTypes.number.isRequired,
@@ -10,7 +9,6 @@ const propTypes = {
 function Error({ statusCode }) {
   return (
     <React.Fragment>
-      <NextSeo noindex="true" nofollow="true" />
       {statusCode === 404 && <NotFoundError />}
       {statusCode === 500 && <InternalError statusCode={statusCode} />}
       {statusCode !== 404 && statusCode !== 500 && (

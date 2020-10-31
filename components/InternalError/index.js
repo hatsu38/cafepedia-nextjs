@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { NextSeo } from "next-seo"
 import { Jumbotron, Container, Button } from "react-bootstrap"
 import LinkWithATag from "components/linkWrapper/linkWithATag"
 import Layout from "components/layout"
@@ -11,6 +12,7 @@ const propTypes = {
 export default function Index({ statusCode }) {
   return (
     <Layout>
+      <NextSeo noindex="true" nofollow="true" />
       <Jumbotron fluid className="bg--white">
         <Container>
           <h1 className="original-gray f2 text-center">
