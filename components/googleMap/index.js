@@ -28,7 +28,7 @@ export default class Index extends Component {
       lng: lng,
     }
     const style = { height: "100%", width: "100%", minHeight: "200px" }
-    console.log("center", center)
+
     const AnyReactComponent = ({ icon }) => <div>{icon}</div>
     return (
       <div style={style}>

@@ -29,6 +29,7 @@ export default class Index extends Component {
                     <Card.Img
                       variant="top"
                       className={`bg-${chainShop.eng_name}`}
+                      height={120}
                       src={chainShop.logo}
                       alt={`${chainShop.name}ロゴ`}
                     />

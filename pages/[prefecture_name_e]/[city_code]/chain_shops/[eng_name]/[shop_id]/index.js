@@ -70,9 +70,7 @@ export default function Index({
         <div className="mt-5">
           {shops.length > 0 ? (
             <React.Fragment>
-              <h2 className="f5 font-bold">
-                近くの電源やWi-Fiのあるカフェ{shops.length}選
-              </h2>
+              <h2 className="f5 font-bold">近くの電源やWi-Fiのあるカフェ</h2>
               <ShopLists
                 shops={shops}
                 shopsTotalCount={shopsTotalCount}

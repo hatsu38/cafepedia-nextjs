@@ -9,6 +9,7 @@ import Search from "components/search"
 import Prefectures from "components/prefectures"
 import ChainShops from "components/chainShops"
 import PopularStations from "components/popularStations"
+import PopularCities from "components/popularCities"
 
 // Style
 import "../stylesheets/index.module.scss"
@@ -17,12 +18,14 @@ const propTypes = {
   prefectures: PropTypes.array.isRequired,
   popularChainShops: PropTypes.array.isRequired,
   popularStations: PropTypes.array.isRequired,
+  popularCities: PropTypes.array.isRequired,
 }
 
 export default function Index({
   prefectures,
   popularChainShops,
   popularStations,
+  popularCities,
 }) {
   return (
     <Layout>
@@ -40,6 +43,7 @@ export default function Index({
         <Container>
           <ChainShops chainShops={popularChainShops} />
           <PopularStations stations={popularStations} />
+          <PopularCities cities={popularCities} />
         </Container>
       </div>
     </Layout>
@@ -49,7 +53,7 @@ export default function Index({
 Index.propTypes = propTypes
 
 export async function getStaticProps() {
-  const prefs = await import("lib/datas/prefectures.json")
+  const prefecturesJson = await import("lib/datas/prefectures.json")
   const popularChainShopsRes = await fetch(
     `${process.env.apiHost}popular/main_shops`
   )
@@ -59,15 +63,20 @@ export async function getStaticProps() {
   )
   const popularStationsJson = await popularStationsRes.json()
 
-  const prefectures = prefs.datas
+  const popularCitiesRes = await fetch(`${process.env.apiHost}popular/cities`)
+  const popularCitiesJson = await popularCitiesRes.json()
+
+  const prefectures = prefecturesJson.datas
   const popularChainShops = popularChainShopsJson.main_shops
   const popularStations = popularStationsJson.stations
+  const popularCities = popularCitiesJson.cities
 
   return {
     props: {
       prefectures: prefectures,
       popularChainShops: popularChainShops,
       popularStations: popularStations,
+      popularCities: popularCities,
     },
   }
 }
