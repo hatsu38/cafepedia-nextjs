@@ -63,9 +63,7 @@ export async function getStaticProps() {
   )
   const popularStationsJson = await popularStationsRes.json()
 
-  const popularCitiesRes = await fetch(
-    `${process.env.apiHost}popular/cities`
-  )
+  const popularCitiesRes = await fetch(`${process.env.apiHost}popular/cities`)
   const popularCitiesJson = await popularCitiesRes.json()
 
   const prefectures = prefs.datas
@@ -78,7 +76,7 @@ export async function getStaticProps() {
       prefectures: prefectures,
       popularChainShops: popularChainShops,
       popularStations: popularStations,
-      popularCities: popularCities
+      popularCities: popularCities,
     },
   }
 }
