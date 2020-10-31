@@ -21,7 +21,7 @@ export default class Index extends Component {
 
     return (
       <section className="mt-5">
-        <h2 className="section--title">人気エリアから探す</h2>
+        <h2 className="section--title">人気の駅から探す</h2>
         {stations.map((station, idx) => (
           <StationLink station={station} key={station.id}>
             <Badge
