@@ -155,7 +155,7 @@ export default class Index extends Component {
                     height="14"
                   />
                 </Col>
-                <Col xs={11} className="f8">
+                <Col xs={11} className="f7">
                   {this.distanceToText(shop.distance)}
                 </Col>
               </React.Fragment>
