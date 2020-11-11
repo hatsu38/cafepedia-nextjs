@@ -28,7 +28,7 @@ export default class Index extends Component {
           />
           <span>{dtText}</span>
         </dt>
-        <dd className="info-list__description trancate">{ddText}</dd>
+        <dd className="info-list__description trancate mb-0">{ddText}</dd>
       </div>
     )
   }
