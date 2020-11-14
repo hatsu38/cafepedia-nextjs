@@ -8,16 +8,11 @@ const propTypes = {
 }
 
 export default function Index(props) {
+  const { thText, tdText, link } = props
   return (
     <tr>
-      <th>{props.thText}</th>
-      <td>
-        {props.link ? (
-          <a href={props.link}>{props.tdText}</a>
-        ) : (
-          <span>{props.tdText}</span>
-        )}
-      </td>
+      <th>{thText}</th>
+      <td>{link ? <a href={link}>{tdText}</a> : <span>{tdText}</span>}</td>
     </tr>
   )
 }
