@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
 const propTypes = {
@@ -7,20 +7,14 @@ const propTypes = {
   link: PropTypes.string,
 }
 
-export default class Index extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    const { thText, tdText, link } = this.props
-    return (
-      <tr>
-        <th>{thText}</th>
-        <td>{link ? <a href={link}>{tdText}</a> : <span>{tdText}</span>}</td>
-      </tr>
-    )
-  }
+export default function Index(props) {
+  const { thText, tdText, link } = props
+  return (
+    <tr>
+      <th>{thText}</th>
+      <td>{link ? <a href={link}>{tdText}</a> : <span>{tdText}</span>}</td>
+    </tr>
+  )
 }
 
 Index.propTypes = propTypes
