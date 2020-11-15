@@ -70,14 +70,18 @@ export default class Index extends Component {
           />
         </Button>
         <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title className="f4">現在地に近いカフェを探す</Modal.Title>
+          <Modal.Header closeButton className="px-2">
+            <Modal.Title className="f5">現在地に近いカフェを探す</Modal.Title>
           </Modal.Header>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
+            <Button variant="secondary" size="sm" onClick={this.handleClose}>
               閉じる
             </Button>
-            <Button className="bg-accent" onClick={this.fetchCurrentPosition}>
+            <Button
+              className="bg-accent"
+              size="sm"
+              onClick={this.fetchCurrentPosition}
+            >
               現在地から検索
             </Button>
           </Modal.Footer>
