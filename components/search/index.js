@@ -6,7 +6,6 @@ import fetch from "isomorphic-unfetch"
 import { InputGroup, FormControl, Button, Modal } from "react-bootstrap"
 
 import CityLink from "components/linkWrapper/cityLink"
-import PrefectureLink from "components/linkWrapper/prefectureLink"
 import StationLink from "components/linkWrapper/stationLink"
 
 import BadgeTitle from "./BadgeTitle"
@@ -15,6 +14,7 @@ import NoResultContentText from "./NoResultContentText"
 import BadgeRender from "./BadgeRender"
 import ModalSearchButton from "./ModalSearchButton"
 import ShopsRender from "./ShopsRender"
+import PrefMaps from "./PrefMaps"
 
 import "./index.module.scss"
 
@@ -65,29 +65,6 @@ export default class Index extends Component {
       show: false,
       keyword: keyword,
     })
-  }
-
-  prefecturesFilteredInArea(area) {
-    const { prefectures } = this.state
-    if (!prefectures.length) {
-      return []
-    }
-    return prefectures.filter((prefecture) => prefecture.area === area)
-  }
-
-  // TODO: これで一つのFunctionComponentにしたい
-  prefMaps = (area) => {
-    return this.prefecturesFilteredInArea(area).map((prefecture) => (
-      <PrefectureLink
-        prefecture={prefecture}
-        key={`search-prefecture-${prefecture.name_e}`}
-      >
-        <BadgeRender
-          name={prefecture.ellipsis_name}
-          setKeywordAndHandleClose={this.setKeywordAndHandleClose}
-        />
-      </PrefectureLink>
-    ))
   }
 
   areaSearch = async (e) => {
@@ -236,7 +213,11 @@ export default class Index extends Component {
               areas.map((area) => (
                 <div key={area}>
                   <BadgeTitle name={area} />
-                  {this.prefMaps(area)}
+                  <PrefMaps
+                    area={area}
+                    prefectures={prefectures}
+                    setKeywordAndHandleClose={this.setKeywordAndHandleClose}
+                  />
                   <hr />
                 </div>
               ))}
