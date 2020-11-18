@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import PrefectureLink from "components/linkWrapper/prefectureLink"
-import BadgeRender from "./BadgeRender"
+import BadgeRender from "../BadgeRender"
 
 const propTypes = {
   prefectures: PropTypes.array.isRequired,
@@ -10,7 +10,7 @@ const propTypes = {
 }
 
 export default function Index(props) {
-  const { prefectures, area } = props
+  const { prefectures, area, setKeywordAndHandleClose } = props
 
   const prefecturesFilteredInArea = (area) => {
     if (!prefectures.length) {
@@ -26,7 +26,7 @@ export default function Index(props) {
     >
       <BadgeRender
         name={prefecture.ellipsis_name}
-        setKeywordAndHandleClose={this.setKeywordAndHandleClose}
+        setKeywordAndHandleClose={setKeywordAndHandleClose}
       />
     </PrefectureLink>
   ))
