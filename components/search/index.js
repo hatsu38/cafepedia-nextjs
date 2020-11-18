@@ -14,6 +14,7 @@ import LinkWithATag from "components/linkWrapper/linkWithATag"
 import BadgeTitle from "./BadgeTitle"
 import CurrentSearchLink from "./CurrentSearchLink"
 import NoResultContentText from "./NoResultContentText"
+import BadgeRender from "./BadgeRender"
 
 import "./index.module.scss"
 
@@ -74,25 +75,16 @@ export default class Index extends Component {
     return prefectures.filter((prefecture) => prefecture.area === area)
   }
 
-  badgeRender(value) {
-    return (
-      <Badge
-        key={`value-${value}`}
-        className="lighten-15-accent border-lighten-20-accent mr-2"
-        onClick={() => this.setKeywordAndHandleClose(value)}
-      >
-        {value}
-      </Badge>
-    )
-  }
-
   prefMaps = (area) => {
     return this.prefecturesFilteredInArea(area).map((prefecture) => (
       <PrefectureLink
         prefecture={prefecture}
         key={`search-prefecture-${prefecture.name_e}`}
       >
-        {this.badgeRender(prefecture.ellipsis_name)}
+        <BadgeRender
+          name={prefecture.ellipsis_name}
+          setKeywordAndHandleClose={this.setKeywordAndHandleClose}
+        />
       </PrefectureLink>
     ))
   }
@@ -113,7 +105,10 @@ export default class Index extends Component {
           <BadgeTitle name={chainShopName} />
           {filteredShops.map((shop) => (
             <ShopLink shop={shop} key={`search-shop-${shop.id}`}>
-              {this.badgeRender(shop.name)}
+              <BadgeRender
+                name={shop.name}
+                setKeywordAndHandleClose={this.setKeywordAndHandleClose}
+              />
             </ShopLink>
           ))}
           <hr />
@@ -290,7 +285,10 @@ export default class Index extends Component {
                     station={station}
                     key={`search-station-${station.id}`}
                   >
-                    {this.badgeRender(station.kanji_name)}
+                    <BadgeRender
+                      name={station.kanji_name}
+                      setKeywordAndHandleClose={this.setKeywordAndHandleClose}
+                    />
                   </StationLink>
                 ))}
                 <hr />
@@ -301,7 +299,10 @@ export default class Index extends Component {
                 <BadgeTitle name={"市区町村"} />
                 {searchCities.map((city) => (
                   <CityLink city={city} key={`search-city-${city.code}`}>
-                    {this.badgeRender(city.name)}
+                    <BadgeRender
+                      name={city.name}
+                      setKeywordAndHandleClose={this.setKeywordAndHandleClose}
+                    />
                   </CityLink>
                 ))}
                 <hr />
