@@ -135,23 +135,6 @@ export default class Index extends Component {
       "ueshima",
       "kissa_renoir",
     ]
-    const areaRender = areas.map((area) => (
-      <div key={area}>
-        <BadgeTitle name={area} />
-        {this.prefMaps(area)}
-        <hr />
-      </div>
-    ))
-
-    // TODO: これで一つのFunctionComponentにしたい
-    const shopsRender = majorChainShops.map((chainShop) => (
-      <ShopsRender
-        key={`ShopsRender-${chainShop.name}`}
-        shops={this.state.shops}
-        chainShopName={chainShop.name}
-        setKeywordAndHandleClose={this.setKeywordAndHandleClose}
-      />
-    ))
 
     let searchCities = propsCities
     if (cities.length > 0) {
@@ -240,8 +223,23 @@ export default class Index extends Component {
                 <hr />
               </React.Fragment>
             ) : null}
-            {shops.length > 0 && shopsRender}
-            {prefectures.length > 0 && areaRender}
+            {shops.length > 0 &&
+              majorChainShops.map((chainShop) => (
+                <ShopsRender
+                  key={`ShopsRender-${chainShop.name}`}
+                  shops={this.state.shops}
+                  chainShopName={chainShop.name}
+                  setKeywordAndHandleClose={this.setKeywordAndHandleClose}
+                />
+              ))}
+            {prefectures.length > 0 &&
+              areas.map((area) => (
+                <div key={area}>
+                  <BadgeTitle name={area} />
+                  {this.prefMaps(area)}
+                  <hr />
+                </div>
+              ))}
           </Modal.Body>
         </Modal>
       </React.Fragment>
