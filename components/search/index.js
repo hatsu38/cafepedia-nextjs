@@ -11,6 +11,10 @@ import ShopLink from "components/linkWrapper/shopLink"
 import StationLink from "components/linkWrapper/stationLink"
 import LinkWithATag from "components/linkWrapper/linkWithATag"
 
+import BadgeTitle from "./BadgeTitle"
+import CurrentSearchLink from "./CurrentSearchLink"
+import NoResultContentText from "./NoResultContentText"
+
 import "./index.module.scss"
 
 const defaultProps = {
@@ -70,10 +74,6 @@ export default class Index extends Component {
     return prefectures.filter((prefecture) => prefecture.area === area)
   }
 
-  badgeTitle = (name) => {
-    return <h4 className="f7 original-gray-text mb-1">{name}</h4>
-  }
-
   badgeRender(value) {
     return (
       <Badge
@@ -110,7 +110,7 @@ export default class Index extends Component {
     if (filteredShops.length) {
       return (
         <React.Fragment key={`search-shop-node-${chainShopName}`}>
-          {this.badgeTitle(chainShopName)}
+          <BadgeTitle name={chainShopName} />
           {filteredShops.map((shop) => (
             <ShopLink shop={shop} key={`search-shop-${shop.id}`}>
               {this.badgeRender(shop.name)}
@@ -203,7 +203,7 @@ export default class Index extends Component {
     ]
     const areaRender = areas.map((area) => (
       <div key={area}>
-        {this.badgeTitle(area)}
+        <BadgeTitle name={area} />
         {this.prefMaps(area)}
         <hr />
       </div>
@@ -226,29 +226,6 @@ export default class Index extends Component {
     } else if (keyword) {
       searchStations = []
     }
-
-    const noResultContentText = (
-      <React.Fragment>
-        <span className="text-danger">
-          「{keyword}」を含むお店や地域はありません。
-        </span>
-        <hr />
-      </React.Fragment>
-    )
-
-    const currentSearchLink = (
-      <React.Fragment>
-        {this.badgeTitle("現在地から探す")}
-        <Badge
-          className="lighten-15-accent border-lighten-20-accent mr-2"
-          style={{ cursor: "pointer" }}
-          onClick={this.fetchCurrentPosition}
-        >
-          現在地
-        </Badge>
-        <hr />
-      </React.Fragment>
-    )
 
     const modalSearchButton = (
       <Button className="bg-accent f6 text-reset">
@@ -301,11 +278,13 @@ export default class Index extends Component {
             </InputGroup>
           </Modal.Header>
           <Modal.Body>
-            {this.haveSearchResultContent() ? null : noResultContentText}
-            {currentSearchLink}
+            {!this.haveSearchResultContent() && (
+              <NoResultContentText keyword={keyword} />
+            )}
+            <CurrentSearchLink />
             {searchStations.length > 0 ? (
               <React.Fragment>
-                {this.badgeTitle("最寄り駅")}
+                <BadgeTitle name={"最寄り駅"} />
                 {searchStations.map((station) => (
                   <StationLink
                     station={station}
@@ -319,7 +298,7 @@ export default class Index extends Component {
             ) : null}
             {searchCities.length > 0 ? (
               <React.Fragment>
-                {this.badgeTitle("市区町村")}
+                <BadgeTitle name={"市区町村"} />
                 {searchCities.map((city) => (
                   <CityLink city={city} key={`search-city-${city.code}`}>
                     {this.badgeRender(city.name)}
