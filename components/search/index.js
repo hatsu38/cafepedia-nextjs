@@ -7,7 +7,6 @@ import { InputGroup, FormControl, Button, Modal } from "react-bootstrap"
 
 import CityLink from "components/linkWrapper/cityLink"
 import PrefectureLink from "components/linkWrapper/prefectureLink"
-import ShopLink from "components/linkWrapper/shopLink"
 import StationLink from "components/linkWrapper/stationLink"
 
 import BadgeTitle from "./BadgeTitle"
@@ -15,6 +14,7 @@ import CurrentSearchLink from "./CurrentSearchLink"
 import NoResultContentText from "./NoResultContentText"
 import BadgeRender from "./BadgeRender"
 import ModalSearchButton from "./ModalSearchButton"
+import ShopsRender from "./ShopsRender"
 
 import "./index.module.scss"
 
@@ -75,6 +75,7 @@ export default class Index extends Component {
     return prefectures.filter((prefecture) => prefecture.area === area)
   }
 
+  // TODO: これで一つのFunctionComponentにしたい
   prefMaps = (area) => {
     return this.prefecturesFilteredInArea(area).map((prefecture) => (
       <PrefectureLink
@@ -87,34 +88,6 @@ export default class Index extends Component {
         />
       </PrefectureLink>
     ))
-  }
-
-  shopsFilterByChainShops = (chainShopName) => {
-    const { shops } = this.state
-    if (!shops.length) {
-      return []
-    }
-    return shops.filter((shop) => shop.main_shop.eng_name === chainShopName)
-  }
-
-  filteredShopsRender = (chainShopName) => {
-    const filteredShops = this.shopsFilterByChainShops(chainShopName)
-    if (filteredShops.length) {
-      return (
-        <React.Fragment key={`search-shop-node-${chainShopName}`}>
-          <BadgeTitle name={chainShopName} />
-          {filteredShops.map((shop) => (
-            <ShopLink shop={shop} key={`search-shop-${shop.id}`}>
-              <BadgeRender
-                name={shop.name}
-                setKeywordAndHandleClose={this.setKeywordAndHandleClose}
-              />
-            </ShopLink>
-          ))}
-          <hr />
-        </React.Fragment>
-      )
-    }
   }
 
   areaSearch = async (e) => {
@@ -170,9 +143,15 @@ export default class Index extends Component {
       </div>
     ))
 
-    const shopsRender = majorChainShops.map((chainShop) =>
-      this.filteredShopsRender(chainShop)
-    )
+    // TODO: これで一つのFunctionComponentにしたい
+    const shopsRender = majorChainShops.map((chainShop) => (
+      <ShopsRender
+        key={`ShopsRender-${chainShop.name}`}
+        shops={this.state.shops}
+        chainShopName={chainShop.name}
+        setKeywordAndHandleClose={this.setKeywordAndHandleClose}
+      />
+    ))
 
     let searchCities = propsCities
     if (cities.length > 0) {
