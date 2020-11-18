@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import "stylesheets/layout.module.scss"
 import Header from "components/header"
 import { NextSeo } from "next-seo"
-import FloatingButton from "components/floatingButton"
+// import FloatingButton from "components/floatingButton"
 import Footer from "components/footer"
 import Head from "next/head"
 
@@ -52,7 +52,7 @@ export default function Layout({ children }) {
       />
       <Header />
       {children}
-      <FloatingButton />
+      {/* <FloatingButton /> */}
       <Footer />
     </React.Fragment>
   )

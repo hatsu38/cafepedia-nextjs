@@ -9,7 +9,7 @@ import CityLink from "components/linkWrapper/cityLink"
 import StationLink from "components/linkWrapper/stationLink"
 
 import BadgeTitle from "./BadgeTitle"
-import CurrentSearchLink from "./CurrentSearchLink"
+// import CurrentSearchLink from "./CurrentSearchLink"
 import NoResultContentText from "./NoResultContentText"
 import BadgeRender from "./BadgeRender"
 import ModalSearchButton from "./ModalSearchButton"
@@ -168,7 +168,7 @@ export default class Index extends Component {
             {!this.haveSearchResultContent() && (
               <NoResultContentText keyword={keyword} />
             )}
-            <CurrentSearchLink />
+            {/* <CurrentSearchLink /> */}
             {searchStations.length > 0 ? (
               <React.Fragment>
                 <BadgeTitle name={"最寄り駅"} />
