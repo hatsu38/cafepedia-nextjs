@@ -4,8 +4,8 @@ import { useRouter } from "next/router"
 
 import * as Sentry from "@sentry/react"
 import * as gtag from "lib/gtag"
-import "../stylesheets/global.scss"
-
+import "stylesheets/global.scss"
+import "../stylesheets/index.module.scss"
 const propTypes = {
   Component: PropTypes.func.isRequired,
   pageProps: PropTypes.object.isRequired,

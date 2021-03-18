@@ -1,6 +1,6 @@
-const withSass = require("@zeit/next-sass")
+const path = require("path")
 
-module.exports = withSass({
+module.exports = {
   experimental: { scss: true },
   env: {
     apiHost: "https://cafepedia-api.herokuapp.com/api/v1/",
@@ -16,4 +16,7 @@ module.exports = withSass({
     config.resolve.modules.push(__dirname)
     return config
   },
-})
+  sassOptions: {
+    includePaths: [path.join(__dirname, "stylesheets")],
+  },
+}

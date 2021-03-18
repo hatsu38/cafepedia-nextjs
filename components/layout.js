@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import "stylesheets/layout.module.scss"
+import "../stylesheets/index.module.scss"
 import Header from "components/header"
 import { NextSeo } from "next-seo"
 import FloatingButton from "components/floatingButton"
